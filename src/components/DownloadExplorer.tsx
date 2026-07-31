@@ -7,12 +7,19 @@ type Client = { id: string; name: string; description: string; repo: string; rel
 
 const platformIcon: Record<string, typeof FaWindows> = { Windows: FaWindows, Linux: FaLinux, macOS: FaApple, iOS: FaApple, Android: FaAndroid }
 const accents = ['acid', 'cyan', 'violet', 'pink']
-const platformOrder = ['Desktop', 'Android', 'Windows', 'macOS', 'Linux', 'iOS', 'Other']
+const platformOrder = ['Desktop', 'Android', 'iOS']
 const androidClientIds = new Set(['telegram', 'nagram', 'nnngram', 'nullgram', 'mercurygram', 'forkgram', 'telegram-x'])
+const desktopPlatforms = new Set(['Windows', 'macOS', 'Linux', 'Other'])
 
-function clientPlatforms(client: Client) {
+function clientCategories(client: Client) {
   const platforms = [...new Set(client.assets.map(asset => asset.platform))]
-  if (platforms.length) return platforms
+  if (platforms.length) {
+    return [
+      ...(platforms.some(platform => desktopPlatforms.has(platform)) ? ['Desktop'] : []),
+      ...(platforms.includes('Android') ? ['Android'] : []),
+      ...(platforms.includes('iOS') ? ['iOS'] : []),
+    ]
+  }
   if (androidClientIds.has(client.id)) return ['Android']
   return ['Desktop']
 }
@@ -24,13 +31,13 @@ function Choice({ active, children, onClick }: { active: boolean; children: Reac
 export default function DownloadExplorer({ clients }: { clients: Client[] }) {
   const [selectedClient, setSelectedClient] = useState(clients.find(client => client.assets.length)?.id ?? clients[0]?.id)
   const client = clients.find(item => item.id === selectedClient) ?? clients[0]
-  const availablePlatforms = useMemo(() => [...new Set(clients.flatMap(clientPlatforms))]
+  const availablePlatforms = useMemo(() => [...new Set(clients.flatMap(clientCategories))]
     .sort((a, b) => platformOrder.indexOf(a) - platformOrder.indexOf(b)), [clients])
   const [clientPlatformChoice, setClientPlatformChoice] = useState<string | null>(null)
   const clientPlatform = clientPlatformChoice && availablePlatforms.includes(clientPlatformChoice)
     ? clientPlatformChoice
-    : (clientPlatforms(client).find(item => availablePlatforms.includes(item)) ?? availablePlatforms[0])
-  const visibleClients = clients.filter(item => clientPlatforms(item).includes(clientPlatform))
+    : (clientCategories(client).find(item => availablePlatforms.includes(item)) ?? availablePlatforms[0])
+  const visibleClients = clients.filter(item => clientCategories(item).includes(clientPlatform))
   const platforms = useMemo(() => [...new Set(client?.assets.map(asset => asset.platform) ?? [])], [client])
   const [platformChoice, setPlatformChoice] = useState<string | null>(null)
   const platform = platforms.includes(platformChoice ?? '') ? platformChoice! : platforms[0]
@@ -50,10 +57,10 @@ export default function DownloadExplorer({ clients }: { clients: Client[] }) {
 
   const selectClientPlatform = (nextPlatform: string) => {
     setClientPlatformChoice(nextPlatform)
-    const currentStillVisible = clientPlatforms(client).includes(nextPlatform)
+    const currentStillVisible = clientCategories(client).includes(nextPlatform)
     if (!currentStillVisible) {
-      const nextClient = clients.find(item => clientPlatforms(item).includes(nextPlatform) && item.assets.length)
-        ?? clients.find(item => clientPlatforms(item).includes(nextPlatform))
+      const nextClient = clients.find(item => clientCategories(item).includes(nextPlatform) && item.assets.length)
+        ?? clients.find(item => clientCategories(item).includes(nextPlatform))
       if (nextClient) selectClient(nextClient.id)
     }
   }
@@ -65,7 +72,7 @@ export default function DownloadExplorer({ clients }: { clients: Client[] }) {
         <div className="client-platforms" role="tablist" aria-label="客户端平台">
           {availablePlatforms.map(item => {
             const Icon = platformIcon[item] ?? TbLayersIntersect
-            const count = clients.filter(client => clientPlatforms(client).includes(item)).length
+            const count = clients.filter(client => clientCategories(client).includes(item)).length
             return <button
               className={item === clientPlatform ? 'platform-tab active' : 'platform-tab'}
               onClick={() => selectClientPlatform(item)}
