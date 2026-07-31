@@ -1,0 +1,28 @@
+---
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import '../styles/global.css'
+interface Props { title: string; description?: string }
+const { title, description = 'CrossGram — 使用 Telegram 客户端连接 QQ、Discord、Matrix 与更多聊天平台。' } = Astro.props
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#080a0d" />
+    <title>{title}</title>
+    <script is:inline>document.documentElement.classList.add('js')</script>
+  </head>
+  <body>
+    <div class="noise"></div>
+    <Header />
+    <main><slot /></main>
+    <Footer />
+    <script is:inline>
+      const reveal = new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('revealed')), { threshold: .08 })
+      document.querySelectorAll('[data-reveal]').forEach(el => reveal.observe(el))
+    </script>
+  </body>
+</html>

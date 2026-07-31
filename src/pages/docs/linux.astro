@@ -1,0 +1,33 @@
+---
+import Docs from '../../layouts/Docs.astro'
+---
+<Docs title="Linux 一键部署" system="Linux" description="在 Ubuntu / Debian 或支持 dnf 的发行版上，以 systemd 服务部署 CrossGram Server；QQNT Bridge 也提供独立一键脚本。">
+  <div class="callout"><b>准备：</b>一台具有公网 IP 或可被客户端访问的 Linux 主机、root 权限，以及开放的 TCP 4430 端口。CrossGram 安装器会检查并安装 Node.js 24+、Git 与 Corepack。</div>
+  <h2>1. 安装 CrossGram Server</h2>
+  <p>把 <code>203.0.113.10</code> 换成客户端实际可以连接到的公网 IP 或域名：</p>
+  <pre><code>curl -fsSL https://raw.githubusercontent.com/std-microblock/crossgram/main/deploy/install.sh \
+  | sudo CROSSGRAM_PUBLIC_HOST=203.0.113.10 sh</code></pre>
+  <p>安装器会创建低权限用户 <code>crossgram</code>，将代码放在 <code>/opt/crossgram</code>，持久数据放在 <code>/var/lib/crossgram/data</code>，并启动 systemd 服务。</p>
+  <h3>更新服务</h3>
+  <pre><code>sudo crossgram-update</code></pre>
+  <h3>检查状态</h3>
+  <pre><code>sudo systemctl status crossgram
+sudo journalctl -u crossgram -f</code></pre>
+
+  <h2>2. 安装 QQNT Bridge</h2>
+  <p>QQNT 协议端位于 <code>crossgram-project/qqnt-bridge</code>。在 QQNT Bridge 仓库的 Release / 部署文档中复制最新的一键安装命令，并在同一台或可互通的主机上执行。</p>
+  <div class="callout">QQNT Bridge 的 bearer token 应写入 <code>/etc/qqnt-bridge.env</code>。CrossGram 会从环境变量读取它，不会把 token 复制到应用 YAML。</div>
+
+  <h2>3. 生成客户端配置</h2>
+  <p>首次启动成功后会自动创建 RSA 密钥。生成一个可以被 CrossGram Desktop / Android 导入的 JSON：</p>
+  <pre><code>sudo crossgram-client-config --host 203.0.113.10 --port 4430 \
+  --name 'My CrossGram' --output /tmp/crossgram-server.json</code></pre>
+
+  <h2>4. 登录客户端</h2>
+  <ol class="steps">
+    <li>从下载页安装客户端，并导入刚才生成的服务器 JSON。</li>
+    <li>通过 SSH 端口转发访问仅绑定本机的 WebUI：<code>ssh -L 3140:127.0.0.1:3140 user@server</code>。</li>
+    <li>打开 <code>http://127.0.0.1:3140/platform-accounts</code>，找到虚拟手机号与每 30 秒轮换的六位登录码。</li>
+    <li>在客户端输入 <code>+999...</code> 虒拟手机号和登录码。</li>
+  </ol>
+</Docs>

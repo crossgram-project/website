@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro'
+import DownloadExplorer from '../components/DownloadExplorer'
+import releaseData from '../data/releases.json'
+---
+<Base title="下载 — CrossGram" description="按客户端、系统、品牌渠道与架构选择 CrossGram 构建。支持 Desktop、Android、Unigram、Telegram X 与 Mithka。">
+  <section class="page-hero wrap">
+    <p class="eyebrow">Choose your surface</p>
+    <h1 class="title">很多种客户端，<br/><span class="gradient-text">只需要一个选择器。</span></h1>
+    <p class="lead">从你喜欢的客户端开始，再选择系统和品牌渠道。我们会把数十个 Release 资产整理成一个推荐下载；架构、安装格式和历史构建需要时再展开。</p>
+  </section>
+
+  <section class="explorer-wrap wrap">
+    <DownloadExplorer clients={releaseData.clients as any} client:load />
+  </section>
+
+  <section class="variant wrap" data-reveal>
+    <p class="eyebrow">What is a channel?</p><h2>同一个客户端，<br/>可以为不同世界而生。</h2>
+    <div class="variant-grid">
+      <div><b>CrossGram</b><p>中性品牌，适合在同一个客户端内连接多个桥接平台。</p></div>
+      <div><b>QQ / 微信 / 企业微信</b><p>独立图标与应用标识，适合多开并把每个平台清晰分开。</p></div>
+      <div><b>钉钉 / Discord</b><p>同一套服务器切换能力，不同的视觉渠道与独立数据目录。</p></div>
+      <div><b>更多版本</b><p>调试符号、校验文件和旧 Release 不占据主页面，可随时前往 GitHub 查看。</p></div>
+    </div>
+  </section>
+</Base>
+<style>
+  .explorer-wrap{padding-bottom:30px}.variant{padding:140px 0}.variant h2{font-size:clamp(38px,5vw,64px);line-height:1.05;letter-spacing:-.05em}.variant-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}.variant-grid div{padding:30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}.variant-grid b{color:var(--acid)}.variant-grid p{color:var(--muted);font-size:14px;line-height:1.7}
+  @media(max-width:800px){.variant-grid{grid-template-columns:1fr 1fr}}@media(max-width:520px){.variant-grid{grid-template-columns:1fr}}
+</style>
+<style is:global>
+  .client-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.client-card{min-height:230px;padding:22px;text-align:left;border:1px solid var(--line);border-radius:18px;background:#0d1014;color:var(--white);cursor:pointer;transition:.25s}.client-card:hover,.client-card.selected{transform:translateY(-3px);border-color:rgba(167,255,131,.55);background:#12171a}.client-glyph{display:grid;place-items:center;width:46px;height:46px;margin-bottom:32px;border-radius:14px;background:var(--acid);color:#07110b;font-size:24px}.client-glyph.cyan{background:var(--cyan)}.client-glyph.violet{background:var(--violet)}.client-glyph.pink{background:#ff9bd3}.client-card small{display:block;color:#697079;font:500 9px var(--mono);letter-spacing:.12em}.client-card strong{display:block;margin:8px 0;font-size:20px;letter-spacing:-.03em}.client-card p{min-height:40px;margin:0;color:var(--muted);font-size:12px;line-height:1.6}.client-card em{display:block;margin-top:20px;color:var(--acid);font:400 9px var(--mono);font-style:normal}
+  .picker{margin-top:22px;padding:42px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,#14191d,#090b0e)}.picker-head{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:36px;border-bottom:1px solid var(--line)}.picker-head small{color:var(--acid);font:500 9px var(--mono);letter-spacing:.15em}.picker-head h2{margin:10px 0 8px;font-size:42px;letter-spacing:-.05em}.picker-head p{margin:0;color:var(--muted)}.picker-head>a{display:flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid var(--line);border-radius:10px;font-size:12px}.pick-row{display:grid;grid-template-columns:150px 1fr;gap:25px;padding:25px 0;border-bottom:1px solid var(--line)}.pick-row>span{padding-top:11px;color:#697079;font:500 9px var(--mono);letter-spacing:.13em}.pick-row>div{display:flex;flex-wrap:wrap;gap:8px}.choice{display:flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--muted);cursor:pointer}.choice:hover,.choice.active{border-color:var(--acid);background:rgba(167,255,131,.08);color:var(--white)}
+  .recommend{display:grid;grid-template-columns:62px 1fr auto;gap:20px;align-items:center;margin-top:30px;padding:22px;border:1px solid rgba(167,255,131,.3);border-radius:16px;background:rgba(167,255,131,.05)}.recommend-icon{display:grid;place-items:center;width:62px;height:62px;border-radius:16px;background:var(--acid);color:#08100b;font-size:27px}.recommend small{color:var(--acid);font:500 9px var(--mono);letter-spacing:.12em}.recommend h3{margin:6px 0;font-size:21px}.recommend p{margin:0;color:var(--muted);font:400 10px var(--mono)}.recommend i{color:#454b52}.recommend>a,.empty-release>a{display:flex;align-items:center;gap:8px;padding:13px 17px;border-radius:11px;background:var(--acid);color:#08100b;font-weight:700}.picker details{margin-top:14px}.picker summary{display:flex;align-items:center;justify-content:space-between;padding:14px;color:var(--muted);font-size:12px;cursor:pointer}.alternatives{display:grid;gap:7px}.alternatives a{display:flex;align-items:center;justify-content:space-between;padding:14px;border:1px solid var(--line);border-radius:10px}.alternatives a:hover{border-color:var(--acid)}.alternatives span{display:flex;flex-direction:column;gap:3px}.alternatives small{color:var(--muted);font:400 9px var(--mono)}.empty-release{display:grid;grid-template-columns:50px 1fr auto;gap:20px;align-items:center;margin-top:30px;padding:24px;border:1px dashed var(--line);border-radius:14px}.empty-release>svg{color:var(--acid);font-size:32px}.empty-release h3{margin:0 0 6px}.empty-release p{margin:0;color:var(--muted);font-size:13px}
+  @media(max-width:900px){.client-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:650px){.client-grid{grid-template-columns:1fr 1fr}.client-card{min-height:205px;padding:17px}.picker{padding:24px}.picker-head{display:block}.picker-head>a{width:max-content;margin-top:20px}.pick-row{grid-template-columns:1fr;gap:8px}.recommend,.empty-release{grid-template-columns:52px 1fr}.recommend>a,.empty-release>a{grid-column:1/-1;justify-content:center}}@media(max-width:440px){.client-grid{grid-template-columns:1fr}.client-card p{min-height:auto}}
+</style>

@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro'
+import Placeholder from '../components/Placeholder.astro'
+import { featureGroups, matrix } from '../data/site'
+---
+<Base title="功能 — CrossGram" description="了解 CrossGram 支持的跨平台聊天、富媒体、消息操作与自托管能力。">
+  <section class="page-hero wrap">
+    <p class="eyebrow">Feature atlas / 04 systems</p>
+    <h1 class="title">一套体验，<br/><span class="gradient-text">穿过所有平台。</span></h1>
+    <p class="lead">我们没有把功能做成一排相同的卡片。每一组能力都对应一张可替换的产品叙事图：让真实截图出现时，它讲述“这个功能如何被使用”，而不只是证明它存在。</p>
+  </section>
+
+  <section class="feature-list wrap">
+    {featureGroups.map((feature, index) => (
+      <article class:list={['feature-row', { reverse: index % 2 }]} data-reveal>
+        <div class="feature-copy">
+          <span>{feature.kicker}</span>
+          <h2>{feature.title}</h2>
+          <p>{feature.body}</p>
+          <ul>{feature.chips.map(chip => <li>{chip}</li>)}</ul>
+        </div>
+        <div class="visual-wrap">
+          <div class:list={['visual-note', `note-${index}`]}>{index === 0 ? '建议截图：会话列表 + 聊天窗口' : index === 1 ? '建议截图：相册、文件、合并转发叠层' : index === 2 ? '建议截图：右键菜单 + reaction 浮层' : '建议截图：WebUI 账号页 + 服务器拓扑'}</div>
+          <Placeholder label={`${feature.title} / ${feature.visual}`} kind="feature" />
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <section class="matrix-section wrap" data-reveal>
+    <div class="matrix-head"><div><p class="eyebrow">Compatibility matrix</p><h2>现在支持到哪里。</h2></div><p><b>●</b> 完整支持　<span>◐</span> 部分支持　<i>—</i> 暂不支持</p></div>
+    <div class="matrix">
+      <div class="matrix-row matrix-title"><strong>能力</strong><strong>QQ / QQNT</strong><strong>Discord</strong><strong>Matrix</strong></div>
+      {matrix.map(row => <div class="matrix-row"><strong>{row[0]}</strong>{row.slice(1).map(status => <span class={status}>{status === 'full' ? '●' : status === 'partial' ? '◐' : '—'}</span>)}</div>)}
+    </div>
+    <p class="matrix-foot">Discord 适配器以普通用户账号自动化方式运行，可能违反 Discord 服务条款。请使用可承受风险的独立账号。</p>
+  </section>
+</Base>
+<style>
+  .feature-list{border-top:1px solid var(--line)}.feature-row{display:grid;grid-template-columns:.82fr 1.18fr;gap:7vw;align-items:center;padding:115px 0;border-bottom:1px solid var(--line)}.feature-row.reverse .feature-copy{order:2}.feature-row.reverse .visual-wrap{order:1}.feature-copy>span{color:var(--acid);font:500 11px var(--mono);letter-spacing:.15em}.feature-copy h2{margin:20px 0;font-size:clamp(35px,4.5vw,62px);line-height:1.06;letter-spacing:-.055em}.feature-copy p{color:var(--muted);font-size:17px;line-height:1.75}.feature-copy ul{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:30px 0 0;list-style:none}.feature-copy li{padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:#c6cbd0;font-size:12px}.visual-wrap{position:relative}.visual-note{position:absolute;z-index:3;top:-22px;right:24px;padding:9px 12px;border-radius:8px;background:var(--acid);color:#08100b;font:500 10px var(--mono);transform:rotate(2deg)}.note-1,.note-3{right:auto;left:24px;transform:rotate(-2deg)}
+  .matrix-section{padding:150px 0}.matrix-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:50px}.matrix-head h2{margin:18px 0 0;font-size:clamp(38px,5vw,65px);letter-spacing:-.055em}.matrix-head>p{color:var(--muted);font:400 11px var(--mono)}.matrix-head b,.full{color:var(--acid)}.matrix-head span,.partial{color:#ffd875}.matrix-head i,.none{color:#535a62}.matrix{border-top:1px solid var(--line)}.matrix-row{display:grid;grid-template-columns:2fr repeat(3,1fr);align-items:center;min-width:650px;padding:16px 20px;border-bottom:1px solid var(--line)}.matrix-row:nth-child(even){background:rgba(255,255,255,.018)}.matrix-row strong{font-size:13px}.matrix-row span{text-align:center;font-family:var(--mono)}.matrix-title{color:#737b83;font:400 10px var(--mono);letter-spacing:.1em}.matrix-foot{padding-left:16px;border-left:2px solid #ffd875;color:var(--muted);font-size:13px;line-height:1.7}
+  @media(max-width:800px){.feature-row,.feature-row.reverse{grid-template-columns:1fr;gap:55px;padding:80px 0}.feature-row.reverse .feature-copy,.feature-row.reverse .visual-wrap{order:initial}.matrix-head{display:block}.matrix-head>p{margin-top:25px}.matrix{overflow-x:auto}}
+</style>

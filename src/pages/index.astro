@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro'
+import Placeholder from '../components/Placeholder.astro'
+import { Icon } from '../components/Icons'
+---
+<Base title="CrossGram — One client. Every conversation.">
+  <section class="hero wrap">
+    <div class="hero-meta"><span>MTProto bridge / 2026</span><span>QQ · Discord · Matrix · More</span></div>
+    <h1 class="display">ONE CLIENT.<br/><span class="gradient-text">EVERY CONVERSATION.</span></h1>
+    <div class="hero-bottom">
+      <p>把 QQ、Discord、Matrix 和更多聊天平台，带进你真正喜欢的 Telegram 客户端。</p>
+      <div class="actions"><a class="button primary" href="/downloads">下载客户端 <Icon name="arrow" /></a><a class="button" href="/docs">开始部署</a></div>
+    </div>
+    <div class="hero-shot" data-reveal><div class="halo"></div><Placeholder label="CrossGram Desktop / Unified Inbox" /></div>
+  </section>
+
+  <section class="manifesto wrap" data-reveal>
+    <p class="eyebrow">The interface is yours</p>
+    <div><h2>聊天平台不该决定<br/>你使用什么界面。</h2><p>CrossGram 在你的服务器上把不同协议翻译成 MTProto。保留源平台的关系与内容，换成一个更快、更干净、更一致的客户端体验。</p></div>
+  </section>
+
+  <section class="platforms wrap" data-reveal>
+    <div class="platform-label">CONNECTED WORLDS</div>
+    {['QQ / QQNT','DISCORD','MATRIX','SATORI'].map((name, i) => <div class="platform"><span>0{i+1}</span><strong>{name}</strong><em>{i === 3 ? 'EXTENSIBLE' : 'SUPPORTED'}</em></div>)}
+  </section>
+
+  <section class="bento wrap">
+    <article class="bento-copy" data-reveal><p class="eyebrow">Made for real conversations</p><h2>你的联系人、群聊、频道与文件，终于在同一个地方。</h2><a href="/features">探索全部功能 <Icon name="arrow" /></a></article>
+    <div data-reveal><Placeholder label="Rich media & replies" kind="feature" /></div>
+    <div data-reveal><Placeholder label="Cross-platform reactions" kind="feature" /></div>
+  </section>
+
+  <section class="deploy-band">
+    <div class="wrap deploy-inner" data-reveal>
+      <Icon name="server" size={44} />
+      <h2>部署在你的服务器。<br/>连接到你的世界。</h2>
+      <p>Linux 一键脚本快速上线 CrossGram Server 与 QQNT。Windows 提供完整的手动部署指南。</p>
+      <a class="button primary" href="/docs">查看部署教程 <Icon name="arrow" /></a>
+    </div>
+  </section>
+</Base>
+<style>
+  .hero{padding-top:150px}.hero-meta{display:flex;justify-content:space-between;margin-bottom:38px;color:#697079;font:400 11px/1 var(--mono);letter-spacing:.12em}.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;margin:36px 0 64px}.hero-bottom p{max-width:560px;margin:0;color:var(--muted);font-size:19px;line-height:1.65}.actions{display:flex;gap:10px}.hero-shot{position:relative}.hero-shot .placeholder{transform:perspective(1300px) rotateX(2deg)}.halo{pointer-events:none;position:absolute;inset:-20% 12% 20%;background:var(--acid);filter:blur(150px);opacity:.13}
+  .manifesto{padding:170px 0;display:grid;grid-template-columns:1fr 2fr;gap:50px}.manifesto h2{margin:0;font-size:clamp(38px,5vw,68px);line-height:1.05;letter-spacing:-.055em}.manifesto div p{max-width:650px;margin:34px 0 0;color:var(--muted);font-size:19px;line-height:1.75}
+  .platforms{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.platform-label{padding:20px 0;color:#697079;font:400 10px var(--mono);letter-spacing:.18em}.platform{display:grid;grid-template-columns:60px 1fr auto;align-items:center;padding:25px 0;border-top:1px solid var(--line)}.platform span,.platform em{color:#697079;font:400 10px var(--mono)}.platform strong{font-size:clamp(23px,3vw,38px);letter-spacing:-.04em}.platform em{color:var(--acid)}
+  .bento{padding:150px 0;display:grid;grid-template-columns:1fr 1fr;gap:18px}.bento-copy{grid-row:span 2;padding:52px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,#13181b,#0d0f12)}.bento-copy h2{font-size:clamp(32px,4vw,54px);line-height:1.08;letter-spacing:-.05em}.bento-copy a{display:flex;align-items:center;gap:10px;margin-top:48px;color:var(--acid);font-weight:650}
+  .deploy-band{padding:130px 0;background:var(--acid);color:#08100b}.deploy-inner{text-align:center}.deploy-inner svg{margin-bottom:28px}.deploy-inner h2{margin:0;font-size:clamp(42px,6vw,78px);line-height:.98;letter-spacing:-.06em}.deploy-inner p{max-width:620px;margin:30px auto;font-size:18px;line-height:1.65;opacity:.7}.deploy-inner .button{background:#08100b;border-color:#08100b;color:var(--white)}
+  @media(max-width:800px){.hero-bottom,.manifesto{display:block}.hero-bottom .actions{margin-top:28px}.manifesto{padding:100px 0}.manifesto>div{margin-top:30px}.bento{grid-template-columns:1fr}.bento-copy{padding:34px}.hero-meta span:last-child{display:none}}@media(max-width:520px){.actions{flex-direction:column}.hero-shot .placeholder{min-height:380px}}
+</style>

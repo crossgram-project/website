@@ -1,0 +1,12 @@
+---
+import { Icon } from './Icons'
+---
+<footer>
+  <div><span class="footer-mark"><Icon name="telegram" /></span><strong>CrossGram</strong></div>
+  <p>Bring any chat platform to Telegram clients.</p>
+  <div class="links"><a href="/docs">文档</a><a href="/downloads">下载</a><a href="https://github.com/std-microblock/crossgram">GitHub</a></div>
+</footer>
+<style>
+  footer{width:min(1180px,calc(100% - 36px));margin:80px auto 0;padding:34px 0 44px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;color:var(--muted);font-size:14px}footer>div:first-child{display:flex;align-items:center;gap:10px;color:var(--white)}.footer-mark{display:grid;place-items:center;width:34px;height:34px;border:1px solid var(--line);border-radius:10px}.links{display:flex;justify-content:flex-end;gap:22px}.links a:hover{color:var(--acid)}
+  @media(max-width:700px){footer{grid-template-columns:1fr;gap:18px}.links{justify-content:flex-start}}
+</style>

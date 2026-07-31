@@ -1,0 +1,23 @@
+---
+import { nav } from '../data/site'
+import { Icon } from './Icons'
+const pathname = Astro.url.pathname
+---
+<header class="header">
+  <a class="brand" href="/" aria-label="CrossGram 首页">
+    <span class="brand-mark"><Icon name="telegram" size={20} /></span>
+    <span>CrossGram</span>
+  </a>
+  <nav aria-label="主导航">
+    {nav.map((item) => <a class:list={{ active: pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href)) }} href={item.href}>{item.label}</a>)}
+  </nav>
+  <a class="header-github" href="https://github.com/std-microblock/crossgram"><Icon name="github" /><span>GitHub</span></a>
+</header>
+
+<style>
+  .header{position:fixed;z-index:30;top:18px;left:50%;width:min(1160px,calc(100% - 28px));height:64px;transform:translateX(-50%);display:flex;align-items:center;justify-content:space-between;padding:0 12px 0 18px;border:1px solid var(--line);border-radius:18px;background:rgba(8,10,13,.72);backdrop-filter:blur(20px);box-shadow:0 15px 50px rgba(0,0,0,.24)}
+  .brand{display:flex;align-items:center;gap:10px;color:var(--white);font-weight:720;letter-spacing:-.02em}.brand-mark{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--acid);color:#07110b;transform:rotate(-5deg)}
+  nav{display:flex;gap:4px}nav a{padding:9px 14px;border-radius:10px;color:var(--muted);font-size:14px}nav a:hover,nav a.active{background:rgba(255,255,255,.07);color:var(--white)}
+  .header-github{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:var(--white);color:#0a0b0d;font-size:14px;font-weight:650}
+  @media(max-width:700px){.header{top:10px;height:58px}.header nav{display:none}.header-github span{display:none}.header-github{padding:10px}.brand{font-size:15px}}
+</style>

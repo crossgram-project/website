@@ -1,0 +1,41 @@
+---
+import Docs from '../../layouts/Docs.astro'
+---
+<Docs title="Windows 手动部署" system="Windows" description="在 Windows 10 / 11 或 Windows Server 上手动运行 QQNT、QQNT Bridge 与 CrossGram Server，适合本机试用和桌面常驻。">
+  <div class="callout"><b>准备：</b>安装 64 位 Node.js 24+、Git for Windows 和 Corepack，并确保 PowerShell 可以执行本地命令。生产部署建议优先选择 Linux。</div>
+  <h2>1. 克隆并安装 Server</h2>
+  <pre><code>git clone https://github.com/std-microblock/crossgram.git
+cd crossgram
+corepack enable
+yarn install
+yarn build</code></pre>
+  <p>开发调试可运行 <code>yarn dev</code>；构建后运行 <code>yarn start</code>。首次启动会在 <code>data/rsa-key.json</code> 和对应 PEM 文件中生成 RSA 密钥。</p>
+
+  <h2>2. 安装 QQNT 与 QQNT Bridge</h2>
+  <ol class="steps">
+    <li>安装并登录 Windows QQNT，关闭自动更新或确认 QQNT Bridge 支持当前版本。</li>
+    <li>从 <code>crossgram-project/qqnt-bridge</code> 的 Releases 下载 Windows 构建，按其 README 完成注入或启动。</li>
+    <li>确认 Bridge API 可在默认地址 <code>http://127.0.0.1:18767/v1</code> 访问，并记录 bearer token。</li>
+    <li>在启动 CrossGram 的终端设置 <code>QQNT_BRIDGE_TOKEN</code>，或在本地配置中显式填写 token。</li>
+  </ol>
+
+  <h2>3. 配置监听地址</h2>
+  <p>编辑 <code>app.yml</code> 中 MTProto 插件的 <code>host</code>、<code>port</code> 与 QQNT endpoint。局域网使用时，把 host 配成这台电脑的 LAN 地址并允许 Windows 防火墙放行 TCP 4430。</p>
+  <pre><code>- id: mtproto01
+  name: '@mtproto-relay/mtproto'
+  config:
+    port: 4430
+    host: 0.0.0.0
+    rsaKeyPath: ./data/rsa-key.json
+
+- id: qqnt
+  name: '@mtproto-relay/platform-qqnt'
+  config:
+    endpoint: http://127.0.0.1:18767/v1</code></pre>
+
+  <h2>4. 准备并登录客户端</h2>
+  <p>推荐直接从下载页使用带服务器导入能力的 CrossGram 客户端。若使用 Telegram Desktop 分支，也可以运行仓库中的二进制补丁脚本：</p>
+  <pre><code>node binary_patch/patch-tdesktop.cjs --host 192.168.1.10 \
+  --port 4430 "C:\Path\To\Telegram.exe"</code></pre>
+  <p>打开 <code>http://127.0.0.1:3140/platform-accounts</code>，使用页面上的虚拟手机号与六位登录码完成登录。</p>
+</Docs>

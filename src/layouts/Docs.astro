@@ -1,0 +1,26 @@
+---
+import Base from './Base.astro'
+interface Props { title: string; system: string; description: string }
+const { title, system, description } = Astro.props
+---
+<Base title={`${title} — CrossGram 文档`}>
+  <section class="docs-shell wrap">
+    <aside>
+      <a href="/docs">← 部署文档</a>
+      <span>PLATFORM</span>
+      <a class:list={{ active: system === 'Linux' }} href="/docs/linux">Linux 一键部署</a>
+      <a class:list={{ active: system === 'Windows' }} href="/docs/windows">Windows 手动部署</a>
+      <span>RESOURCES</span>
+      <a href="/downloads">客户端下载</a>
+      <a href="/features">功能矩阵</a>
+    </aside>
+    <article>
+      <div class="docs-head"><small>{system} / DEPLOYMENT</small><h1>{title}</h1><p>{description}</p></div>
+      <div class="prose"><slot /></div>
+    </article>
+  </section>
+</Base>
+<style>
+  .docs-shell{display:grid;grid-template-columns:220px minmax(0,760px);gap:90px;padding-top:150px}.docs-shell aside{position:sticky;top:110px;align-self:start;display:flex;flex-direction:column;gap:5px}.docs-shell aside span{margin:24px 10px 8px;color:#555d66;font:500 9px var(--mono);letter-spacing:.16em}.docs-shell aside a{padding:10px;border-radius:8px;color:var(--muted);font-size:13px}.docs-shell aside a:hover,.docs-shell aside a.active{background:rgba(255,255,255,.05);color:var(--white)}.docs-head{padding-bottom:55px;border-bottom:1px solid var(--line)}.docs-head small{color:var(--acid);font:500 10px var(--mono);letter-spacing:.16em}.docs-head h1{margin:20px 0;font-size:clamp(42px,6vw,72px);line-height:1;letter-spacing:-.06em}.docs-head p{color:var(--muted);font-size:18px;line-height:1.7}.prose{padding-top:35px}.prose :global(h2){margin:65px 0 18px;font-size:30px;letter-spacing:-.04em}.prose :global(h3){margin-top:35px}.prose :global(p),.prose :global(li){color:#afb5bb;line-height:1.8}.prose :global(a){color:var(--acid)}.prose :global(code){font-family:var(--mono)}.prose :global(:not(pre)>code){padding:3px 6px;border:1px solid var(--line);border-radius:5px;background:#11151a;color:#dbe0e4;font-size:.85em}.prose :global(pre){overflow:auto;padding:20px;border:1px solid var(--line);border-radius:14px;background:#030405;color:#d7ffca;font:400 12px/1.7 var(--mono)}.prose :global(.callout){margin:25px 0;padding:18px 20px;border-left:2px solid var(--acid);background:rgba(167,255,131,.045);color:#bdc5bc;line-height:1.7}.prose :global(.steps){counter-reset:step;padding:0;list-style:none}.prose :global(.steps>li){counter-increment:step;position:relative;padding:0 0 35px 55px}.prose :global(.steps>li:before){content:counter(step);position:absolute;left:0;top:0;display:grid;place-items:center;width:30px;height:30px;border:1px solid var(--line);border-radius:9px;color:var(--acid);font:500 11px var(--mono)}
+  @media(max-width:800px){.docs-shell{grid-template-columns:1fr;padding-top:120px}.docs-shell aside{position:static;display:none}}
+</style>

@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro'
+import { Icon } from '../../components/Icons'
+---
+<Base title="部署文档 — CrossGram">
+  <section class="page-hero wrap">
+    <p class="eyebrow">Deployment handbook</p>
+    <h1 class="title">从一台服务器，<br/><span class="gradient-text">到所有聊天。</span></h1>
+    <p class="lead">选择你的系统与组件。Linux 提供 CrossGram Server 和 QQNT Bridge 一键脚本；Windows 使用透明、可检查的手动流程。</p>
+  </section>
+  <section class="doc-cards wrap">
+    <a href="/docs/linux" data-reveal><span class="doc-icon"><Icon name="linux" size={42} /></span><small>RECOMMENDED / AUTOMATED</small><h2>Linux 部署</h2><p>使用一键脚本部署 CrossGram Server 与 QQNT，包含 systemd 服务、更新命令和客户端配置生成。</p><b>打开 Linux 教程 <Icon name="arrow" /></b></a>
+    <a href="/docs/windows" data-reveal><span class="doc-icon windows"><Icon name="windows" size={42} /></span><small>MANUAL / DESKTOP</small><h2>Windows 部署</h2><p>手动安装 Node.js、QQNT Bridge 与 CrossGram Server，适合本地体验和 Windows 常驻主机。</p><b>打开 Windows 教程 <Icon name="arrow" /></b></a>
+  </section>
+  <section class="flow wrap" data-reveal>
+    <p class="eyebrow">How it connects</p>
+    <div class="flow-row"><span>01<br/><b>聊天平台</b></span><i>→</i><span>02<br/><b>Platform Bridge</b></span><i>→</i><span>03<br/><b>CrossGram Server</b></span><i>→</i><span>04<br/><b>你的客户端</b></span></div>
+  </section>
+</Base>
+<style>
+  .doc-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}.doc-cards>a{position:relative;overflow:hidden;min-height:490px;padding:42px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(150deg,#151a1e,#0c0e11);transition:.3s}.doc-cards>a:hover{transform:translateY(-6px);border-color:rgba(167,255,131,.45)}.doc-cards>a:after{content:"";position:absolute;right:-70px;bottom:-90px;width:260px;height:260px;border-radius:50%;background:var(--acid);filter:blur(90px);opacity:.12}.doc-icon{display:grid;place-items:center;width:86px;height:86px;border-radius:24px;background:var(--acid);color:#08100b;transform:rotate(-4deg)}.doc-icon.windows{background:var(--violet)}.doc-cards small{display:block;margin-top:60px;color:#697079;font:400 10px var(--mono);letter-spacing:.13em}.doc-cards h2{font-size:42px;letter-spacing:-.05em}.doc-cards p{max-width:500px;color:var(--muted);line-height:1.75}.doc-cards b{position:absolute;bottom:42px;display:flex;align-items:center;gap:10px;color:var(--acid);font-size:14px}.flow{padding:140px 0}.flow-row{display:flex;align-items:center;justify-content:space-between;margin-top:40px;padding:34px;border:1px solid var(--line);border-radius:18px}.flow-row span{color:#697079;font:400 10px/2 var(--mono)}.flow-row b{color:var(--white);font:650 15px 'Manrope'}.flow-row i{color:var(--acid);font-style:normal}
+  @media(max-width:700px){.doc-cards{grid-template-columns:1fr}.flow-row{align-items:flex-start;flex-direction:column;gap:12px}.flow-row i{transform:rotate(90deg)}}
+</style>
