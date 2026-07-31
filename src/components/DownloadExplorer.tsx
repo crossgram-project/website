@@ -7,6 +7,15 @@ type Client = { id: string; name: string; description: string; repo: string; rel
 
 const platformIcon: Record<string, typeof FaWindows> = { Windows: FaWindows, Linux: FaLinux, macOS: FaApple, iOS: FaApple, Android: FaAndroid }
 const accents = ['acid', 'cyan', 'violet', 'pink']
+const platformOrder = ['Desktop', 'Android', 'Windows', 'macOS', 'Linux', 'iOS', 'Other']
+const androidClientIds = new Set(['telegram', 'nagram', 'nnngram', 'nullgram', 'mercurygram', 'forkgram', 'telegram-x'])
+
+function clientPlatforms(client: Client) {
+  const platforms = [...new Set(client.assets.map(asset => asset.platform))]
+  if (platforms.length) return platforms
+  if (androidClientIds.has(client.id)) return ['Android']
+  return ['Desktop']
+}
 
 function Choice({ active, children, onClick }: { active: boolean; children: React.ReactNode; onClick: () => void }) {
   return <button className={active ? 'choice active' : 'choice'} onClick={onClick}>{children}</button>
@@ -15,6 +24,13 @@ function Choice({ active, children, onClick }: { active: boolean; children: Reac
 export default function DownloadExplorer({ clients }: { clients: Client[] }) {
   const [selectedClient, setSelectedClient] = useState(clients.find(client => client.assets.length)?.id ?? clients[0]?.id)
   const client = clients.find(item => item.id === selectedClient) ?? clients[0]
+  const availablePlatforms = useMemo(() => [...new Set(clients.flatMap(clientPlatforms))]
+    .sort((a, b) => platformOrder.indexOf(a) - platformOrder.indexOf(b)), [clients])
+  const [clientPlatformChoice, setClientPlatformChoice] = useState<string | null>(null)
+  const clientPlatform = clientPlatformChoice && availablePlatforms.includes(clientPlatformChoice)
+    ? clientPlatformChoice
+    : (clientPlatforms(client).find(item => availablePlatforms.includes(item)) ?? availablePlatforms[0])
+  const visibleClients = clients.filter(item => clientPlatforms(item).includes(clientPlatform))
   const platforms = useMemo(() => [...new Set(client?.assets.map(asset => asset.platform) ?? [])], [client])
   const [platformChoice, setPlatformChoice] = useState<string | null>(null)
   const platform = platforms.includes(platformChoice ?? '') ? platformChoice! : platforms[0]
@@ -32,22 +48,51 @@ export default function DownloadExplorer({ clients }: { clients: Client[] }) {
     setBrandChoice(null)
   }
 
+  const selectClientPlatform = (nextPlatform: string) => {
+    setClientPlatformChoice(nextPlatform)
+    const currentStillVisible = clientPlatforms(client).includes(nextPlatform)
+    if (!currentStillVisible) {
+      const nextClient = clients.find(item => clientPlatforms(item).includes(nextPlatform) && item.assets.length)
+        ?? clients.find(item => clientPlatforms(item).includes(nextPlatform))
+      if (nextClient) selectClient(nextClient.id)
+    }
+  }
+
   if (!client) return null
   return (
     <div className="download-explorer">
-      <div className="client-grid">
-        {clients.map((item, index) => (
-          <button className={`client-card ${item.id === client.id ? 'selected' : ''}`} onClick={() => selectClient(item.id)} key={item.id}>
-            <span className={`client-glyph ${accents[index % accents.length]}`}><TbLayersIntersect /></span>
-            <small>{item.assets.length ? `${new Set(item.assets.map(asset => asset.platform)).size} PLATFORM${item.assets.length > 1 ? 'S' : ''}` : 'COMING SOON'}</small>
-            <strong>{item.name}</strong>
-            <p>{item.description}</p>
-            <em>{item.release ?? '等待首个 Release'}</em>
-          </button>
-        ))}
+      <div className="client-browser" data-reveal>
+        <div className="client-platforms" role="tablist" aria-label="客户端平台">
+          {availablePlatforms.map(item => {
+            const Icon = platformIcon[item] ?? TbLayersIntersect
+            const count = clients.filter(client => clientPlatforms(client).includes(item)).length
+            return <button
+              className={item === clientPlatform ? 'platform-tab active' : 'platform-tab'}
+              onClick={() => selectClientPlatform(item)}
+              role="tab"
+              aria-selected={item === clientPlatform}
+              key={item}
+            ><Icon /><span>{item}</span><small>{count}</small></button>
+          })}
+        </div>
+        <div className="client-grid" aria-label={`${clientPlatform} 客户端`}>
+          {visibleClients.map((item) => {
+            const index = clients.indexOf(item)
+            return <button
+              className={`client-card ${item.id === client.id ? 'selected' : ''}`}
+              onClick={() => selectClient(item.id)}
+              data-tilt
+              key={item.id}
+            >
+              <span className={`client-glyph ${accents[index % accents.length]}`}><TbLayersIntersect /></span>
+              <span className="client-copy"><strong>{item.name}</strong><small>{item.description}</small></span>
+              <em>{item.release ?? 'SOON'}</em>
+            </button>
+          })}
+        </div>
       </div>
 
-      <section className="picker" aria-label={`${client.name} 下载选择器`}>
+      <section className="picker" aria-label={`${client.name} 下载选择器`} data-reveal>
         <div className="picker-head">
           <div><small>SELECTED CLIENT</small><h2>{client.name}</h2><p>{client.description}</p></div>
           <a href={`https://github.com/${client.repo}/releases`}><FaGithub /> 所有版本</a>

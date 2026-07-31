@@ -17,15 +17,40 @@ test('feature page exposes visual narratives and compatibility matrix', async ({
   await expect(page.getByText('QQ / QQNT', { exact: true })).toBeVisible()
 })
 
-test('downloads page groups maintained clients and only expands one selection', async ({ page }) => {
+test('downloads page groups compact clients by platform and only expands one selection', async ({ page }, testInfo) => {
   await page.goto('/downloads')
-  for (const name of ['Telegram Desktop', 'Nagram', 'Unigram', 'Telegram X', 'Mithka']) {
-    await expect(page.getByRole('button', { name: new RegExp(name) })).toBeVisible()
+  await expect(page.getByRole('tab', { name: /Android/ })).toHaveAttribute('aria-selected', 'true')
+  await expect(page.locator('.client-card')).toHaveCount(8)
+  const cardHeight = await page.locator('.client-card').first().evaluate(element => element.getBoundingClientRect().height)
+  expect(cardHeight).toBeLessThan(100)
+  if (testInfo.project.name === 'desktop') {
+    const firstCard = page.locator('.client-card').first()
+    const cardBox = await firstCard.boundingBox()
+    await page.mouse.move(cardBox!.x + cardBox!.width * .8, cardBox!.y + cardBox!.height * .2)
+    await expect.poll(() => firstCard.evaluate(element => getComputedStyle(element).getPropertyValue('--ry'))).not.toBe('0deg')
   }
+  await expect(page.getByRole('button', { name: /Telegram Desktop/ })).not.toBeVisible()
+  await page.getByRole('tab', { name: /Desktop/ }).click()
+  await expect(page.getByRole('button', { name: /Telegram Desktop/ })).toBeVisible()
+  await expect(page.locator('.client-card')).toHaveCount(4)
+  await page.getByRole('tab', { name: /Android/ }).click()
   await page.getByRole('button', { name: /Nagram/ }).click()
   await expect(page.getByRole('region', { name: 'Nagram 下载选择器' })).toBeVisible()
   await expect(page.getByText('RECOMMENDED FOR MOST USERS')).toBeVisible()
   await expect(page.getByText('其他架构与安装格式')).toBeVisible()
+})
+
+test('home removes FREE overlay and uses translucent interactive image treatments', async ({ page }) => {
+  await page.goto('/')
+  await expect(page.locator('.header')).toHaveCSS('top', '0px')
+  await expect(page.locator('.header')).toHaveCSS('width', `${await page.evaluate(() => innerWidth)}px`)
+  await expect(page.locator('.header')).toHaveCSS('border-radius', '0px')
+  await expect(page.locator('.overlap-word')).toHaveCount(0)
+  await expect(page.locator('.shot-card')).toHaveCSS('backdrop-filter', /blur/)
+  await expect(page.locator('.story article')).toHaveCSS('backdrop-filter', /blur/)
+  await expect(page.locator('.shot-card')).toHaveAttribute('data-tilt', '')
+  await page.locator('.shot-card').hover()
+  await expect(page.locator('.shot-card')).toHaveCSS('transition-property', /transform/)
 })
 
 test('both deployment paths contain actionable commands', async ({ page }) => {
