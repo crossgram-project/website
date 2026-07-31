@@ -27,12 +27,23 @@ const { title, description = 'CrossGram — 使用 Telegram 客户端连接 QQ�
       const reveal = new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('revealed')), { threshold: .08 })
       document.querySelectorAll('[data-reveal]').forEach(el => reveal.observe(el))
       if (matchMedia('(pointer:fine)').matches && !matchMedia('(prefers-reduced-motion:reduce)').matches) {
+        const root = document.documentElement
         let x = innerWidth / 2, y = innerHeight / 2, tx = x, ty = y
-        addEventListener('pointermove', event => { tx = event.clientX; ty = event.clientY }, { passive: true })
+        const setCursorMode = target => {
+          const interactive = target instanceof Element ? target.closest('a,button,summary,[data-cursor]') : null
+          root.classList.toggle('cursor-active', Boolean(interactive))
+        }
+        addEventListener('pointermove', event => {
+          tx = event.clientX
+          ty = event.clientY
+          root.classList.add('cursor-visible')
+          setCursorMode(event.target)
+        }, { passive: true })
+        addEventListener('pointerleave', () => root.classList.remove('cursor-visible', 'cursor-active'))
         const frame = () => {
           x += (tx - x) * .09; y += (ty - y) * .09
-          document.documentElement.style.setProperty('--mouse-x', `${x}px`)
-          document.documentElement.style.setProperty('--mouse-y', `${y}px`)
+          root.style.setProperty('--mouse-x', `${x}px`)
+          root.style.setProperty('--mouse-y', `${y}px`)
           requestAnimationFrame(frame)
         }
         frame()
@@ -53,6 +64,20 @@ const { title, description = 'CrossGram — 使用 Telegram 客户端连接 QQ�
           card.style.setProperty('--rx', '0deg')
           card.style.setProperty('--ry', '0deg')
         }, { passive: true })
+        document.querySelectorAll('[data-magnetic],.button,.header-github').forEach(element => {
+          if (!(element instanceof HTMLElement)) return
+          element.addEventListener('pointermove', event => {
+            const box = element.getBoundingClientRect()
+            const mx = (event.clientX - box.left - box.width / 2) * .12
+            const my = (event.clientY - box.top - box.height / 2) * .18
+            element.style.setProperty('--magnetic-x', `${mx}px`)
+            element.style.setProperty('--magnetic-y', `${my}px`)
+          }, { passive: true })
+          element.addEventListener('pointerleave', () => {
+            element.style.setProperty('--magnetic-x', '0px')
+            element.style.setProperty('--magnetic-y', '0px')
+          }, { passive: true })
+        })
       }
     </script>
   </body>

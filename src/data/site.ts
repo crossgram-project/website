@@ -1,6 +1,6 @@
 export const nav = [
   { href: '/', label: '首页' },
-  { href: '/features', label: '功能' },
+  { href: '/#features', label: '功能' },
   { href: '/downloads', label: '下载' },
   { href: '/docs', label: '部署文档' },
 ]
@@ -8,31 +8,31 @@ export const nav = [
 export const featureGroups = [
   {
     kicker: '01 / Native feel',
-    title: '不是转发机器人，是真正的 Telegram 体验。',
-    body: '会话、历史、成员和媒体被映射为原生 MTProto 对象。搜索、回复、撤回、表情回应，都留在你熟悉的客户端里。',
+    title: '会话列表、未读数量和搜索，都还是你熟悉的样子。',
+    body: '不同平台的群聊被整理进同一套会话列表。头像、预览、时间与未读状态保留原生客户端的浏览节奏，不需要重新学习另一套界面。',
     visual: 'conversation',
     chips: ['历史消息', '原生会话', '全局搜索', '未读状态'],
   },
   {
     kicker: '02 / Rich messages',
-    title: '让跨平台消息，保留它应有的质感。',
-    body: '文字、图片、文件与图文混排统一呈现；QQ 合并转发、Discord 频道和 Matrix 房间也有针对性的语义映射。',
+    title: '图片、引用与聊天记录，不会被压成一行纯文本。',
+    body: '群聊图片、引用消息与转发记录继续以消息卡片呈现。你可以顺着上下文阅读，而不是面对一串失去结构的机器人转发。',
     visual: 'media',
-    chips: ['图片与文件', '图文混排', '合并转发', '频道与话题'],
+    chips: ['图片消息', '引用回复', '聊天记录', '消息上下文'],
   },
   {
     kicker: '03 / Actions',
-    title: '每一次操作，都跨过平台边界。',
-    body: '回复、编辑、撤回、转发与 reaction 从客户端直达源平台，不需要在多个应用之间来回跳转。',
+    title: '大文件也留在会话里，发送进度一眼可见。',
+    body: '文件名、体积、进度和发送状态直接出现在聊天气泡中。日常传图和大文件直传都不需要跳到额外的下载工具。',
     visual: 'actions',
-    chips: ['回复', '编辑与撤回', '转发', 'Reaction'],
+    chips: ['文件直传', '实时进度', '发送状态', '会话内完成'],
   },
   {
     kicker: '04 / Your server',
-    title: '你的消息，经过你自己的基础设施。',
-    body: 'CrossGram Server 与 QQNT Bridge 都可自行部署。配置、密钥和媒体缓存由你掌控，客户端只连接你指定的入口。',
+    title: '平台账号、登录码与连接状态，由你自己的 WebUI 管理。',
+    body: 'CrossGram Server 与平台 Bridge 都可自行部署。虚拟手机号、轮换登录码和账号状态集中展示，客户端只连接你指定的入口。',
     visual: 'server',
-    chips: ['自托管', '独立密钥', '多账号', '可观测 WebUI'],
+    chips: ['自托管', '账号状态', '轮换登录码', '可观测 WebUI'],
   },
 ]
 

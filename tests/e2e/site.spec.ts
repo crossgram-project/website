@@ -9,12 +9,13 @@ test('home page presents the product and routes into deployment', async ({ page 
   await expect(page.getByRole('heading', { name: /从一台服务器/ })).toBeVisible()
 })
 
-test('feature page exposes visual narratives and compatibility matrix', async ({ page }) => {
-  await page.goto('/features')
+test('home includes visual narratives and compatibility matrix', async ({ page }) => {
+  await page.goto('/')
+  await page.locator('#features').scrollIntoViewIfNeeded()
   await expect(page.getByRole('heading', { name: /一套体验/ })).toBeVisible()
-  await expect(page.getByText('建议截图：会话列表 + 聊天窗口')).toBeVisible()
+  await expect(page.getByText('NAGRAM / UNIFIED INBOX')).toBeVisible()
   await expect(page.getByText('历史消息拉取')).toBeVisible()
-  await expect(page.getByText('QQ / QQNT', { exact: true })).toBeVisible()
+  await expect(page.locator('.matrix-title').getByText('QQ / QQNT', { exact: true })).toBeVisible()
 })
 
 test('downloads page groups compact clients by platform and only expands one selection', async ({ page }, testInfo) => {
@@ -57,12 +58,11 @@ test('home removes FREE overlay and uses translucent interactive image treatment
     await expect(page.getByText(decoration, { exact: false })).toHaveCount(0)
   }
   await expect(page.locator('.stack > strong')).toHaveCount(0)
-  await expect(page.locator('.shot-card')).toHaveCSS('backdrop-filter', /blur/)
+  await expect(page.locator('.shot-card').first()).toHaveCSS('backdrop-filter', /blur/)
   await expect(page.locator('.story article')).toHaveCSS('backdrop-filter', /blur/)
-  await expect(page.locator('.shot-card .placeholder-copy')).toHaveCSS('opacity', '0.32')
-  await expect(page.locator('.shot-card')).toHaveAttribute('data-tilt', '')
-  await page.locator('.shot-card').hover()
-  await expect(page.locator('.shot-card')).toHaveCSS('transition-property', /transform/)
+  await expect(page.locator('.shot-card img').first()).toBeVisible()
+  await page.locator('.shot-card').first().hover()
+  await expect(page.locator('.shot-card').first()).toHaveCSS('transition-property', /transform/)
 })
 
 test('both deployment paths contain actionable commands', async ({ page }) => {
