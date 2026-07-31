@@ -63,6 +63,8 @@ const { title, description = 'CrossGram — 使用 Telegram 客户端连接 QQ�
           if (!(card instanceof HTMLElement) || card.contains(event.relatedTarget)) return
           card.style.setProperty('--rx', '0deg')
           card.style.setProperty('--ry', '0deg')
+          card.style.setProperty('--shine-x', '-100px')
+          card.style.setProperty('--shine-y', '-100px')
         }, { passive: true })
         document.querySelectorAll('[data-magnetic],.button,.header-github').forEach(element => {
           if (!(element instanceof HTMLElement)) return

@@ -1,4 +1,86 @@
 import { expect, test } from '@playwright/test'
+import type { Page } from '@playwright/test'
+
+const gallery = (page: Page) => page.locator('[data-hero-gallery]')
+const dots = (page: Page) => page.locator('[data-hero-dot]')
+const frontShot = (page: Page) => gallery(page).locator('[data-hero-shot].front')
+
+const settledState = async (page: Page) => {
+  await expect(gallery(page)).not.toHaveClass(/swapping/)
+  // The deal is keyframe driven with no fill; once settled, no animation may linger.
+  const animations = () => gallery(page).evaluate(element =>
+    [...element.querySelectorAll('[data-hero-shot]')].flatMap(shot =>
+      shot.getAnimations().filter(animation => animation.playState !== 'finished')).length)
+  await expect.poll(animations).toBe(0)
+  return {
+    front: await frontShot(page).getAttribute('data-hero-shot'),
+    animations: await animations(),
+  }
+}
+
+test('hero gallery deals cards on autoplay and settles without leaking animations', async ({ page }) => {
+  await page.goto('/')
+  await expect(frontShot(page)).toHaveAttribute('data-hero-shot', '0')
+  await expect(dots(page).nth(0)).toHaveClass(/active/)
+  // Autoplay interval is 4800ms; wait for the deal to complete.
+  await expect(frontShot(page)).toHaveAttribute('data-hero-shot', '1', { timeout: 8000 })
+  await expect(dots(page).nth(1)).toHaveClass(/active/)
+  const state = await settledState(page)
+  expect(state.front).toBe('1')
+  expect(state.animations).toBe(0)
+})
+
+test('hero gallery dot click deals a visible card swap with clean end state', async ({ page }) => {
+  await page.goto('/')
+  await dots(page).nth(1).click()
+  // The deal choreography must actually run (cards carry deal classes mid-flight).
+  await expect(gallery(page)).toHaveClass(/swapping/)
+  await expect(gallery(page).locator('.deal-out')).toHaveCount(1)
+  await expect(gallery(page).locator('.deal-in')).toHaveCount(1)
+  const state = await settledState(page)
+  expect(state.front).toBe('1')
+  expect(state.animations).toBe(0)
+})
+
+test('hero gallery honors the latest target when clicked rapidly mid-deal', async ({ page }) => {
+  await page.goto('/')
+  await dots(page).nth(1).click()
+  await expect(gallery(page)).toHaveClass(/swapping/)
+  // Clicks during the deal queue: only the last one wins.
+  await dots(page).nth(0).click()
+  await dots(page).nth(1).click()
+  const state = await settledState(page)
+  expect(state.front).toBe('1')
+  expect(state.animations).toBe(0)
+  // And the queue keeps working for the next click.
+  await dots(page).nth(0).click()
+  expect((await settledState(page)).front).toBe('0')
+})
+
+test('hero gallery pauses autoplay while scrolled away and resumes when visible', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'desktop-only: mobile layout scrolls differently')
+  await page.goto('/')
+  await expect(frontShot(page)).toHaveAttribute('data-hero-shot', '0')
+  // Scrolled away before the first 4.8s tick: autoplay must not fire offscreen.
+  await page.locator('.manifesto').scrollIntoViewIfNeeded()
+  await page.waitForTimeout(5600)
+  await expect(frontShot(page)).toHaveAttribute('data-hero-shot', '0')
+  // Back into view: autoplay resumes and advances within one interval.
+  await page.evaluate(() => scrollTo(0, 0))
+  await expect(frontShot(page)).toHaveAttribute('data-hero-shot', '1', { timeout: 8000 })
+})
+
+test('hero gallery cards never vanish mid-deal', async ({ page }) => {
+  await page.goto('/')
+  await dots(page).nth(1).click()
+  // No flash: both cards must stay visible throughout the whole deal.
+  for (let i = 0; i < 10; i++) {
+    const opacities = await gallery(page).evaluate(element =>
+      [...element.querySelectorAll('[data-hero-shot]')].map(shot => Number(getComputedStyle(shot).opacity)))
+    for (const opacity of opacities) expect(opacity).toBeGreaterThan(0.3)
+    await page.waitForTimeout(120)
+  }
+})
 
 test('home page presents the product and routes into deployment', async ({ page }) => {
   await page.goto('/')
@@ -72,6 +154,32 @@ test('both deployment paths contain actionable commands', async ({ page }) => {
   await page.goto('/docs/windows')
   await expect(page.locator('pre').filter({ hasText: 'git clone https://github.com/std-microblock/crossgram.git' })).toBeVisible()
   await expect(page.getByText('QQNT Bridge', { exact: false }).first()).toBeVisible()
+})
+
+test('hero gallery switches without leaking filled animations and never drops queued targets', async ({ page }) => {
+  await page.goto('/')
+  const gallery = page.locator('[data-hero-gallery]')
+  await expect(gallery.locator('[data-hero-shot].front')).toHaveAttribute('data-hero-shot', '0')
+  await page.locator('[data-hero-dot="1"]').click()
+  await expect(gallery.locator('[data-hero-shot].front')).toHaveAttribute('data-hero-shot', '1')
+  // The keyframed deal must settle: no swapping class, no animation leftovers.
+  await expect(gallery).not.toHaveClass(/swapping/)
+  const running = () => gallery.evaluate(element =>
+    [...element.querySelectorAll('[data-hero-shot]')].flatMap(shot =>
+      shot.getAnimations().filter(animation => animation.playState !== 'finished')).length)
+  await expect.poll(running).toBe(0)
+  // Interrupt a deal mid-flight with the opposite target: the final state must match
+  // the last request instead of being swallowed.
+  await page.locator('[data-hero-dot="0"]').click()
+  await page.waitForTimeout(180)
+  await page.locator('[data-hero-dot="1"]').click()
+  await expect(gallery).not.toHaveClass(/swapping/, { timeout: 6000 })
+  await expect(gallery.locator('[data-hero-shot].front')).toHaveAttribute('data-hero-shot', '1')
+  // Clicking the front card advances to the next shot.
+  await gallery.locator('[data-hero-shot].front').click()
+  await expect(gallery).not.toHaveClass(/swapping/, { timeout: 6000 })
+  await expect(gallery.locator('[data-hero-shot].front')).toHaveAttribute('data-hero-shot', '0')
+  await expect(page.locator('[data-hero-dot="0"]')).toHaveClass(/active/)
 })
 
 test('mobile navigation keeps brand and GitHub action without horizontal overflow', async ({ page }, testInfo) => {

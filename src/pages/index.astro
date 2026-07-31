@@ -21,12 +21,12 @@ const featureFits = ['contain', 'contain', 'contain', 'contain'] as const
         <p>把 QQ、Discord、Matrix 和更多聊天平台，带进你真正喜欢的 Telegram 客户端。</p>
         <div class="actions"><a class="button primary" href="/downloads">下载客户端 <Icon name="arrow" /></a><a class="button" href="/docs">开始部署</a></div>
       </div>
-      <div class="hero-visual active-0" data-reveal data-hero-gallery>
-        <button class="shot-card shot-light active" type="button" data-hero-shot="0" aria-label="切换到贴纸面板截图" aria-pressed="true">
-          <Placeholder label="Desktop sticker panel" src="/screenshots/home/desktop-sticker-panel.png" fit="contain" position="center" />
+      <div class="hero-visual" data-reveal data-hero-gallery>
+        <button class="shot-card shot-light front" type="button" data-hero-shot="0" aria-label="切换到贴纸面板截图" aria-pressed="true">
+          <Placeholder label="Desktop sticker panel" src="/screenshots/home/desktop-sticker-panel.png" fit="contain" position="center" eager />
         </button>
-        <button class="shot-card shot-dark" type="button" data-hero-shot="1" aria-label="切换到桌面聊天截图" aria-pressed="false">
-          <Placeholder label="CrossGram Desktop / Unified Inbox" src="/screenshots/home/hero-unified-inbox.webp" fit="contain" position="center" />
+        <button class="shot-card shot-dark rear" type="button" data-hero-shot="1" aria-label="切换到桌面聊天截图" aria-pressed="false">
+          <Placeholder label="CrossGram Desktop / Unified Inbox" src="/screenshots/home/hero-unified-inbox.webp" fit="contain" position="center" eager />
         </button>
         <div class="shot-switch" aria-label="首屏截图切换">
           <button class="active" type="button" data-hero-dot="0" aria-label="显示贴纸面板截图"></button>
@@ -36,7 +36,7 @@ const featureFits = ['contain', 'contain', 'contain', 'contain'] as const
     </div>
   </section>
 
-  <div class="marquee" aria-hidden="true"><div>ONE PROTOCOL · EVERY PLATFORM · YOUR SERVER · YOUR CLIENT · ONE PROTOCOL · EVERY PLATFORM · YOUR SERVER · YOUR CLIENT ·</div></div>
+  <div class="marquee" aria-hidden="true" data-marquee><div data-marquee-track>ONE PROTOCOL · EVERY PLATFORM · YOUR SERVER · YOUR CLIENT · </div></div>
 
   <section class="manifesto wrap" data-reveal data-scroll-scene>
     <p class="eyebrow">The interface is yours</p>
@@ -109,70 +109,187 @@ const featureFits = ['contain', 'contain', 'contain', 'contain'] as const
   </section>
 </Base>
 <script>
+  // Marquee: double the phrase until one half covers the band, then set the
+  // loop duration from the measured half width so speed stays constant on any
+  // screen width. Reduced-motion CSS (animation:none) still wins; the content
+  // still covers statically.
+  const marqueeBand = document.querySelector('[data-marquee]')
+  const marqueeTrack = marqueeBand?.querySelector('[data-marquee-track]')
+  if (marqueeBand instanceof HTMLElement && marqueeTrack instanceof HTMLElement) {
+    const phrase = marqueeTrack.textContent ?? ''
+    let lastBandWidth = 0
+    const fill = () => {
+      const bandWidth = marqueeBand.clientWidth
+      if (bandWidth === lastBandWidth) return
+      lastBandWidth = bandWidth
+      marqueeTrack.textContent = phrase
+      let guard = 0
+      while (marqueeTrack.scrollWidth / 2 < bandWidth && guard++ < 12) {
+        marqueeTrack.textContent += marqueeTrack.textContent
+      }
+      const halfWidth = marqueeTrack.scrollWidth / 2
+      if (halfWidth <= 0) return
+      const duration = `${Math.round(halfWidth / 17.2)}s`
+      if (marqueeTrack.style.animationDuration !== duration) {
+        marqueeTrack.style.animationDuration = duration
+      }
+    }
+    fill()
+    document.fonts?.ready.then(fill)
+    let resizeTimer: number | undefined
+    addEventListener('resize', () => {
+      window.clearTimeout(resizeTimer)
+      resizeTimer = window.setTimeout(fill, 200)
+    }, { passive: true })
+  }
+
   const gallery = document.querySelector('[data-hero-gallery]')
   if (gallery instanceof HTMLElement) {
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)')
+    const shuffleDuration = 950
     const shots = [...gallery.querySelectorAll<HTMLElement>('[data-hero-shot]')]
     const dots = [...gallery.querySelectorAll<HTMLElement>('[data-hero-dot]')]
     let active = 0
     let timer: number | undefined
-    let animating = false
-    const show = async (next: number) => {
-      const target = (next + shots.length) % shots.length
-      if (target === active || animating) return
-      animating = true
-      const previous = active
-      const outgoing = shots[previous]
-      const incoming = shots[target]
-      const outgoingBox = outgoing.getBoundingClientRect()
-      const incomingBox = incoming.getBoundingClientRect()
-      const outX = 150
-      const outY = -82
-      const inX = outgoingBox.left - incomingBox.left
-      const inY = outgoingBox.top - incomingBox.top
-      gallery.classList.add('is-shuffling')
-      outgoing.style.zIndex = '12'
-      incoming.style.zIndex = '11'
-      const outgoingAnimation = outgoing.animate([
-        { transform: getComputedStyle(outgoing).transform, opacity: getComputedStyle(outgoing).opacity, filter: getComputedStyle(outgoing).filter, offset: 0 },
-        { transform: `translate3d(${outX * .45}px,${outY * .55}px,80px) rotate(5deg) scale(.98)`, opacity: .82, filter: 'saturate(.9) brightness(.9)', offset: .42 },
-        { transform: `translate3d(${outX}px,${outY}px,0) rotate(10deg) scale(.88)`, opacity: .34, filter: 'saturate(.58) brightness(.58)', offset: 1 },
-      ], { duration: 1050, easing: 'cubic-bezier(.22,.78,.12,1)', fill: 'forwards' })
-      const incomingAnimation = incoming.animate([
-        { transform: getComputedStyle(incoming).transform, opacity: getComputedStyle(incoming).opacity, filter: getComputedStyle(incoming).filter, offset: 0 },
-        { transform: `translate3d(${inX * .48}px,${inY * .55 - 36}px,60px) rotate(-3deg) scale(.94)`, opacity: .8, filter: 'saturate(.88) brightness(.88)', offset: .5 },
-        { transform: `translate3d(${inX}px,${inY}px,0) rotate(${target === 0 ? -1.2 : 1}deg) scale(1)`, opacity: 1, filter: 'none', offset: 1 },
-      ], { duration: 1050, easing: 'cubic-bezier(.18,.82,.14,1)', fill: 'forwards' })
-      await Promise.allSettled([outgoingAnimation.finished, incomingAnimation.finished])
-      active = target
+    let queued: number | undefined
+    let galleryVisible = true
+
+    const applyActive = () => {
       shots.forEach((shot, index) => {
         const selected = index === active
-        shot.classList.toggle('active', selected)
+        shot.classList.toggle('front', selected)
+        shot.classList.toggle('rear', !selected)
         shot.setAttribute('aria-pressed', String(selected))
-        shot.getAnimations().forEach(animation => animation.cancel())
-        shot.style.removeProperty('z-index')
       })
       dots.forEach((dot, index) => dot.classList.toggle('active', index === active))
-      gallery.classList.toggle('active-0', active === 0)
-      gallery.classList.toggle('active-1', active === 1)
-      gallery.classList.remove('is-shuffling')
-      animating = false
     }
-    const restart = () => {
+
+    const show = (next: number) => {
+      const target = (next + shots.length) % shots.length
+      if (target === active && !gallery.classList.contains('swapping')) return
+      queued = target
+      if (gallery.classList.contains('swapping')) return
+      if (queued === undefined) return
+      const nextTarget = queued
+      queued = undefined
+      if (nextTarget === active) return
+      if (reducedMotion.matches) {
+        active = nextTarget
+        applyActive()
+        return
+      }
+      const previous = active
+      // Deal from the current slots: keyframes carry the slot difference via
+      // translate deltas measured at deal time, so nothing teleports at t=0
+      // and the path stays smooth across container widths. front/rear classes
+      // flip only when the deal settles.
+      gallery.classList.add('swapping')
+      // Both end frames are anchor-aligned to their steady-state slots (deal-out
+      // flips to bottom-anchored rear, deal-in to top-anchored front, each with
+      // translate(0,0)); the mid-flight rise/fall is carried by --deal-dy, the
+      // full layout delta between the two slots.
+      const slotTop = (card: HTMLElement, slot: 'front' | 'rear') => {
+        const style = getComputedStyle(card)
+        if (slot === 'front') return parseFloat(style.getPropertyValue('--front-top'))
+        return gallery.offsetHeight - parseFloat(style.getPropertyValue('--rear-bottom')) - card.offsetHeight
+      }
+      const dyOut = slotTop(shots[previous], 'rear') - shots[previous].offsetTop
+      const dyIn = slotTop(shots[nextTarget], 'front') - slotTop(shots[nextTarget], 'rear')
+      shots[previous].style.setProperty('--deal-dy', `${dyOut}px`)
+      shots[nextTarget].style.setProperty('--deal-dy', `${dyIn}px`)
+      shots[nextTarget].style.setProperty('--deal-from-top', `${shots[nextTarget].offsetTop}px`)
+      shots[nextTarget].classList.add('deal-in')
+      shots[previous].classList.add('deal-out')
+      active = nextTarget
+      shots[nextTarget].setAttribute('aria-pressed', 'true')
+      shots[previous].setAttribute('aria-pressed', 'false')
+      dots.forEach((dot, index) => dot.classList.toggle('active', index === active))
+      let settled = false
+      const settle = () => {
+        if (settled) return
+        settled = true
+        window.clearTimeout(settleTimer)
+        gallery.classList.remove('swapping')
+        // The base .shot-card transition would otherwise glide each card from
+        // the keyframe end-frame to its steady-state slot; snap instead.
+        gallery.classList.add('settling')
+        shots.forEach(shot => {
+          shot.classList.remove('deal-out', 'deal-in')
+          shot.style.removeProperty('--deal-dy')
+          shot.style.removeProperty('--deal-from-top')
+        })
+        applyActive()
+        requestAnimationFrame(() => requestAnimationFrame(() => gallery.classList.remove('settling')))
+        // Drain any target queued mid-deal: the last click always wins.
+        if (queued !== undefined) {
+          const next = queued
+          queued = undefined
+          show(next)
+        }
+      }
+      shots[nextTarget].addEventListener('animationend', event => {
+        if (event.animationName === 'hero-deal-in') settle()
+      }, { once: true })
+      // animationend can be dropped (display:none, reduced-motion change, hidden
+      // tab): fall back to the animation duration so the queue never wedges.
+      const settleTimer = window.setTimeout(settle, shuffleDuration + 250)
+    }
+
+    const stopAutoplay = () => {
       window.clearInterval(timer)
+      timer = undefined
+    }
+    const startAutoplay = () => {
+      if (timer !== undefined || reducedMotion.matches || document.hidden || !galleryVisible) return
       timer = window.setInterval(() => show(active + 1), 4800)
     }
+    const restartAutoplay = () => {
+      stopAutoplay()
+      startAutoplay()
+    }
+
     shots.forEach((shot, index) => shot.addEventListener('click', () => {
       show(index === active ? active + 1 : index)
-      restart()
+      restartAutoplay()
     }))
     dots.forEach((dot, index) => dot.addEventListener('click', event => {
       event.stopPropagation()
       show(index)
-      restart()
+      restartAutoplay()
     }))
-    gallery.addEventListener('pointerenter', () => window.clearInterval(timer))
-    gallery.addEventListener('pointerleave', restart)
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) restart()
+    gallery.addEventListener('pointerenter', stopAutoplay)
+    gallery.addEventListener('pointerleave', startAutoplay)
+
+    // Pause the interval while the tab is hidden or the gallery is scrolled away,
+    // so a parked tab stops scheduling work and can be collected.
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        stopAutoplay()
+      } else {
+        startAutoplay()
+      }
+    })
+    reducedMotion.addEventListener('change', () => {
+      stopAutoplay()
+      gallery.classList.remove('swapping')
+      shots.forEach(shot => shot.classList.remove('deal-out', 'deal-in'))
+      queued = undefined
+      applyActive()
+      startAutoplay()
+    })
+    new IntersectionObserver(entries => entries.forEach(entry => {
+      galleryVisible = entry.isIntersecting
+      if (galleryVisible) startAutoplay()
+      else stopAutoplay()
+    })).observe(gallery)
+
+    startAutoplay()
+
+    // Astro page transitions / bfcache: release the interval and any pending
+    // timeout so the detached page holds no live timers.
+    addEventListener('pagehide', () => {
+      stopAutoplay()
+    }, { once: true })
   }
 
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -220,17 +337,31 @@ const featureFits = ['contain', 'contain', 'contain', 'contain'] as const
   }
 </script>
 <style>
-  .hero{position:relative;min-height:900px;padding-top:125px;overflow:hidden}.hero:after{content:"";position:absolute;z-index:-2;right:-8vw;top:10vh;width:60vw;height:60vw;border-radius:50%;background:conic-gradient(from 20deg,var(--violet),transparent 25%,var(--cyan),transparent 57%,var(--acid));filter:blur(100px);opacity:.13;animation:spin 22s linear infinite;translate:0 var(--scene-down-42,0px)}.hero-inner{position:relative;min-height:780px}.hero-copy{position:relative;z-index:5;width:47%;padding-top:82px;pointer-events:none;transform:translate3d(0,var(--hero-copy-y,0px),0);opacity:var(--hero-copy-opacity,1)}.hero-copy .actions,.hero-copy>p{pointer-events:auto}.hero h1{margin:0;font-size:clamp(58px,7.8vw,118px);line-height:.8;letter-spacing:-.08em}.hero h1 span{position:relative;z-index:7;color:#fff;mix-blend-mode:difference}.hero-copy>p{max-width:500px;margin:38px 0 25px;color:#b2b8bf;font-size:18px;line-height:1.7}.actions{display:flex;gap:10px}.hero-visual{position:absolute;z-index:6;right:-4%;top:145px;width:62%;height:610px;isolation:isolate;transform:translate3d(0,var(--hero-image-y,0px),0) scale(var(--hero-image-scale,1))}.shot-card{position:absolute;display:block;overflow:hidden;padding:0;border:1px solid rgba(255,255,255,.2);border-radius:24px;background:transparent;backdrop-filter:blur(7px);box-shadow:-30px 55px 110px rgba(0,0,0,.46),0 0 70px rgba(124,234,255,.07);cursor:pointer;will-change:transform,opacity;transition:transform .95s cubic-bezier(.2,.82,.16,1),opacity .58s ease,filter .58s ease,box-shadow .4s ease;transform-origin:center}.shot-light{width:88%;aspect-ratio:2140/1202}.shot-dark{width:78%;aspect-ratio:1682/1230}.hero-visual.active-0 .shot-light{z-index:8;right:0;top:42px;transform:translate3d(0,0,0) rotate(-1.2deg) scale(1);opacity:1;filter:none}.hero-visual.active-0 .shot-dark{z-index:3;right:5%;top:250px;transform:translate3d(18px,0,0) rotate(2.2deg) scale(.88);opacity:.42;filter:saturate(.65) brightness(.58)}.hero-visual.active-1 .shot-dark{z-index:8;right:2%;top:18px;transform:translate3d(0,0,0) rotate(1deg) scale(1);opacity:1;filter:none}.hero-visual.active-1 .shot-light{z-index:3;right:8%;top:315px;transform:translate3d(-12px,0,0) rotate(-2deg) scale(.86);opacity:.4;filter:saturate(.65) brightness(.62)}.hero-visual.is-shuffling.shuffle-0-to-1 .shot-light{z-index:9;transform:translate3d(150px,-62px,0) rotate(8deg) scale(.94);opacity:.62;filter:saturate(.72) brightness(.72)}.hero-visual.is-shuffling.shuffle-0-to-1 .shot-dark{z-index:7;transform:translate3d(-34px,-170px,0) rotate(-2deg) scale(.98);opacity:1;filter:none}.hero-visual.is-shuffling.shuffle-1-to-0 .shot-dark{z-index:9;transform:translate3d(150px,-66px,0) rotate(9deg) scale(.93);opacity:.6;filter:saturate(.72) brightness(.7)}.hero-visual.is-shuffling.shuffle-1-to-0 .shot-light{z-index:7;transform:translate3d(-42px,-268px,0) rotate(1deg) scale(.98);opacity:1;filter:none}.hero-visual.is-shuffling{pointer-events:none}.hero-visual.shuffle-settle .shot-card{transition-duration:.01s}.shot-card:hover{box-shadow:-30px 65px 125px rgba(0,0,0,.58),0 0 95px rgba(124,234,255,.12)}.hero-visual.active-0:not(.is-shuffling) .shot-dark:hover{transform:translate3d(18px,-38px,0) rotate(1.3deg) scale(.92);opacity:.72;filter:saturate(.85) brightness(.78)}.hero-visual.active-1:not(.is-shuffling) .shot-light:hover{transform:translate3d(-12px,-38px,0) rotate(-1deg) scale(.9);opacity:.72;filter:saturate(.85) brightness(.82)}.shot-card :global(.placeholder){position:absolute;inset:0;min-height:0;width:100%;height:100%;border:0;border-radius:23px;background:transparent;box-shadow:none}.shot-card :global(.placeholder img){inset:0;width:100%;height:100%;object-fit:contain;object-position:center}.shot-switch{position:absolute;z-index:12;right:26px;bottom:0;display:flex;gap:7px;padding:8px 10px;border:1px solid rgba(255,255,255,.13);border-radius:999px;background:rgba(5,7,9,.72);backdrop-filter:blur(12px)}.shot-switch button{width:7px;height:7px;padding:0;border:0;border-radius:99px;background:#697079;cursor:pointer;transition:width .25s ease,background .25s ease}.shot-switch button.active{width:24px;background:var(--acid)}
-  .marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.025);transform:rotate(-1.5deg) scale(1.02)}.marquee div{width:max-content;padding:17px 0;color:var(--acid);font:500 11px var(--mono);letter-spacing:.2em;animation:marquee 28s linear infinite}
+  .hero{position:relative;min-height:900px;padding-top:125px;overflow:hidden}.hero:after{content:"";position:absolute;z-index:-2;right:-8vw;top:10vh;width:60vw;height:60vw;border-radius:50%;background:conic-gradient(from 20deg,var(--violet),transparent 25%,var(--cyan),transparent 57%,var(--acid));filter:blur(100px);opacity:.13;animation:spin 22s linear infinite;translate:0 var(--scene-down-42,0px)}.hero-inner{position:relative;min-height:780px}.hero-copy{position:relative;z-index:5;width:47%;padding-top:82px;pointer-events:none;transform:translate3d(0,var(--hero-copy-y,0px),0);opacity:var(--hero-copy-opacity,1)}.hero-copy .actions,.hero-copy>p{pointer-events:auto}.hero h1{margin:0;font-size:clamp(58px,7.8vw,118px);line-height:.8;letter-spacing:-.08em}.hero h1 span{position:relative;z-index:7;color:#fff;mix-blend-mode:difference}.hero-copy>p{max-width:500px;margin:38px 0 25px;color:#b2b8bf;font-size:18px;line-height:1.7}.actions{display:flex;gap:10px}.hero-visual{position:absolute;z-index:6;right:-4%;top:145px;width:62%;height:610px;isolation:isolate;transform:translate3d(0,var(--hero-image-y,0px),0) scale(var(--hero-image-scale,1))}.shot-card{position:absolute;display:block;overflow:hidden;padding:0;border:1px solid rgba(255,255,255,.2);border-radius:24px;background:transparent;backdrop-filter:blur(7px);box-shadow:-30px 55px 110px rgba(0,0,0,.46),0 0 70px rgba(124,234,255,.07);cursor:pointer;will-change:transform,opacity;transition:transform .95s cubic-bezier(.2,.82,.16,1),opacity .58s ease,filter .58s ease,box-shadow .4s ease;transform-origin:bottom right}.shot-light{width:88%;aspect-ratio:2140/1202}.shot-dark{width:78%;aspect-ratio:1682/1230}.shot-card.front{z-index:2;filter:none}.shot-card.rear{z-index:1}.shot-card.shot-light.front{right:4%;top:-8px;transform:rotate(-1.4deg)}.shot-card.shot-light.rear{right:12%;top:auto;bottom:70px;transform:rotate(2.2deg) scale(.86);opacity:.38;filter:saturate(.6) brightness(.55)}.shot-card.shot-dark.front{right:4%;top:-32px;transform:rotate(1.4deg)}.shot-card.shot-dark.rear{right:12%;top:auto;bottom:52px;transform:rotate(-2.2deg) scale(.86);opacity:.38;filter:saturate(.6) brightness(.55)}.shot-card.deal-out{z-index:3;animation:hero-deal-out .95s cubic-bezier(.6,.04,.68,.4) both}.shot-card.deal-in{z-index:1;animation:hero-deal-in .95s cubic-bezier(.16,.66,.3,1) both}.hero-visual.swapping{pointer-events:none}.hero-visual.settling .shot-card{transition:none}.shot-card:hover{box-shadow:-30px 65px 125px rgba(0,0,0,.58),0 0 95px rgba(124,234,255,.12)}.hero-visual:not(.swapping) .shot-card.rear:hover{opacity:.6;filter:saturate(.8) brightness(.75)}.shot-card :global(.placeholder){position:absolute;inset:0;min-height:0;width:100%;height:100%;border:0;border-radius:23px;background:transparent;box-shadow:none}.shot-card :global(.placeholder img){inset:0;width:100%;height:100%;object-fit:contain;object-position:center}.shot-switch{position:absolute;z-index:12;right:26px;bottom:0;display:flex;gap:7px;padding:8px 10px;border:1px solid rgba(255,255,255,.13);border-radius:999px;background:rgba(5,7,9,.72);backdrop-filter:blur(12px)}.shot-switch button{width:7px;height:7px;padding:0;border:0;border-radius:99px;background:#697079;cursor:pointer;transition:width .25s ease,background .25s ease}.shot-switch button.active{width:24px;background:var(--acid)}
+  .marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.025);transform:rotate(-1.5deg) scale(1.02)}.marquee div{width:max-content;padding:17px 0;color:var(--acid);font:500 11px var(--mono);letter-spacing:.2em;animation:marquee 60s linear infinite}
   .manifesto{padding:180px 0;display:grid;grid-template-columns:1fr 2fr;gap:50px;translate:0 var(--scene-up-24,0px)}.manifesto h2{margin:0;font-size:clamp(38px,5vw,68px);line-height:1.05;letter-spacing:-.055em}.manifesto div p{max-width:650px;margin:34px 0 0;color:var(--muted);font-size:19px;line-height:1.75}
-  .story{position:relative;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;min-height:720px}.story-visual{position:relative;overflow:hidden;aspect-ratio:1068/1144;margin-left:-11vw;border-radius:24px;transition:filter .4s ease;translate:0 var(--scene-up-55,0px);rotate:var(--scene-rotate-half,0deg)}.story:hover .story-visual{filter:saturate(1.12) brightness(1.08)}.story-visual .placeholder{position:absolute;inset:0;min-height:0;height:100%}.story article{position:relative;z-index:5;margin-left:-85px;padding:46px;background:linear-gradient(100deg,rgba(8,10,13,.62),rgba(8,10,13,.38));border-left:1px solid rgba(255,255,255,.18);backdrop-filter:blur(13px) saturate(1.2);box-shadow:-30px 0 70px rgba(0,0,0,.22);transition:background .35s ease;translate:var(--scene-down-22,0px) var(--scene-down-30,0px)}.story:hover article{background:linear-gradient(100deg,rgba(8,10,13,.56),rgba(8,10,13,.3))}.story article>span,.split-copy .eyebrow{color:var(--acid);font:500 10px var(--mono);letter-spacing:.15em}.story h2,.split-copy h2{font-size:clamp(36px,4.5vw,61px);line-height:1.04;letter-spacing:-.055em}.story p,.split-copy>p:last-of-type{color:var(--muted);line-height:1.75}.story a{display:flex;align-items:center;gap:9px;margin-top:30px;color:var(--acid);font-weight:700;transition:gap .25s ease}.story a:hover{gap:15px}
+  .story{position:relative;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;min-height:720px}.story-visual{position:relative;overflow:hidden;width:min(68%,720px);aspect-ratio:1068/1144;margin-left:-4vw;border-radius:24px;transition:filter .4s ease;translate:0 var(--scene-up-55,0px);rotate:var(--scene-rotate-half,0deg)}.story:hover .story-visual{filter:saturate(1.12) brightness(1.08)}.story-visual :global(.placeholder){position:absolute;inset:0;min-height:0;height:100%}.story article{position:relative;z-index:5;margin-left:-85px;padding:46px;background:linear-gradient(100deg,rgba(8,10,13,.62),rgba(8,10,13,.38));border-left:1px solid rgba(255,255,255,.18);backdrop-filter:blur(13px) saturate(1.2);box-shadow:-30px 0 70px rgba(0,0,0,.22);transition:background .35s ease;translate:var(--scene-down-22,0px) var(--scene-down-30,0px)}.story:hover article{background:linear-gradient(100deg,rgba(8,10,13,.56),rgba(8,10,13,.3))}.story article>span,.split-copy .eyebrow{color:var(--acid);font:500 10px var(--mono);letter-spacing:.15em}.story h2,.split-copy h2{font-size:clamp(36px,4.5vw,61px);line-height:1.04;letter-spacing:-.055em}.story p,.split-copy>p:last-of-type{color:var(--muted);line-height:1.75}.story a{display:flex;align-items:center;gap:9px;margin-top:30px;color:var(--acid);font-weight:700;transition:gap .25s ease}.story a:hover{gap:15px}
   .platforms{margin-top:150px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);translate:0 var(--scene-up-20,0px)}.platform{display:grid;grid-template-columns:60px 1fr;align-items:center;padding:25px 0;border-top:1px solid var(--line);transition:.25s}.platform:first-child{border-top:0}.platform:hover{padding-left:18px;background:linear-gradient(90deg,rgba(167,255,131,.06),transparent)}.platform span{color:#697079;font:400 10px var(--mono)}.platform strong{font-size:clamp(23px,3vw,38px);letter-spacing:-.04em}
-  .split-shots{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px;align-items:center;padding:180px 0}.stack{position:relative;min-height:650px;transform:translate3d(0,var(--scene-up-35,0px),0)}.stack>div{position:absolute;overflow:hidden;width:58%;aspect-ratio:4/5;border-radius:24px}.stack-a{left:5%;top:0;transform:perspective(1200px) translateY(var(--scene-up-35,0px)) rotate(calc(-5deg + var(--scene-rotate-neg-double,0deg))) rotateX(var(--rx)) rotateY(var(--ry))}.stack-b{right:3%;bottom:0;transform:perspective(1200px) translateY(var(--scene-down-42,0px)) rotate(calc(5deg + var(--scene-rotate-double,0deg))) rotateX(var(--rx)) rotateY(var(--ry))}.stack .placeholder{position:absolute;inset:0;min-height:0;height:100%}.split-copy{position:relative;z-index:8;transform:translate3d(0,var(--scene-down-24,0px),0)}.split-copy>p:last-of-type{font-size:17px}
+  .split-shots{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px;align-items:center;padding:180px 0}.stack{position:relative;min-height:650px;transform:translate3d(0,var(--scene-up-35,0px),0)}.stack>div{position:absolute;overflow:hidden;width:58%;aspect-ratio:4/5;border-radius:24px}.stack-a{left:5%;top:0;transform:perspective(1200px) translateY(var(--scene-up-35,0px)) rotate(calc(-5deg + var(--scene-rotate-neg-double,0deg))) rotateX(var(--rx)) rotateY(var(--ry))}.stack-b{right:3%;bottom:0;transform:perspective(1200px) translateY(var(--scene-down-42,0px)) rotate(calc(5deg + var(--scene-rotate-double,0deg))) rotateX(var(--rx)) rotateY(var(--ry))}.stack :global(.placeholder){position:absolute;inset:0;min-height:0;width:100%;height:100%}.split-copy{position:relative;z-index:8;transform:translate3d(0,var(--scene-down-24,0px),0)}.split-copy>p:last-of-type{font-size:17px}
   .feature-atlas{scroll-margin-top:90px;padding-top:70px}.feature-intro{display:grid;grid-template-columns:.7fr 1.3fr;gap:50px;align-items:end;padding:100px 0}.feature-intro>p:last-child{grid-column:2;max-width:680px;margin:0;color:var(--muted);font-size:18px;line-height:1.75}.feature-intro h2{margin:0;font-size:clamp(42px,6vw,76px);line-height:.98;letter-spacing:-.055em}.feature-list{border-top:1px solid var(--line)}.feature-row{display:grid;grid-template-columns:.82fr 1.18fr;gap:7vw;align-items:center;padding:115px 0;border-bottom:1px solid var(--line)}.feature-row.reverse .feature-copy{order:2}.feature-row.reverse .feature-visual{order:1}.feature-copy{translate:0 var(--scene-down-34,0px)}.feature-copy>span{color:var(--acid);font:500 11px var(--mono);letter-spacing:.15em}.feature-copy h3{margin:20px 0;font-size:clamp(35px,4.5vw,62px);line-height:1.06;letter-spacing:-.055em}.feature-copy p{color:var(--muted);font-size:17px;line-height:1.75}.feature-copy ul{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:30px 0 0;list-style:none}.feature-copy li{padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:#c6cbd0;font-size:12px}.feature-visual{position:relative;display:flex;justify-content:center;translate:0 var(--scene-up-48,0px);rotate:var(--scene-rotate,0deg)}.feature-row.reverse .feature-visual{rotate:var(--scene-rotate-neg,0deg)}.feature-visual>div:last-child{position:relative;overflow:hidden;border-radius:24px}.feature-row:nth-child(1) .feature-visual>div:last-child{width:min(68%,445px);aspect-ratio:890/1796}.feature-row:nth-child(2) .feature-visual>div:last-child{width:min(72%,460px);aspect-ratio:854/1436}.feature-row:nth-child(3) .feature-visual>div:last-child{width:100%;aspect-ratio:880/588}.feature-row:nth-child(4) .feature-visual>div:last-child{width:100%;aspect-ratio:1500/1208}.feature-visual :global(.placeholder){position:absolute;inset:0;min-height:0;width:100%;height:100%;border-radius:24px;background:transparent;box-shadow:0 35px 90px rgba(0,0,0,.38)}.feature-visual :global(.placeholder img){width:100%;height:100%;object-fit:contain}.visual-note{position:absolute;z-index:6;top:-22px;right:24px;padding:9px 12px;border-radius:8px;background:var(--acid);color:#08100b;font:500 10px var(--mono);transform:rotate(2deg)}.note-1,.note-3{right:auto;left:24px;transform:rotate(-2deg)}
   .matrix-section{padding:150px 0}.matrix-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:50px}.matrix-head h2{margin:18px 0 0;font-size:clamp(38px,5vw,65px);letter-spacing:-.055em}.matrix-head>p{color:var(--muted);font:400 11px var(--mono)}.matrix-head b,.full{color:var(--acid)}.matrix-head span,.partial{color:#ffd875}.matrix-head i,.none{color:#535a62}.matrix{border-top:1px solid var(--line)}.matrix-row{display:grid;grid-template-columns:2fr repeat(3,1fr);align-items:center;min-width:650px;padding:16px 20px;border-bottom:1px solid var(--line)}.matrix-row:nth-child(even){background:rgba(255,255,255,.018)}.matrix-row strong{font-size:13px}.matrix-row span{text-align:center;font-family:var(--mono)}.matrix-title{color:#737b83;font:400 10px var(--mono);letter-spacing:.1em}.matrix-foot{padding-left:16px;border-left:2px solid #ffd875;color:var(--muted);font-size:13px;line-height:1.7}
   .deploy-band{position:relative;overflow:hidden;padding:140px 0;background:var(--acid);color:#08100b}.deploy-band:before{content:"";position:absolute;left:50%;top:-70%;width:60vw;height:60vw;border:1px solid rgba(0,0,0,.18);border-radius:50%;transform:translateX(-50%);box-shadow:0 0 0 80px rgba(0,0,0,.025),0 0 0 160px rgba(0,0,0,.02)}.deploy-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.07) 1px,transparent 1px);background-size:45px 45px;mask-image:radial-gradient(circle,#000,transparent 70%)}.deploy-inner{position:relative;text-align:center}.deploy-inner svg{margin-bottom:28px}.deploy-inner h2{margin:0;font-size:clamp(42px,6vw,78px);line-height:.98;letter-spacing:-.06em}.deploy-inner p{max-width:620px;margin:30px auto;font-size:18px;line-height:1.65;opacity:.7}.deploy-inner .button{background:#08100b;border-color:#08100b;color:var(--white)}
+  @keyframes hero-deal-out{
+    0%{animation-timing-function:cubic-bezier(.46,.04,.62,.5);right:var(--front-right);top:var(--front-top);bottom:auto;z-index:3;transform:rotate(var(--front-rot)) translate(0,0) scale(1);opacity:1;filter:none}
+    42%{animation-timing-function:cubic-bezier(.5,.5,.5,.66);z-index:3;transform:rotate(calc(var(--front-rot) + 12deg)) translate(46%,calc(var(--deal-dy) * .42 - 21%)) scale(.95);opacity:1;filter:none}
+    66%{animation-timing-function:cubic-bezier(.4,.46,.62,.94);z-index:3;transform:rotate(calc(var(--front-rot) + (var(--rear-rot) - var(--front-rot)) * .5)) translate(23%,calc(var(--deal-dy) * .66 - 8%)) scale(calc(.95 - (.95 - var(--rear-scale)) * .5));opacity:1;filter:none}
+    100%{right:var(--rear-right);top:calc(var(--front-top) + var(--deal-dy));bottom:auto;z-index:1;transform:translate(0,0) rotate(var(--rear-rot)) scale(var(--rear-scale));opacity:var(--rear-opacity);filter:var(--rear-filter)}
+  }
+  @keyframes hero-deal-in{
+    0%,36%{animation-timing-function:cubic-bezier(.3,.56,.34,.95);right:var(--rear-right);top:var(--deal-from-top);bottom:auto;z-index:1;transform:rotate(var(--rear-rot)) translate(0,0) scale(var(--rear-scale));opacity:var(--rear-opacity);filter:var(--rear-filter)}
+    57%{z-index:1;transform:rotate(calc(var(--rear-rot) * .55)) translate(0,calc(var(--deal-dy) * .57)) scale(calc(var(--rear-scale) + (1 - var(--rear-scale)) * .38));opacity:1;filter:none}
+    58%{z-index:4;transform:rotate(calc(var(--rear-rot) * .55)) translate(0,calc(var(--deal-dy) * .58)) scale(calc(var(--rear-scale) + (1 - var(--rear-scale)) * .38));opacity:1;filter:none}
+    100%{right:var(--front-right);top:var(--front-top);bottom:auto;z-index:4;transform:translate(0,0) rotate(var(--front-rot)) scale(1);opacity:1;filter:none}
+  }
+  .shot-light{--front-rot:-1.4deg;--rear-rot:2.2deg;--rear-scale:.86;--rear-opacity:.38;--rear-filter:saturate(.6) brightness(.55);--front-right:4%;--rear-right:12%;--rear-bottom:70px;--front-top:-8px}
+  .shot-dark{--front-rot:1.4deg;--rear-rot:-2.2deg;--rear-scale:.86;--rear-opacity:.38;--rear-filter:saturate(.6) brightness(.55);--front-right:4%;--rear-right:12%;--rear-bottom:52px;--front-top:-32px}
   @keyframes spin{to{transform:rotate(360deg)}}@keyframes marquee{to{transform:translateX(-50%)}}
-  @media(max-width:900px){.hero{min-height:auto;padding-bottom:100px}.hero-inner{min-height:auto}.hero-copy{width:100%;pointer-events:auto}.hero-visual{position:relative;right:auto;top:auto;width:108%;height:570px;margin:55px -4% 0}.shot-light{width:86%}.shot-dark{width:74%}.hero-visual.active-0 .shot-light{top:20px}.hero-visual.active-0 .shot-dark{top:230px}.hero-visual.active-1 .shot-dark{top:10px}.hero-visual.active-1 .shot-light{top:290px}.story{grid-template-columns:1fr}.story-visual{margin:0}.story article{margin:-70px 25px 0}.split-shots{grid-template-columns:1fr}.stack{min-height:600px}.feature-row,.feature-row.reverse{grid-template-columns:1fr;gap:55px;padding:80px 0}.feature-row.reverse .feature-copy,.feature-row.reverse .feature-visual{order:initial}.feature-row:nth-child(1) .feature-visual>div:last-child,.feature-row:nth-child(2) .feature-visual>div:last-child{width:min(76%,470px)}.matrix-head{display:block}.matrix-head>p{margin-top:25px}.matrix{overflow-x:auto}}
-  @media(max-width:600px){.hero{padding-top:105px}.hero h1{font-size:clamp(58px,20vw,92px)}.actions{flex-direction:column;align-items:stretch}.hero-visual{width:112%;height:390px;margin:45px -6% 0}.shot-light{width:94%}.shot-dark{width:80%}.hero-visual.active-0 .shot-light{right:1%;top:10px}.hero-visual.active-0 .shot-dark{right:4%;top:150px}.hero-visual.active-1 .shot-dark{right:2%;top:0}.hero-visual.active-1 .shot-light{right:3%;top:190px}.shot-switch{right:8%;bottom:0}.manifesto{display:block;padding:110px 0}.manifesto>div{margin-top:35px}.story article{margin:-45px 10px 0;padding:28px}.story-visual .placeholder{min-height:430px}.platforms{margin-top:100px}.split-shots{padding:120px 0}.stack{min-height:480px}.stack>div{width:88%}.stack .placeholder{min-height:300px}.feature-intro{display:block;padding:70px 0}.feature-intro>p:last-child{margin-top:28px}.feature-row{padding:70px 0}.feature-row:nth-child(1) .feature-visual>div:last-child,.feature-row:nth-child(2) .feature-visual>div:last-child{width:min(88%,420px)}.marquee div{animation-duration:18s}}
+  @media(max-width:900px){.hero{min-height:auto;padding-bottom:100px}.hero-inner{min-height:auto}.hero-copy{width:100%;pointer-events:auto}.hero-visual{position:relative;right:auto;top:auto;width:108%;height:570px;margin:55px -4% 0}.shot-light{width:86%}.shot-dark{width:74%}.shot-card.shot-light.front{top:16px}.shot-card.shot-light.rear{bottom:56px}.shot-card.shot-dark.front{top:6px}.shot-card.shot-dark.rear{bottom:56px}.shot-light{--front-right:4%;--rear-right:12%;--front-top:16px;--rear-bottom:56px}.shot-dark{--front-right:4%;--rear-right:12%;--front-top:6px;--rear-bottom:56px}.story{grid-template-columns:1fr}.story-visual{margin:0;width:100%}.story article{margin:-70px 25px 0}.split-shots{grid-template-columns:1fr}.stack{min-height:600px}.feature-row,.feature-row.reverse{grid-template-columns:1fr;gap:55px;padding:80px 0}.feature-row.reverse .feature-copy,.feature-row.reverse .feature-visual{order:initial}.feature-row:nth-child(1) .feature-visual>div:last-child,.feature-row:nth-child(2) .feature-visual>div:last-child{width:min(76%,470px)}.matrix-head{display:block}.matrix-head>p{margin-top:25px}.matrix{overflow-x:auto}}
+  @media(max-width:600px){.hero{padding-top:105px}.hero h1{font-size:clamp(58px,20vw,92px)}.actions{flex-direction:column;align-items:stretch}.hero-visual{width:112%;height:390px;margin:45px -6% 0}.shot-light{width:94%}.shot-dark{width:80%}.shot-card.shot-light.front{right:1%;top:8px}.shot-card.shot-light.rear{right:3%;bottom:40px}.shot-card.shot-dark.front{right:2%;top:0}.shot-card.shot-dark.rear{right:4%;bottom:40px}.shot-switch{right:8%;bottom:0}.shot-light{--front-right:1%;--rear-right:3%;--front-top:8px;--rear-bottom:40px}.shot-dark{--front-right:2%;--rear-right:4%;--front-top:0px;--rear-bottom:40px}.manifesto{display:block;padding:110px 0}.manifesto>div{margin-top:35px}.story article{margin:-45px 10px 0;padding:28px}.story-visual :global(.placeholder){min-height:430px}.platforms{margin-top:100px}.split-shots{padding:120px 0}.stack{min-height:480px}.stack>div{width:88%}.stack :global(.placeholder){min-height:300px}.feature-intro{display:block;padding:70px 0}.feature-intro>p:last-child{margin-top:28px}.feature-row{padding:70px 0}.feature-row:nth-child(1) .feature-visual>div:last-child,.feature-row:nth-child(2) .feature-visual>div:last-child{width:min(88%,420px)}.marquee div{animation-duration:60s}}
   @media(prefers-reduced-motion:reduce){.hero:after,.marquee div{animation:none}.hero-copy,.hero-visual,.manifesto,.story-visual,.story article,.platforms,.stack,.stack-a,.stack-b,.split-copy,.feature-copy,.feature-visual,.feature-row.reverse .feature-visual{transform:none!important}.shot-card{transition:opacity .2s ease!important}}
 </style>
