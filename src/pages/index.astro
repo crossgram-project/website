@@ -4,19 +4,43 @@ import Placeholder from '../components/Placeholder.astro'
 import { Icon } from '../components/Icons'
 ---
 <Base title="CrossGram — One client. Every conversation.">
-  <section class="hero wrap">
-    <div class="hero-meta"><span>MTProto bridge / 2026</span><span>QQ · Discord · Matrix · More</span></div>
-    <h1 class="display">ONE CLIENT.<br/><span class="gradient-text">EVERY CONVERSATION.</span></h1>
-    <div class="hero-bottom">
-      <p>把 QQ、Discord、Matrix 和更多聊天平台，带进你真正喜欢的 Telegram 客户端。</p>
-      <div class="actions"><a class="button primary" href="/downloads">下载客户端 <Icon name="arrow" /></a><a class="button" href="/docs">开始部署</a></div>
+  <section class="hero">
+    <div class="grid-field"></div>
+    <div class="hero-inner wrap">
+      <div class="hero-copy">
+        <div class="hero-meta"><span>MTProto bridge / 2026</span><span class="status-dot">SYSTEMS CONNECTED</span></div>
+        <h1>ONE CLIENT.<br/><span>EVERY</span><br/>CONVERSATION.</h1>
+        <p>把 QQ、Discord、Matrix 和更多聊天平台，带进你真正喜欢的 Telegram 客户端。</p>
+        <div class="actions"><a class="button primary" href="/downloads">下载客户端 <Icon name="arrow" /></a><a class="button" href="/docs">开始部署</a></div>
+      </div>
+      <div class="hero-visual" data-reveal>
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="shot-card" data-tilt>
+          <div class="shot-bar"><i></i><i></i><i></i><span>CROSSGRAM / UNIFIED INBOX</span></div>
+          <Placeholder label="CrossGram Desktop / Unified Inbox" />
+        </div>
+        <div class="floating-tag tag-a">QQNT <b>CONNECTED</b></div>
+        <div class="floating-tag tag-b">12 CHANNELS <b>LIVE</b></div>
+      </div>
+      <div class="overlap-word" aria-hidden="true">FREE</div>
     </div>
-    <div class="hero-shot" data-reveal><div class="halo"></div><Placeholder label="CrossGram Desktop / Unified Inbox" /></div>
   </section>
+
+  <div class="marquee" aria-hidden="true"><div>ONE PROTOCOL · EVERY PLATFORM · YOUR SERVER · YOUR CLIENT · ONE PROTOCOL · EVERY PLATFORM · YOUR SERVER · YOUR CLIENT ·</div></div>
 
   <section class="manifesto wrap" data-reveal>
     <p class="eyebrow">The interface is yours</p>
     <div><h2>聊天平台不该决定<br/>你使用什么界面。</h2><p>CrossGram 在你的服务器上把不同协议翻译成 MTProto。保留源平台的关系与内容，换成一个更快、更干净、更一致的客户端体验。</p></div>
+  </section>
+
+  <section class="story wrap">
+    <div class="story-visual" data-reveal data-tilt><Placeholder label="Native conversations / search / unread" kind="feature" /></div>
+    <article data-reveal>
+      <span>01 / NATIVE FEEL</span>
+      <h2>你的联系人、群聊、频道与文件，终于在同一个地方。</h2>
+      <p>不是把消息粗暴地转发到一个机器人窗口。会话、历史、成员、媒体和操作，都以 Telegram 客户端熟悉的方式出现。</p>
+      <a href="/features">探索全部功能 <Icon name="arrow" /></a>
+    </article>
   </section>
 
   <section class="platforms wrap" data-reveal>
@@ -24,13 +48,17 @@ import { Icon } from '../components/Icons'
     {['QQ / QQNT','DISCORD','MATRIX','SATORI'].map((name, i) => <div class="platform"><span>0{i+1}</span><strong>{name}</strong><em>{i === 3 ? 'EXTENSIBLE' : 'SUPPORTED'}</em></div>)}
   </section>
 
-  <section class="bento wrap">
-    <article class="bento-copy" data-reveal><p class="eyebrow">Made for real conversations</p><h2>你的联系人、群聊、频道与文件，终于在同一个地方。</h2><a href="/features">探索全部功能 <Icon name="arrow" /></a></article>
-    <div data-reveal><Placeholder label="Rich media & replies" kind="feature" /></div>
-    <div data-reveal><Placeholder label="Cross-platform reactions" kind="feature" /></div>
+  <section class="split-shots wrap">
+    <div class="split-copy" data-reveal><p class="eyebrow">Every action crosses over</p><h2>回复、编辑、撤回与 Reaction，从这里抵达那里。</h2><p>你继续使用最顺手的客户端。CrossGram 负责穿过协议边界。</p></div>
+    <div class="stack">
+      <div class="stack-a" data-reveal data-tilt><Placeholder label="Rich media & replies" kind="feature" /></div>
+      <div class="stack-b" data-reveal data-tilt><Placeholder label="Cross-platform reactions" kind="feature" /></div>
+      <strong aria-hidden="true">ACT</strong>
+    </div>
   </section>
 
   <section class="deploy-band">
+    <div class="deploy-grid"></div>
     <div class="wrap deploy-inner" data-reveal>
       <Icon name="server" size={44} />
       <h2>部署在你的服务器。<br/>连接到你的世界。</h2>
@@ -40,10 +68,15 @@ import { Icon } from '../components/Icons'
   </section>
 </Base>
 <style>
-  .hero{padding-top:150px}.hero-meta{display:flex;justify-content:space-between;margin-bottom:38px;color:#697079;font:400 11px/1 var(--mono);letter-spacing:.12em}.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;margin:36px 0 64px}.hero-bottom p{max-width:560px;margin:0;color:var(--muted);font-size:19px;line-height:1.65}.actions{display:flex;gap:10px}.hero-shot{position:relative}.hero-shot .placeholder{transform:perspective(1300px) rotateX(2deg)}.halo{pointer-events:none;position:absolute;inset:-20% 12% 20%;background:var(--acid);filter:blur(150px);opacity:.13}
-  .manifesto{padding:170px 0;display:grid;grid-template-columns:1fr 2fr;gap:50px}.manifesto h2{margin:0;font-size:clamp(38px,5vw,68px);line-height:1.05;letter-spacing:-.055em}.manifesto div p{max-width:650px;margin:34px 0 0;color:var(--muted);font-size:19px;line-height:1.75}
-  .platforms{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.platform-label{padding:20px 0;color:#697079;font:400 10px var(--mono);letter-spacing:.18em}.platform{display:grid;grid-template-columns:60px 1fr auto;align-items:center;padding:25px 0;border-top:1px solid var(--line)}.platform span,.platform em{color:#697079;font:400 10px var(--mono)}.platform strong{font-size:clamp(23px,3vw,38px);letter-spacing:-.04em}.platform em{color:var(--acid)}
-  .bento{padding:150px 0;display:grid;grid-template-columns:1fr 1fr;gap:18px}.bento-copy{grid-row:span 2;padding:52px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,#13181b,#0d0f12)}.bento-copy h2{font-size:clamp(32px,4vw,54px);line-height:1.08;letter-spacing:-.05em}.bento-copy a{display:flex;align-items:center;gap:10px;margin-top:48px;color:var(--acid);font-weight:650}
-  .deploy-band{padding:130px 0;background:var(--acid);color:#08100b}.deploy-inner{text-align:center}.deploy-inner svg{margin-bottom:28px}.deploy-inner h2{margin:0;font-size:clamp(42px,6vw,78px);line-height:.98;letter-spacing:-.06em}.deploy-inner p{max-width:620px;margin:30px auto;font-size:18px;line-height:1.65;opacity:.7}.deploy-inner .button{background:#08100b;border-color:#08100b;color:var(--white)}
-  @media(max-width:800px){.hero-bottom,.manifesto{display:block}.hero-bottom .actions{margin-top:28px}.manifesto{padding:100px 0}.manifesto>div{margin-top:30px}.bento{grid-template-columns:1fr}.bento-copy{padding:34px}.hero-meta span:last-child{display:none}}@media(max-width:520px){.actions{flex-direction:column}.hero-shot .placeholder{min-height:380px}}
+  .hero{position:relative;min-height:980px;padding-top:125px;overflow:hidden}.hero:after{content:"";position:absolute;z-index:-2;right:-8vw;top:10vh;width:60vw;height:60vw;border-radius:50%;background:conic-gradient(from 20deg,var(--violet),transparent 25%,var(--cyan),transparent 57%,var(--acid));filter:blur(100px);opacity:.13;animation:spin 22s linear infinite}.hero-inner{position:relative;min-height:850px}.hero-copy{position:relative;z-index:5;width:62%;padding-top:50px}.hero-meta{display:flex;gap:30px;margin-bottom:32px;color:#7b838c;font:400 10px var(--mono);letter-spacing:.13em}.status-dot:before{content:"";display:inline-block;width:6px;height:6px;margin-right:8px;border-radius:50%;background:var(--acid);box-shadow:0 0 14px var(--acid);animation:pulse 1.8s infinite}.hero h1{margin:0;font-size:clamp(64px,9.3vw,142px);line-height:.79;letter-spacing:-.08em}.hero h1 span{position:relative;z-index:7;color:#fff;mix-blend-mode:difference}.hero-copy>p{max-width:500px;margin:38px 0 25px;color:#b2b8bf;font-size:18px;line-height:1.7}.actions{display:flex;gap:10px}.hero-visual{position:absolute;z-index:3;right:-7%;top:190px;width:68%}.shot-card{position:relative;padding:9px;border:1px solid rgba(255,255,255,.22);border-radius:28px;background:rgba(12,15,18,.73);box-shadow:-40px 70px 140px rgba(0,0,0,.65),0 0 90px rgba(124,234,255,.08);transform:perspective(1200px) rotateY(calc(-8deg + var(--ry))) rotateX(calc(3deg + var(--rx)))}.shot-card .placeholder{min-height:570px}.shot-bar{display:flex;align-items:center;gap:6px;height:35px;padding:0 9px}.shot-bar i{width:7px;height:7px;border-radius:50%;background:#41474e}.shot-bar i:first-child{background:var(--acid)}.shot-bar span{margin-left:auto;color:#737b84;font:400 8px var(--mono);letter-spacing:.15em}.orbit{position:absolute;z-index:-1;border:1px solid rgba(255,255,255,.11);border-radius:50%;animation:spin 18s linear infinite}.orbit-one{inset:-16% 2% -5% -8%}.orbit-two{inset:-7% -8% 8% 6%;animation-direction:reverse;animation-duration:24s}.floating-tag{position:absolute;z-index:8;padding:12px 14px;border:1px solid rgba(255,255,255,.2);border-radius:11px;background:rgba(11,14,17,.72);backdrop-filter:blur(16px);font:500 9px var(--mono);letter-spacing:.1em;box-shadow:0 15px 30px rgba(0,0,0,.25);animation:float 4s ease-in-out infinite}.floating-tag b{margin-left:12px;color:var(--acid);font-weight:500}.tag-a{left:-4%;top:17%}.tag-b{right:0;bottom:13%;animation-delay:-2s}.overlap-word{position:absolute;z-index:6;left:-5px;bottom:35px;color:#fff;font-size:clamp(130px,21vw,310px);font-weight:800;line-height:.7;letter-spacing:-.11em;mix-blend-mode:difference;pointer-events:none}
+  .marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.025);transform:rotate(-1.5deg) scale(1.02)}.marquee div{width:max-content;padding:17px 0;color:var(--acid);font:500 11px var(--mono);letter-spacing:.2em;animation:marquee 28s linear infinite}
+  .manifesto{padding:180px 0;display:grid;grid-template-columns:1fr 2fr;gap:50px}.manifesto h2{margin:0;font-size:clamp(38px,5vw,68px);line-height:1.05;letter-spacing:-.055em}.manifesto div p{max-width:650px;margin:34px 0 0;color:var(--muted);font-size:19px;line-height:1.75}
+  .story{position:relative;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;min-height:720px}.story-visual{margin-left:-11vw}.story-visual .placeholder{min-height:600px}.story article{position:relative;z-index:5;margin-left:-85px;padding:46px;background:rgba(8,10,13,.78);border-left:1px solid rgba(255,255,255,.18);backdrop-filter:blur(20px)}.story article>span,.split-copy .eyebrow{color:var(--acid);font:500 10px var(--mono);letter-spacing:.15em}.story h2,.split-copy h2{font-size:clamp(36px,4.5vw,61px);line-height:1.04;letter-spacing:-.055em}.story p,.split-copy>p:last-of-type{color:var(--muted);line-height:1.75}.story a{display:flex;align-items:center;gap:9px;margin-top:30px;color:var(--acid);font-weight:700}
+  .platforms{margin-top:150px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.platform-label{padding:20px 0;color:#697079;font:400 10px var(--mono);letter-spacing:.18em}.platform{display:grid;grid-template-columns:60px 1fr auto;align-items:center;padding:25px 0;border-top:1px solid var(--line);transition:.25s}.platform:hover{padding-left:18px;background:linear-gradient(90deg,rgba(167,255,131,.06),transparent)}.platform span,.platform em{color:#697079;font:400 10px var(--mono)}.platform strong{font-size:clamp(23px,3vw,38px);letter-spacing:-.04em}.platform em{color:var(--acid)}
+  .split-shots{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px;align-items:center;padding:180px 0}.stack{position:relative;min-height:650px}.stack>div{position:absolute;width:78%}.stack-a{left:0;top:0;transform:perspective(1200px) rotate(-5deg) rotateX(var(--rx)) rotateY(var(--ry))}.stack-b{right:0;bottom:0;transform:perspective(1200px) rotate(5deg) rotateX(var(--rx)) rotateY(var(--ry))}.stack .placeholder{min-height:400px}.stack>strong{position:absolute;z-index:7;left:10%;top:40%;font-size:150px;line-height:.7;letter-spacing:-.09em;mix-blend-mode:difference;pointer-events:none}.split-copy{position:relative;z-index:8}.split-copy>p:last-of-type{font-size:17px}
+  .deploy-band{position:relative;overflow:hidden;padding:140px 0;background:var(--acid);color:#08100b}.deploy-band:before{content:"";position:absolute;left:50%;top:-70%;width:60vw;height:60vw;border:1px solid rgba(0,0,0,.18);border-radius:50%;transform:translateX(-50%);box-shadow:0 0 0 80px rgba(0,0,0,.025),0 0 0 160px rgba(0,0,0,.02)}.deploy-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.07) 1px,transparent 1px);background-size:45px 45px;mask-image:radial-gradient(circle,#000,transparent 70%)}.deploy-inner{position:relative;text-align:center}.deploy-inner svg{margin-bottom:28px}.deploy-inner h2{margin:0;font-size:clamp(42px,6vw,78px);line-height:.98;letter-spacing:-.06em}.deploy-inner p{max-width:620px;margin:30px auto;font-size:18px;line-height:1.65;opacity:.7}.deploy-inner .button{background:#08100b;border-color:#08100b;color:var(--white)}
+  @keyframes spin{to{transform:rotate(360deg)}}@keyframes float{50%{transform:translateY(-13px) rotate(1deg)}}@keyframes pulse{50%{opacity:.35;transform:scale(.75)}}@keyframes marquee{to{transform:translateX(-50%)}}
+  @media(max-width:900px){.hero{min-height:auto;padding-bottom:100px}.hero-inner{min-height:auto}.hero-copy{width:100%}.hero-visual{position:relative;right:auto;top:auto;width:108%;margin:60px -4% 0}.overlap-word{bottom:260px}.story{grid-template-columns:1fr}.story-visual{margin:0}.story article{margin:-70px 25px 0}.split-shots{grid-template-columns:1fr}.stack{min-height:600px}}
+  @media(max-width:600px){.hero{padding-top:105px}.hero h1{font-size:clamp(58px,20vw,92px)}.hero-meta span:last-child{display:none}.actions{flex-direction:column;align-items:stretch}.hero-visual{width:120%;margin-left:-10%}.shot-card .placeholder{min-height:390px}.floating-tag{display:none}.overlap-word{bottom:180px;font-size:39vw}.manifesto{display:block;padding:110px 0}.manifesto>div{margin-top:35px}.story article{margin:-45px 10px 0;padding:28px}.story-visual .placeholder{min-height:430px}.platforms{margin-top:100px}.split-shots{padding:120px 0}.stack{min-height:480px}.stack>div{width:88%}.stack .placeholder{min-height:300px}.stack>strong{font-size:100px}.marquee div{animation-duration:18s}}
+  @media(prefers-reduced-motion:reduce){.hero:after,.orbit,.floating-tag,.marquee div,.status-dot:before{animation:none}}
 </style>

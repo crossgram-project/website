@@ -17,12 +17,38 @@ const { title, description = 'CrossGram — 使用 Telegram 客户端连接 QQ�
   </head>
   <body>
     <div class="noise"></div>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <div class="cursor-light"></div>
     <Header />
     <main><slot /></main>
     <Footer />
     <script is:inline>
       const reveal = new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('revealed')), { threshold: .08 })
       document.querySelectorAll('[data-reveal]').forEach(el => reveal.observe(el))
+      if (matchMedia('(pointer:fine)').matches && !matchMedia('(prefers-reduced-motion:reduce)').matches) {
+        let x = innerWidth / 2, y = innerHeight / 2, tx = x, ty = y
+        addEventListener('pointermove', event => { tx = event.clientX; ty = event.clientY }, { passive: true })
+        const frame = () => {
+          x += (tx - x) * .09; y += (ty - y) * .09
+          document.documentElement.style.setProperty('--mouse-x', `${x}px`)
+          document.documentElement.style.setProperty('--mouse-y', `${y}px`)
+          requestAnimationFrame(frame)
+        }
+        frame()
+        document.querySelectorAll('[data-tilt]').forEach(card => {
+          card.addEventListener('pointermove', event => {
+            const box = card.getBoundingClientRect()
+            const rx = ((event.clientY - box.top) / box.height - .5) * -7
+            const ry = ((event.clientX - box.left) / box.width - .5) * 9
+            card.style.setProperty('--rx', `${rx}deg`)
+            card.style.setProperty('--ry', `${ry}deg`)
+            card.style.setProperty('--shine-x', `${event.clientX - box.left}px`)
+            card.style.setProperty('--shine-y', `${event.clientY - box.top}px`)
+          })
+          card.addEventListener('pointerleave', () => { card.style.setProperty('--rx', '0deg'); card.style.setProperty('--ry', '0deg') })
+        })
+      }
     </script>
   </body>
 </html>
