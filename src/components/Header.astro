@@ -2,32 +2,46 @@
 import { nav } from '../data/site'
 import { Icon } from './Icons'
 const pathname = Astro.url.pathname
+
+const progressiveBlurHeight = 70
+const progressiveBlurAmount = 40
+const fineLayers = progressiveBlurHeight < 100
+  ? Math.ceil(Math.floor(progressiveBlurHeight / 4) / 2)
+  : 15
+let remainingHeight = progressiveBlurHeight
+let layerIndex = 1
+const progress: number[] = []
+while (remainingHeight > 0) {
+  remainingHeight -= layerIndex <= fineLayers
+    ? 2
+    : Math.pow(layerIndex - fineLayers + 1, 2)
+  progress.push(Math.min(1, (progressiveBlurHeight - Math.max(0, remainingHeight)) / progressiveBlurHeight))
+  layerIndex++
+}
+const variance = progress.reduce((sum, value) => sum + value * value, 0)
+const blurScale = progressiveBlurAmount / Math.sqrt(variance)
+remainingHeight = progressiveBlurHeight
+const progressiveBlurLayers = progress.map((value, index) => {
+  remainingHeight -= index + 1 <= fineLayers
+    ? 2
+    : Math.pow(index + 1 - fineLayers + 1, 2)
+  return {
+    id: index + 1,
+    height: Math.max(0, remainingHeight),
+    blur: value * blurScale,
+  }
+}).reverse()
 ---
 <header class="header">
-  <svg class="progressive-blur-defs" aria-hidden="true">
-    <defs>
-      <filter id="header-progressive-blur" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="40" result="blur40" />
-        <feImage href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='white'/%3E%3Cstop offset='.24' stop-color='white'/%3E%3Cstop offset='.4' stop-color='black'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1' height='1' fill='url(%23g)'/%3E%3C/svg%3E" preserveAspectRatio="none" result="mask40" />
-        <feComposite in="blur40" in2="mask40" operator="in" result="layer40" />
-
-        <feGaussianBlur in="SourceGraphic" stdDeviation="26" result="blur26" />
-        <feImage href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='.2' stop-color='black'/%3E%3Cstop offset='.35' stop-color='white'/%3E%3Cstop offset='.55' stop-color='black'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1' height='1' fill='url(%23g)'/%3E%3C/svg%3E" preserveAspectRatio="none" result="mask26" />
-        <feComposite in="blur26" in2="mask26" operator="in" result="layer26" />
-
-        <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="blur14" />
-        <feImage href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='.42' stop-color='black'/%3E%3Cstop offset='.6' stop-color='white'/%3E%3Cstop offset='.78' stop-color='black'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1' height='1' fill='url(%23g)'/%3E%3C/svg%3E" preserveAspectRatio="none" result="mask14" />
-        <feComposite in="blur14" in2="mask14" operator="in" result="layer14" />
-
-        <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur6" />
-        <feImage href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='.65' stop-color='black'/%3E%3Cstop offset='.82' stop-color='white'/%3E%3Cstop offset='1' stop-color='black'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1' height='1' fill='url(%23g)'/%3E%3C/svg%3E" preserveAspectRatio="none" result="mask6" />
-        <feComposite in="blur6" in2="mask6" operator="in" result="layer6" />
-
-        <feMerge><feMergeNode in="layer40" /><feMergeNode in="layer26" /><feMergeNode in="layer14" /><feMergeNode in="layer6" /></feMerge>
-      </filter>
-    </defs>
-  </svg>
-  <div class="progressive-blur" aria-hidden="true"></div>
+  <div class="progressive-blur" aria-hidden="true" style={`height:${progressiveBlurHeight}px`}>
+    {progressiveBlurLayers.map((layer, index) => (
+      <i
+        data-progressive-blur-layer
+        data-blur={layer.blur.toFixed(3)}
+        style={`height:${layer.height}px;backdrop-filter:blur(${layer.blur}px);-webkit-backdrop-filter:blur(${layer.blur}px);background:${index === progressiveBlurLayers.length - 1 ? 'linear-gradient(180deg,rgba(13,16,20,.72),transparent)' : 'transparent'}`}
+      ></i>
+    ))}
+  </div>
   <div class="glass-glow"></div>
   <a class="brand" href="/" aria-label="CrossGram 首页">
     <span class="brand-mark"><Icon name="telegram" size={20} /></span>
@@ -40,8 +54,8 @@ const pathname = Astro.url.pathname
 </header>
 
 <style>
-  .header{position:fixed;z-index:30;top:0;left:0;isolation:isolate;width:100%;height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 max(22px,calc((100vw - 1160px)/2));border:0;border-bottom:1px solid rgba(255,255,255,.1);border-radius:0;background:linear-gradient(180deg,rgba(13,16,20,.72),rgba(13,16,20,.34) 72%,rgba(13,16,20,.08));box-shadow:0 18px 50px rgba(0,0,0,.13);overflow:visible}
-  .progressive-blur-defs{position:fixed;width:0;height:0;overflow:hidden;pointer-events:none}.progressive-blur{position:absolute;z-index:-4;inset:0 0 -36px;pointer-events:none;backdrop-filter:url("#header-progressive-blur") saturate(150%);-webkit-backdrop-filter:url("#header-progressive-blur") saturate(150%)}
+  .header{position:fixed;z-index:30;top:0;left:0;isolation:isolate;width:100%;height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 max(22px,calc((100vw - 1160px)/2));border:0;border-radius:0;background:rgba(13,16,20,.12);box-shadow:none;overflow:visible}
+  .progressive-blur{position:absolute;z-index:-4;top:0;right:0;left:0;pointer-events:none}.progressive-blur i{position:absolute;top:0;right:0;left:0;display:block;will-change:backdrop-filter}
   .header:before{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(100deg,transparent 10%,rgba(255,255,255,.13) 36%,transparent 58%);transform:translateX(-120%);animation:glass-sweep 8s ease-in-out infinite}
   .glass-glow{position:absolute;z-index:-2;left:20%;top:-100px;width:45%;height:150px;background:linear-gradient(90deg,var(--violet),var(--cyan),var(--acid));filter:blur(45px);opacity:.2;animation:glass-drift 10s ease-in-out infinite alternate}
   .brand{display:flex;align-items:center;gap:10px;color:var(--white);font-weight:760;letter-spacing:-.03em}.brand-mark{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:linear-gradient(145deg,#d6ffc7,var(--acid));color:#07110b;box-shadow:0 7px 24px rgba(167,255,131,.28);transform:rotate(-5deg);transition:.3s}.brand:hover .brand-mark{transform:rotate(6deg) scale(1.06)}

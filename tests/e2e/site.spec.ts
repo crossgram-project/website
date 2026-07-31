@@ -46,12 +46,20 @@ test('home removes FREE overlay and uses translucent interactive image treatment
   await expect(page.locator('.header')).toHaveCSS('top', '0px')
   await expect(page.locator('.header')).toHaveCSS('width', `${await page.evaluate(() => innerWidth)}px`)
   await expect(page.locator('.header')).toHaveCSS('border-radius', '0px')
-  await expect(page.locator('#header-progressive-blur feGaussianBlur')).toHaveCount(4)
-  await expect(page.locator('#header-progressive-blur feGaussianBlur').first()).toHaveAttribute('stdDeviation', '40')
-  await expect(page.locator('.progressive-blur')).toHaveCSS('backdrop-filter', /header-progressive-blur/)
+  const blurLayers = page.locator('[data-progressive-blur-layer]')
+  await expect(blurLayers).toHaveCount(13)
+  const blurValues = await blurLayers.evaluateAll(elements =>
+    elements.map(element => Number((element as HTMLElement).dataset.blur)))
+  expect(Math.sqrt(blurValues.reduce((sum, value) => sum + value * value, 0))).toBeCloseTo(40, 2)
+  expect(blurValues[0]).toBeGreaterThan(blurValues.at(-1)!)
   await expect(page.locator('.overlap-word')).toHaveCount(0)
+  for (const decoration of ['SYSTEMS CONNECTED', 'QQNT CONNECTED', '12 CHANNELS', 'CONNECTED WORLDS']) {
+    await expect(page.getByText(decoration, { exact: false })).toHaveCount(0)
+  }
+  await expect(page.locator('.stack > strong')).toHaveCount(0)
   await expect(page.locator('.shot-card')).toHaveCSS('backdrop-filter', /blur/)
   await expect(page.locator('.story article')).toHaveCSS('backdrop-filter', /blur/)
+  await expect(page.locator('.shot-card .placeholder-copy')).toHaveCSS('opacity', '0.32')
   await expect(page.locator('.shot-card')).toHaveAttribute('data-tilt', '')
   await page.locator('.shot-card').hover()
   await expect(page.locator('.shot-card')).toHaveCSS('transition-property', /transform/)
