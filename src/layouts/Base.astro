@@ -36,18 +36,23 @@ const { title, description = 'CrossGram — 使用 Telegram 客户端连接 QQ�
           requestAnimationFrame(frame)
         }
         frame()
-        document.querySelectorAll('[data-tilt]').forEach(card => {
-          card.addEventListener('pointermove', event => {
-            const box = card.getBoundingClientRect()
-            const rx = ((event.clientY - box.top) / box.height - .5) * -7
-            const ry = ((event.clientX - box.left) / box.width - .5) * 9
-            card.style.setProperty('--rx', `${rx}deg`)
-            card.style.setProperty('--ry', `${ry}deg`)
-            card.style.setProperty('--shine-x', `${event.clientX - box.left}px`)
-            card.style.setProperty('--shine-y', `${event.clientY - box.top}px`)
-          })
-          card.addEventListener('pointerleave', () => { card.style.setProperty('--rx', '0deg'); card.style.setProperty('--ry', '0deg') })
-        })
+        addEventListener('pointermove', event => {
+          const card = event.target instanceof Element ? event.target.closest('[data-tilt]') : null
+          if (!(card instanceof HTMLElement)) return
+          const box = card.getBoundingClientRect()
+          const rx = ((event.clientY - box.top) / box.height - .5) * -7
+          const ry = ((event.clientX - box.left) / box.width - .5) * 9
+          card.style.setProperty('--rx', `${rx}deg`)
+          card.style.setProperty('--ry', `${ry}deg`)
+          card.style.setProperty('--shine-x', `${event.clientX - box.left}px`)
+          card.style.setProperty('--shine-y', `${event.clientY - box.top}px`)
+        }, { passive: true })
+        addEventListener('pointerout', event => {
+          const card = event.target instanceof Element ? event.target.closest('[data-tilt]') : null
+          if (!(card instanceof HTMLElement) || card.contains(event.relatedTarget)) return
+          card.style.setProperty('--rx', '0deg')
+          card.style.setProperty('--ry', '0deg')
+        }, { passive: true })
       }
     </script>
   </body>
