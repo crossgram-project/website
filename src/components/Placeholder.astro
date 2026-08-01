@@ -1,12 +1,9 @@
 ---
-import { Image } from 'astro:assets'
-import { screenshots } from '../data/screenshots'
 interface Props { label: string; kind?: 'wide' | 'phone' | 'feature'; src?: string; alt?: string; fit?: 'cover' | 'contain'; position?: string; eager?: boolean }
 const { label, kind = 'wide', src, alt = label, fit = 'cover', position = 'center', eager = false } = Astro.props
-const image = src ? screenshots[src] : undefined
 ---
 <div class:list={['placeholder', kind]} style={`--image-fit:${fit};--image-position:${position}`} role={src ? undefined : 'img'} aria-label={src ? undefined : `${label} 产品截图占位图`}>
-  {image && <Image src={image} alt={alt} widths={[420, 768, 1280]} sizes="(max-width: 600px) 90vw, 60vw" loading={eager ? 'eager' : 'lazy'} decoding="async" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()" />}
+  {src && <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()" />}
   <span class="crosshair a"></span><span class="crosshair b"></span>
   <div class="placeholder-copy"><small>SCREENSHOT / PLACEHOLDER</small><strong>{label}</strong><em>Replace this frame with product capture</em></div>
 </div>
