@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-01T19:33:22.319Z",
+  "updatedAt": "2026-08-02T03:52:36.310Z",
   "clients": [
     {
       "id": "tdesktop",
@@ -23,6 +23,15 @@
           "architecture": "Default",
           "size": "166 MB",
           "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-60/crossgram-tdesktop-cross-macos-v7.0.7.zip",
+          "brand": "cross",
+          "brandLabel": "CrossGram"
+        },
+        {
+          "name": "crossgram-tdesktop-cross-windows-v7.0.7.zip",
+          "platform": "Windows",
+          "architecture": "Default",
+          "size": "71 MB",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-60/crossgram-tdesktop-cross-windows-v7.0.7.zip",
           "brand": "cross",
           "brandLabel": "CrossGram"
         },
