@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-08-03T19:57:24.393Z",
+  "updatedAt": "2026-08-04T03:36:26.589Z",
   "clients": [
     {
       "id": "tdesktop",
       "name": "Telegram Desktop",
       "description": "经典、稳定的官方桌面体验",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-77",
+      "release": "crossgram-78",
       "assets": []
     },
     {
@@ -14,7 +14,7 @@
       "name": "TDesktop x64",
       "description": "为 Windows 优化的桌面分支",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-77",
+      "release": "crossgram-78",
       "assets": []
     },
     {
@@ -22,14 +22,14 @@
       "name": "AyuGram Desktop",
       "description": "强调隐私与高级聊天能力",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-77",
+      "release": "crossgram-78",
       "assets": [
         {
           "name": "crossgram-ayugram-cross-windows-v6.7.8.zip",
           "platform": "Windows",
           "architecture": "Default",
           "size": "69 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-77/crossgram-ayugram-cross-windows-v6.7.8.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-78/crossgram-ayugram-cross-windows-v6.7.8.zip",
           "brand": "cross",
           "brandLabel": "CrossGram"
         }
@@ -40,7 +40,7 @@
       "name": "Materialgram",
       "description": "更现代的 Material 桌面界面",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-77",
+      "release": "crossgram-78",
       "assets": []
     },
     {
