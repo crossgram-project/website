@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-04T14:39:28.537Z",
+  "updatedAt": "2026-08-04T19:56:19.999Z",
   "clients": [
     {
       "id": "tdesktop",
@@ -95,6 +95,15 @@
           "architecture": "Default",
           "size": "74 MB",
           "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-79/crossgram-tdesktop-qq-linux-v7.0.8.tar.xz",
+          "brand": "qq",
+          "brandLabel": "QQ"
+        },
+        {
+          "name": "crossgram-tdesktop-qq-macos-v7.0.8.zip",
+          "platform": "macOS",
+          "architecture": "Default",
+          "size": "167 MB",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-79/crossgram-tdesktop-qq-macos-v7.0.8.zip",
           "brand": "qq",
           "brandLabel": "QQ"
         },
