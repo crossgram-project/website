@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-08-13T02:47:19.153Z",
+  "updatedAt": "2026-08-13T07:52:39.304Z",
   "clients": [
     {
       "id": "tdesktop",
       "name": "Telegram Desktop",
       "description": "经典、稳定的官方桌面体验",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-90",
+      "release": "crossgram-91",
       "assets": []
     },
     {
@@ -14,7 +14,7 @@
       "name": "TDesktop x64",
       "description": "为 Windows 优化的桌面分支",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-90",
+      "release": "crossgram-91",
       "assets": []
     },
     {
@@ -22,14 +22,14 @@
       "name": "AyuGram Desktop",
       "description": "强调隐私与高级聊天能力",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-90",
+      "release": "crossgram-91",
       "assets": [
         {
-          "name": "crossgram-ayugram-cross-linux-v7.0.9.tar.xz",
-          "platform": "Linux",
+          "name": "crossgram-ayugram-cross-windows-v7.0.9.zip",
+          "platform": "Windows",
           "architecture": "Default",
-          "size": "77 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-90/crossgram-ayugram-cross-linux-v7.0.9.tar.xz",
+          "size": "72 MB",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-91/crossgram-ayugram-cross-windows-v7.0.9.zip",
           "brand": "cross",
           "brandLabel": "CrossGram"
         }
@@ -40,7 +40,7 @@
       "name": "Materialgram",
       "description": "更现代的 Material 桌面界面",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-90",
+      "release": "crossgram-91",
       "assets": []
     },
     {
@@ -48,14 +48,14 @@
       "name": "Telegram Android",
       "description": "官方 Android 客户端体验",
       "repo": "crossgram-project/crossgram-android",
-      "release": "crossgram-50",
+      "release": "crossgram-51",
       "assets": [
         {
           "name": "telegram-release-11.4.2-5469-arm64-dingtalk-app.apk",
           "platform": "Android",
           "architecture": "ARM64",
           "size": "40 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/telegram-release-11.4.2-5469-arm64-dingtalk-app.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/telegram-release-11.4.2-5469-arm64-dingtalk-app.apk",
           "brand": "dingtalk",
           "brandLabel": "钉钉"
         },
@@ -64,7 +64,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "40 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/telegram-release-11.4.2-5469-arm64-discord-app.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/telegram-release-11.4.2-5469-arm64-discord-app.apk",
           "brand": "discord",
           "brandLabel": "Discord"
         },
@@ -73,7 +73,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "40 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/telegram-release-11.4.2-5469-arm64-qq-app.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/telegram-release-11.4.2-5469-arm64-qq-app.apk",
           "brand": "qq",
           "brandLabel": "QQ"
         },
@@ -82,7 +82,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "40 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/telegram-release-11.4.2-5469-arm64-wechat-app.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/telegram-release-11.4.2-5469-arm64-wechat-app.apk",
           "brand": "wechat",
           "brandLabel": "微信"
         },
@@ -91,7 +91,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "40 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/telegram-release-11.4.2-5469-arm64-wecom-app.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/telegram-release-11.4.2-5469-arm64-wecom-app.apk",
           "brand": "wecom",
           "brandLabel": "企业微信"
         },
@@ -100,7 +100,7 @@
           "platform": "Android",
           "architecture": "x64",
           "size": "42 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/telegram-release-11.4.2-5469-x86_64-dingtalk-app.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/telegram-release-11.4.2-5469-x86_64-dingtalk-app.apk",
           "brand": "dingtalk",
           "brandLabel": "钉钉"
         },
@@ -109,7 +109,7 @@
           "platform": "Android",
           "architecture": "x64",
           "size": "42 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/telegram-release-11.4.2-5469-x86_64-discord-app.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/telegram-release-11.4.2-5469-x86_64-discord-app.apk",
           "brand": "discord",
           "brandLabel": "Discord"
         },
@@ -118,7 +118,7 @@
           "platform": "Android",
           "architecture": "x64",
           "size": "42 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/telegram-release-11.4.2-5469-x86_64-qq-app.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/telegram-release-11.4.2-5469-x86_64-qq-app.apk",
           "brand": "qq",
           "brandLabel": "QQ"
         },
@@ -127,7 +127,7 @@
           "platform": "Android",
           "architecture": "x64",
           "size": "42 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/telegram-release-11.4.2-5469-x86_64-wechat-app.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/telegram-release-11.4.2-5469-x86_64-wechat-app.apk",
           "brand": "wechat",
           "brandLabel": "微信"
         },
@@ -136,7 +136,7 @@
           "platform": "Android",
           "architecture": "x64",
           "size": "42 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/telegram-release-11.4.2-5469-x86_64-wecom-app.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/telegram-release-11.4.2-5469-x86_64-wecom-app.apk",
           "brand": "wecom",
           "brandLabel": "企业微信"
         }
@@ -147,14 +147,14 @@
       "name": "Nagram",
       "description": "功能丰富的 Android 分支",
       "repo": "crossgram-project/crossgram-android",
-      "release": "crossgram-50",
+      "release": "crossgram-51",
       "assets": [
         {
           "name": "nagram-1240-arm64-dingtalk-Nagram-v12.8.1.1240.apk",
           "platform": "Android",
           "architecture": "ARM64",
           "size": "59 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nagram-1240-arm64-dingtalk-Nagram-v12.8.1.1240.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nagram-1240-arm64-dingtalk-Nagram-v12.8.1.1240.apk",
           "brand": "dingtalk",
           "brandLabel": "钉钉"
         },
@@ -163,7 +163,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "59 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nagram-1240-arm64-discord-Nagram-v12.8.1.1240.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nagram-1240-arm64-discord-Nagram-v12.8.1.1240.apk",
           "brand": "discord",
           "brandLabel": "Discord"
         },
@@ -172,7 +172,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "59 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nagram-1240-arm64-qq-Nagram-v12.8.1.1240.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nagram-1240-arm64-qq-Nagram-v12.8.1.1240.apk",
           "brand": "qq",
           "brandLabel": "QQ"
         },
@@ -181,7 +181,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "59 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nagram-1240-arm64-wechat-Nagram-v12.8.1.1240.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nagram-1240-arm64-wechat-Nagram-v12.8.1.1240.apk",
           "brand": "wechat",
           "brandLabel": "微信"
         },
@@ -190,7 +190,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "59 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nagram-1240-arm64-wecom-Nagram-v12.8.1.1240.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nagram-1240-arm64-wecom-Nagram-v12.8.1.1240.apk",
           "brand": "wecom",
           "brandLabel": "企业微信"
         },
@@ -199,7 +199,7 @@
           "platform": "Android",
           "architecture": "x64",
           "size": "60 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nagram-1240-x86_64-dingtalk-Nagram-v12.8.1.1240.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nagram-1240-x86_64-dingtalk-Nagram-v12.8.1.1240.apk",
           "brand": "dingtalk",
           "brandLabel": "钉钉"
         },
@@ -208,7 +208,7 @@
           "platform": "Android",
           "architecture": "x64",
           "size": "60 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nagram-1240-x86_64-discord-Nagram-v12.8.1.1240.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nagram-1240-x86_64-discord-Nagram-v12.8.1.1240.apk",
           "brand": "discord",
           "brandLabel": "Discord"
         },
@@ -217,7 +217,7 @@
           "platform": "Android",
           "architecture": "x64",
           "size": "60 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nagram-1240-x86_64-qq-Nagram-v12.8.1.1240.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nagram-1240-x86_64-qq-Nagram-v12.8.1.1240.apk",
           "brand": "qq",
           "brandLabel": "QQ"
         },
@@ -226,7 +226,7 @@
           "platform": "Android",
           "architecture": "x64",
           "size": "60 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nagram-1240-x86_64-wechat-Nagram-v12.8.1.1240.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nagram-1240-x86_64-wechat-Nagram-v12.8.1.1240.apk",
           "brand": "wechat",
           "brandLabel": "微信"
         },
@@ -235,7 +235,7 @@
           "platform": "Android",
           "architecture": "x64",
           "size": "60 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nagram-1240-x86_64-wecom-Nagram-v12.8.1.1240.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nagram-1240-x86_64-wecom-Nagram-v12.8.1.1240.apk",
           "brand": "wecom",
           "brandLabel": "企业微信"
         }
@@ -246,14 +246,14 @@
       "name": "Nnngram",
       "description": "轻快且高度可定制",
       "repo": "crossgram-project/crossgram-android",
-      "release": "crossgram-50",
+      "release": "crossgram-51",
       "assets": [
         {
           "name": "nnngram-main-arm64-dingtalk-Nnngram-v12.9.2-ad758d3-null.apk",
           "platform": "Android",
           "architecture": "ARM64",
           "size": "61 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nnngram-main-arm64-dingtalk-Nnngram-v12.9.2-ad758d3-null.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nnngram-main-arm64-dingtalk-Nnngram-v12.9.2-ad758d3-null.apk",
           "brand": "dingtalk",
           "brandLabel": "钉钉"
         },
@@ -262,7 +262,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "61 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nnngram-main-arm64-discord-Nnngram-v12.9.2-ad758d3-null.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nnngram-main-arm64-discord-Nnngram-v12.9.2-ad758d3-null.apk",
           "brand": "discord",
           "brandLabel": "Discord"
         },
@@ -271,7 +271,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "61 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nnngram-main-arm64-qq-Nnngram-v12.9.2-ad758d3-null.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nnngram-main-arm64-qq-Nnngram-v12.9.2-ad758d3-null.apk",
           "brand": "qq",
           "brandLabel": "QQ"
         },
@@ -280,7 +280,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "61 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nnngram-main-arm64-wechat-Nnngram-v12.9.2-ad758d3-null.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nnngram-main-arm64-wechat-Nnngram-v12.9.2-ad758d3-null.apk",
           "brand": "wechat",
           "brandLabel": "微信"
         },
@@ -289,7 +289,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "61 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nnngram-main-arm64-wecom-Nnngram-v12.9.2-ad758d3-null.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nnngram-main-arm64-wecom-Nnngram-v12.9.2-ad758d3-null.apk",
           "brand": "wecom",
           "brandLabel": "企业微信"
         }
@@ -300,14 +300,14 @@
       "name": "Nullgram",
       "description": "隐私与易用性兼顾",
       "repo": "crossgram-project/crossgram-android",
-      "release": "crossgram-50",
+      "release": "crossgram-51",
       "assets": [
         {
           "name": "nullgram-11.13.0-05eecdb-arm64-dingtalk-Nullgram-v11.13.0-05eecdb-null.apk",
           "platform": "Android",
           "architecture": "ARM64",
           "size": "60 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nullgram-11.13.0-05eecdb-arm64-dingtalk-Nullgram-v11.13.0-05eecdb-null.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nullgram-11.13.0-05eecdb-arm64-dingtalk-Nullgram-v11.13.0-05eecdb-null.apk",
           "brand": "dingtalk",
           "brandLabel": "钉钉"
         },
@@ -316,7 +316,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "60 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nullgram-11.13.0-05eecdb-arm64-discord-Nullgram-v11.13.0-05eecdb-null.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nullgram-11.13.0-05eecdb-arm64-discord-Nullgram-v11.13.0-05eecdb-null.apk",
           "brand": "discord",
           "brandLabel": "Discord"
         },
@@ -325,7 +325,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "60 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nullgram-11.13.0-05eecdb-arm64-qq-Nullgram-v11.13.0-05eecdb-null.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nullgram-11.13.0-05eecdb-arm64-qq-Nullgram-v11.13.0-05eecdb-null.apk",
           "brand": "qq",
           "brandLabel": "QQ"
         },
@@ -334,7 +334,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "60 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nullgram-11.13.0-05eecdb-arm64-wechat-Nullgram-v11.13.0-05eecdb-null.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nullgram-11.13.0-05eecdb-arm64-wechat-Nullgram-v11.13.0-05eecdb-null.apk",
           "brand": "wechat",
           "brandLabel": "微信"
         },
@@ -343,7 +343,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "60 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/nullgram-11.13.0-05eecdb-arm64-wecom-Nullgram-v11.13.0-05eecdb-null.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/nullgram-11.13.0-05eecdb-arm64-wecom-Nullgram-v11.13.0-05eecdb-null.apk",
           "brand": "wecom",
           "brandLabel": "企业微信"
         }
@@ -354,7 +354,7 @@
       "name": "Mercurygram",
       "description": "现代 Android Telegram 分支",
       "repo": "crossgram-project/crossgram-android",
-      "release": "crossgram-50",
+      "release": "crossgram-51",
       "assets": []
     },
     {
@@ -362,14 +362,14 @@
       "name": "Forkgram",
       "description": "简洁、实用的 Android 分支",
       "repo": "crossgram-project/crossgram-android",
-      "release": "crossgram-50",
+      "release": "crossgram-51",
       "assets": [
         {
           "name": "forkgram-12.9.3.0-arm64-dingtalk-app.apk",
           "platform": "Android",
           "architecture": "ARM64",
           "size": "45 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/forkgram-12.9.3.0-arm64-dingtalk-app.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/forkgram-12.9.3.0-arm64-dingtalk-app.apk",
           "brand": "dingtalk",
           "brandLabel": "钉钉"
         },
@@ -378,7 +378,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "45 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/forkgram-12.9.3.0-arm64-discord-app.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/forkgram-12.9.3.0-arm64-discord-app.apk",
           "brand": "discord",
           "brandLabel": "Discord"
         },
@@ -387,7 +387,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "45 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/forkgram-12.9.3.0-arm64-qq-app.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/forkgram-12.9.3.0-arm64-qq-app.apk",
           "brand": "qq",
           "brandLabel": "QQ"
         },
@@ -396,7 +396,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "45 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/forkgram-12.9.3.0-arm64-wechat-app.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/forkgram-12.9.3.0-arm64-wechat-app.apk",
           "brand": "wechat",
           "brandLabel": "微信"
         },
@@ -405,7 +405,7 @@
           "platform": "Android",
           "architecture": "ARM64",
           "size": "45 MB",
-          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-50/forkgram-12.9.3.0-arm64-wecom-app.apk",
+          "url": "https://github.com/crossgram-project/crossgram-android/releases/download/crossgram-51/forkgram-12.9.3.0-arm64-wecom-app.apk",
           "brand": "wecom",
           "brandLabel": "企业微信"
         }
