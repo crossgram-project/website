@@ -1,20 +1,30 @@
 {
-  "updatedAt": "2026-08-20T19:02:24.666Z",
+  "updatedAt": "2026-08-21T01:57:35.822Z",
   "clients": [
     {
       "id": "tdesktop",
       "name": "Telegram Desktop",
       "description": "经典、稳定的官方桌面体验",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-187",
-      "assets": []
+      "release": "crossgram-189",
+      "assets": [
+        {
+          "name": "crossgram-tdesktop-cross-windows-v7.0.9.zip",
+          "platform": "Windows",
+          "architecture": "Default",
+          "size": "70 MB",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-189/crossgram-tdesktop-cross-windows-v7.0.9.zip",
+          "brand": "cross",
+          "brandLabel": "CrossGram"
+        }
+      ]
     },
     {
       "id": "tdesktop-x64",
       "name": "TDesktop x64",
       "description": "为 Windows 优化的桌面分支",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-187",
+      "release": "crossgram-189",
       "assets": []
     },
     {
@@ -22,7 +32,7 @@
       "name": "AyuGram Desktop",
       "description": "强调隐私与高级聊天能力",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-187",
+      "release": "crossgram-189",
       "assets": []
     },
     {
@@ -30,18 +40,8 @@
       "name": "Materialgram",
       "description": "更现代的 Material 桌面界面",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-187",
-      "assets": [
-        {
-          "name": "crossgram-materialgram-cross-linux-v7.0.5.1.tar.xz",
-          "platform": "Linux",
-          "architecture": "Default",
-          "size": "73 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-187/crossgram-materialgram-cross-linux-v7.0.5.1.tar.xz",
-          "brand": "cross",
-          "brandLabel": "CrossGram"
-        }
-      ]
+      "release": "crossgram-189",
+      "assets": []
     },
     {
       "id": "telegram",
