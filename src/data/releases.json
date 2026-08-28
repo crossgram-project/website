@@ -1,172 +1,172 @@
 {
-  "updatedAt": "2026-08-27T22:15:45.282Z",
+  "updatedAt": "2026-08-28T11:23:02.940Z",
   "clients": [
     {
       "id": "tdesktop",
       "name": "Telegram Desktop",
       "description": "经典、稳定的官方桌面体验",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-204",
+      "release": "crossgram-209",
       "assets": [
         {
-          "name": "crossgram-tdesktop-cross-linux-v7.1.1.tar.xz",
+          "name": "crossgram-tdesktop-cross-linux-v7.1.3.tar.xz",
           "platform": "Linux",
           "architecture": "Default",
           "size": "74 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-cross-linux-v7.1.1.tar.xz",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-cross-linux-v7.1.3.tar.xz",
           "brand": "cross",
           "brandLabel": "CrossGram"
         },
         {
-          "name": "crossgram-tdesktop-cross-macos-v7.1.1.zip",
+          "name": "crossgram-tdesktop-cross-macos-v7.1.3.zip",
           "platform": "macOS",
           "architecture": "Default",
           "size": "169 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-cross-macos-v7.1.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-cross-macos-v7.1.3.zip",
           "brand": "cross",
           "brandLabel": "CrossGram"
         },
         {
-          "name": "crossgram-tdesktop-cross-windows-v7.1.1.zip",
+          "name": "crossgram-tdesktop-cross-windows-v7.1.3.zip",
           "platform": "Windows",
           "architecture": "Default",
           "size": "71 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-cross-windows-v7.1.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-cross-windows-v7.1.3.zip",
           "brand": "cross",
           "brandLabel": "CrossGram"
         },
         {
-          "name": "crossgram-tdesktop-dingtalk-linux-v7.1.1.tar.xz",
+          "name": "crossgram-tdesktop-dingtalk-linux-v7.1.3.tar.xz",
           "platform": "Linux",
           "architecture": "Default",
           "size": "74 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-dingtalk-linux-v7.1.1.tar.xz",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-dingtalk-linux-v7.1.3.tar.xz",
           "brand": "dingtalk",
           "brandLabel": "钉钉"
         },
         {
-          "name": "crossgram-tdesktop-dingtalk-macos-v7.1.1.zip",
+          "name": "crossgram-tdesktop-dingtalk-macos-v7.1.3.zip",
           "platform": "macOS",
           "architecture": "Default",
           "size": "169 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-dingtalk-macos-v7.1.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-dingtalk-macos-v7.1.3.zip",
           "brand": "dingtalk",
           "brandLabel": "钉钉"
         },
         {
-          "name": "crossgram-tdesktop-dingtalk-windows-v7.1.1.zip",
+          "name": "crossgram-tdesktop-dingtalk-windows-v7.1.3.zip",
           "platform": "Windows",
           "architecture": "Default",
           "size": "71 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-dingtalk-windows-v7.1.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-dingtalk-windows-v7.1.3.zip",
           "brand": "dingtalk",
           "brandLabel": "钉钉"
         },
         {
-          "name": "crossgram-tdesktop-discord-linux-v7.1.1.tar.xz",
+          "name": "crossgram-tdesktop-discord-linux-v7.1.3.tar.xz",
           "platform": "Linux",
           "architecture": "Default",
           "size": "74 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-discord-linux-v7.1.1.tar.xz",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-discord-linux-v7.1.3.tar.xz",
           "brand": "discord",
           "brandLabel": "Discord"
         },
         {
-          "name": "crossgram-tdesktop-discord-macos-v7.1.1.zip",
+          "name": "crossgram-tdesktop-discord-macos-v7.1.3.zip",
           "platform": "macOS",
           "architecture": "Default",
           "size": "169 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-discord-macos-v7.1.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-discord-macos-v7.1.3.zip",
           "brand": "discord",
           "brandLabel": "Discord"
         },
         {
-          "name": "crossgram-tdesktop-discord-windows-v7.1.1.zip",
+          "name": "crossgram-tdesktop-discord-windows-v7.1.3.zip",
           "platform": "Windows",
           "architecture": "Default",
           "size": "71 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-discord-windows-v7.1.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-discord-windows-v7.1.3.zip",
           "brand": "discord",
           "brandLabel": "Discord"
         },
         {
-          "name": "crossgram-tdesktop-qq-linux-v7.1.1.tar.xz",
+          "name": "crossgram-tdesktop-qq-linux-v7.1.3.tar.xz",
           "platform": "Linux",
           "architecture": "Default",
           "size": "74 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-qq-linux-v7.1.1.tar.xz",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-qq-linux-v7.1.3.tar.xz",
           "brand": "qq",
           "brandLabel": "QQ"
         },
         {
-          "name": "crossgram-tdesktop-qq-macos-v7.1.1.zip",
+          "name": "crossgram-tdesktop-qq-macos-v7.1.3.zip",
           "platform": "macOS",
           "architecture": "Default",
           "size": "170 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-qq-macos-v7.1.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-qq-macos-v7.1.3.zip",
           "brand": "qq",
           "brandLabel": "QQ"
         },
         {
-          "name": "crossgram-tdesktop-qq-windows-v7.1.1.zip",
+          "name": "crossgram-tdesktop-qq-windows-v7.1.3.zip",
           "platform": "Windows",
           "architecture": "Default",
           "size": "71 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-qq-windows-v7.1.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-qq-windows-v7.1.3.zip",
           "brand": "qq",
           "brandLabel": "QQ"
         },
         {
-          "name": "crossgram-tdesktop-wechat-linux-v7.1.1.tar.xz",
+          "name": "crossgram-tdesktop-wechat-linux-v7.1.3.tar.xz",
           "platform": "Linux",
           "architecture": "Default",
           "size": "74 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-wechat-linux-v7.1.1.tar.xz",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-wechat-linux-v7.1.3.tar.xz",
           "brand": "wechat",
           "brandLabel": "微信"
         },
         {
-          "name": "crossgram-tdesktop-wechat-macos-v7.1.1.zip",
+          "name": "crossgram-tdesktop-wechat-macos-v7.1.3.zip",
           "platform": "macOS",
           "architecture": "Default",
-          "size": "169 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-wechat-macos-v7.1.1.zip",
+          "size": "170 MB",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-wechat-macos-v7.1.3.zip",
           "brand": "wechat",
           "brandLabel": "微信"
         },
         {
-          "name": "crossgram-tdesktop-wechat-windows-v7.1.1.zip",
+          "name": "crossgram-tdesktop-wechat-windows-v7.1.3.zip",
           "platform": "Windows",
           "architecture": "Default",
           "size": "71 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-wechat-windows-v7.1.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-wechat-windows-v7.1.3.zip",
           "brand": "wechat",
           "brandLabel": "微信"
         },
         {
-          "name": "crossgram-tdesktop-wecom-linux-v7.1.1.tar.xz",
+          "name": "crossgram-tdesktop-wecom-linux-v7.1.3.tar.xz",
           "platform": "Linux",
           "architecture": "Default",
           "size": "74 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-wecom-linux-v7.1.1.tar.xz",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-wecom-linux-v7.1.3.tar.xz",
           "brand": "wecom",
           "brandLabel": "企业微信"
         },
         {
-          "name": "crossgram-tdesktop-wecom-macos-v7.1.1.zip",
+          "name": "crossgram-tdesktop-wecom-macos-v7.1.3.zip",
           "platform": "macOS",
           "architecture": "Default",
           "size": "169 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-wecom-macos-v7.1.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-wecom-macos-v7.1.3.zip",
           "brand": "wecom",
           "brandLabel": "企业微信"
         },
         {
-          "name": "crossgram-tdesktop-wecom-windows-v7.1.1.zip",
+          "name": "crossgram-tdesktop-wecom-windows-v7.1.3.zip",
           "platform": "Windows",
           "architecture": "Default",
           "size": "71 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-wecom-windows-v7.1.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-wecom-windows-v7.1.3.zip",
           "brand": "wecom",
           "brandLabel": "企业微信"
         }
@@ -177,14 +177,14 @@
       "name": "TDesktop x64",
       "description": "为 Windows 优化的桌面分支",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-204",
+      "release": "crossgram-209",
       "assets": [
         {
           "name": "crossgram-tdesktop-x64-cross-linux-v1.2.7.tar.xz",
           "platform": "Linux",
           "architecture": "x64",
           "size": "74 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-x64-cross-linux-v1.2.7.tar.xz",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-x64-cross-linux-v1.2.7.tar.xz",
           "brand": "cross",
           "brandLabel": "CrossGram"
         },
@@ -193,7 +193,7 @@
           "platform": "macOS",
           "architecture": "x64",
           "size": "166 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-x64-cross-macos-v1.2.7.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-x64-cross-macos-v1.2.7.zip",
           "brand": "cross",
           "brandLabel": "CrossGram"
         },
@@ -202,7 +202,7 @@
           "platform": "Windows",
           "architecture": "x64",
           "size": "70 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-x64-cross-windows-v1.2.7.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-x64-cross-windows-v1.2.7.zip",
           "brand": "cross",
           "brandLabel": "CrossGram"
         },
@@ -211,16 +211,7 @@
           "platform": "Linux",
           "architecture": "x64",
           "size": "74 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-x64-dingtalk-linux-v1.2.7.tar.xz",
-          "brand": "dingtalk",
-          "brandLabel": "钉钉"
-        },
-        {
-          "name": "crossgram-tdesktop-x64-dingtalk-macos-v1.2.7.zip",
-          "platform": "macOS",
-          "architecture": "x64",
-          "size": "167 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-x64-dingtalk-macos-v1.2.7.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-x64-dingtalk-linux-v1.2.7.tar.xz",
           "brand": "dingtalk",
           "brandLabel": "钉钉"
         },
@@ -229,7 +220,7 @@
           "platform": "Windows",
           "architecture": "x64",
           "size": "70 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-x64-dingtalk-windows-v1.2.7.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-x64-dingtalk-windows-v1.2.7.zip",
           "brand": "dingtalk",
           "brandLabel": "钉钉"
         },
@@ -238,16 +229,7 @@
           "platform": "Linux",
           "architecture": "x64",
           "size": "74 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-x64-discord-linux-v1.2.7.tar.xz",
-          "brand": "discord",
-          "brandLabel": "Discord"
-        },
-        {
-          "name": "crossgram-tdesktop-x64-discord-macos-v1.2.7.zip",
-          "platform": "macOS",
-          "architecture": "x64",
-          "size": "167 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-x64-discord-macos-v1.2.7.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-x64-discord-linux-v1.2.7.tar.xz",
           "brand": "discord",
           "brandLabel": "Discord"
         },
@@ -256,7 +238,7 @@
           "platform": "Windows",
           "architecture": "x64",
           "size": "70 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-x64-discord-windows-v1.2.7.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-x64-discord-windows-v1.2.7.zip",
           "brand": "discord",
           "brandLabel": "Discord"
         },
@@ -265,7 +247,7 @@
           "platform": "Linux",
           "architecture": "x64",
           "size": "74 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-x64-qq-linux-v1.2.7.tar.xz",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-x64-qq-linux-v1.2.7.tar.xz",
           "brand": "qq",
           "brandLabel": "QQ"
         },
@@ -274,7 +256,7 @@
           "platform": "macOS",
           "architecture": "x64",
           "size": "167 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-x64-qq-macos-v1.2.7.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-x64-qq-macos-v1.2.7.zip",
           "brand": "qq",
           "brandLabel": "QQ"
         },
@@ -283,7 +265,7 @@
           "platform": "Windows",
           "architecture": "x64",
           "size": "70 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-x64-qq-windows-v1.2.7.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-x64-qq-windows-v1.2.7.zip",
           "brand": "qq",
           "brandLabel": "QQ"
         },
@@ -292,7 +274,7 @@
           "platform": "Linux",
           "architecture": "x64",
           "size": "74 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-x64-wechat-linux-v1.2.7.tar.xz",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-x64-wechat-linux-v1.2.7.tar.xz",
           "brand": "wechat",
           "brandLabel": "微信"
         },
@@ -301,7 +283,7 @@
           "platform": "macOS",
           "architecture": "x64",
           "size": "167 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-x64-wechat-macos-v1.2.7.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-x64-wechat-macos-v1.2.7.zip",
           "brand": "wechat",
           "brandLabel": "微信"
         },
@@ -310,7 +292,7 @@
           "platform": "Windows",
           "architecture": "x64",
           "size": "70 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-x64-wechat-windows-v1.2.7.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-x64-wechat-windows-v1.2.7.zip",
           "brand": "wechat",
           "brandLabel": "微信"
         },
@@ -319,7 +301,7 @@
           "platform": "Linux",
           "architecture": "x64",
           "size": "74 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-x64-wecom-linux-v1.2.7.tar.xz",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-x64-wecom-linux-v1.2.7.tar.xz",
           "brand": "wecom",
           "brandLabel": "企业微信"
         },
@@ -328,7 +310,7 @@
           "platform": "macOS",
           "architecture": "x64",
           "size": "167 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-x64-wecom-macos-v1.2.7.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-x64-wecom-macos-v1.2.7.zip",
           "brand": "wecom",
           "brandLabel": "企业微信"
         },
@@ -337,7 +319,7 @@
           "platform": "Windows",
           "architecture": "x64",
           "size": "70 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-tdesktop-x64-wecom-windows-v1.2.7.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-tdesktop-x64-wecom-windows-v1.2.7.zip",
           "brand": "wecom",
           "brandLabel": "企业微信"
         }
@@ -348,23 +330,14 @@
       "name": "AyuGram Desktop",
       "description": "强调隐私与高级聊天能力",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-204",
+      "release": "crossgram-209",
       "assets": [
         {
           "name": "crossgram-ayugram-cross-linux-v7.0.9.tar.xz",
           "platform": "Linux",
           "architecture": "Default",
           "size": "70 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-ayugram-cross-linux-v7.0.9.tar.xz",
-          "brand": "cross",
-          "brandLabel": "CrossGram"
-        },
-        {
-          "name": "crossgram-ayugram-cross-macos-v7.0.9.zip",
-          "platform": "macOS",
-          "architecture": "Default",
-          "size": "184 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-ayugram-cross-macos-v7.0.9.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-ayugram-cross-linux-v7.0.9.tar.xz",
           "brand": "cross",
           "brandLabel": "CrossGram"
         },
@@ -373,7 +346,7 @@
           "platform": "Windows",
           "architecture": "Default",
           "size": "72 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-ayugram-cross-windows-v7.0.9.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-ayugram-cross-windows-v7.0.9.zip",
           "brand": "cross",
           "brandLabel": "CrossGram"
         },
@@ -382,16 +355,7 @@
           "platform": "Linux",
           "architecture": "Default",
           "size": "70 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-ayugram-dingtalk-linux-v7.0.9.tar.xz",
-          "brand": "dingtalk",
-          "brandLabel": "钉钉"
-        },
-        {
-          "name": "crossgram-ayugram-dingtalk-macos-v7.0.9.zip",
-          "platform": "macOS",
-          "architecture": "Default",
-          "size": "184 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-ayugram-dingtalk-macos-v7.0.9.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-ayugram-dingtalk-linux-v7.0.9.tar.xz",
           "brand": "dingtalk",
           "brandLabel": "钉钉"
         },
@@ -400,7 +364,7 @@
           "platform": "Windows",
           "architecture": "Default",
           "size": "72 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-ayugram-dingtalk-windows-v7.0.9.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-ayugram-dingtalk-windows-v7.0.9.zip",
           "brand": "dingtalk",
           "brandLabel": "钉钉"
         },
@@ -409,16 +373,7 @@
           "platform": "Linux",
           "architecture": "Default",
           "size": "70 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-ayugram-discord-linux-v7.0.9.tar.xz",
-          "brand": "discord",
-          "brandLabel": "Discord"
-        },
-        {
-          "name": "crossgram-ayugram-discord-macos-v7.0.9.zip",
-          "platform": "macOS",
-          "architecture": "Default",
-          "size": "184 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-ayugram-discord-macos-v7.0.9.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-ayugram-discord-linux-v7.0.9.tar.xz",
           "brand": "discord",
           "brandLabel": "Discord"
         },
@@ -427,7 +382,7 @@
           "platform": "Windows",
           "architecture": "Default",
           "size": "72 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-ayugram-discord-windows-v7.0.9.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-ayugram-discord-windows-v7.0.9.zip",
           "brand": "discord",
           "brandLabel": "Discord"
         },
@@ -436,16 +391,7 @@
           "platform": "Linux",
           "architecture": "Default",
           "size": "70 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-ayugram-qq-linux-v7.0.9.tar.xz",
-          "brand": "qq",
-          "brandLabel": "QQ"
-        },
-        {
-          "name": "crossgram-ayugram-qq-macos-v7.0.9.zip",
-          "platform": "macOS",
-          "architecture": "Default",
-          "size": "184 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-ayugram-qq-macos-v7.0.9.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-ayugram-qq-linux-v7.0.9.tar.xz",
           "brand": "qq",
           "brandLabel": "QQ"
         },
@@ -454,7 +400,7 @@
           "platform": "Windows",
           "architecture": "Default",
           "size": "72 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-ayugram-qq-windows-v7.0.9.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-ayugram-qq-windows-v7.0.9.zip",
           "brand": "qq",
           "brandLabel": "QQ"
         },
@@ -463,7 +409,7 @@
           "platform": "Linux",
           "architecture": "Default",
           "size": "70 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-ayugram-wechat-linux-v7.0.9.tar.xz",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-ayugram-wechat-linux-v7.0.9.tar.xz",
           "brand": "wechat",
           "brandLabel": "微信"
         },
@@ -472,7 +418,7 @@
           "platform": "macOS",
           "architecture": "Default",
           "size": "184 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-ayugram-wechat-macos-v7.0.9.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-ayugram-wechat-macos-v7.0.9.zip",
           "brand": "wechat",
           "brandLabel": "微信"
         },
@@ -481,7 +427,7 @@
           "platform": "Windows",
           "architecture": "Default",
           "size": "72 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-ayugram-wechat-windows-v7.0.9.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-ayugram-wechat-windows-v7.0.9.zip",
           "brand": "wechat",
           "brandLabel": "微信"
         },
@@ -490,7 +436,7 @@
           "platform": "Linux",
           "architecture": "Default",
           "size": "70 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-ayugram-wecom-linux-v7.0.9.tar.xz",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-ayugram-wecom-linux-v7.0.9.tar.xz",
           "brand": "wecom",
           "brandLabel": "企业微信"
         },
@@ -499,7 +445,7 @@
           "platform": "macOS",
           "architecture": "Default",
           "size": "184 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-ayugram-wecom-macos-v7.0.9.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-ayugram-wecom-macos-v7.0.9.zip",
           "brand": "wecom",
           "brandLabel": "企业微信"
         },
@@ -508,7 +454,7 @@
           "platform": "Windows",
           "architecture": "Default",
           "size": "72 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-ayugram-wecom-windows-v7.0.9.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-ayugram-wecom-windows-v7.0.9.zip",
           "brand": "wecom",
           "brandLabel": "企业微信"
         }
@@ -519,23 +465,14 @@
       "name": "Materialgram",
       "description": "更现代的 Material 桌面界面",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-204",
+      "release": "crossgram-209",
       "assets": [
         {
           "name": "crossgram-materialgram-cross-linux-v7.0.5.1.tar.xz",
           "platform": "Linux",
           "architecture": "Default",
           "size": "73 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-materialgram-cross-linux-v7.0.5.1.tar.xz",
-          "brand": "cross",
-          "brandLabel": "CrossGram"
-        },
-        {
-          "name": "crossgram-materialgram-cross-macos-v7.0.5.1.zip",
-          "platform": "macOS",
-          "architecture": "Default",
-          "size": "92 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-materialgram-cross-macos-v7.0.5.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-materialgram-cross-linux-v7.0.5.1.tar.xz",
           "brand": "cross",
           "brandLabel": "CrossGram"
         },
@@ -544,7 +481,7 @@
           "platform": "Windows",
           "architecture": "Default",
           "size": "71 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-materialgram-cross-windows-v7.0.5.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-materialgram-cross-windows-v7.0.5.1.zip",
           "brand": "cross",
           "brandLabel": "CrossGram"
         },
@@ -553,7 +490,7 @@
           "platform": "Linux",
           "architecture": "Default",
           "size": "73 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-materialgram-dingtalk-linux-v7.0.5.1.tar.xz",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-materialgram-dingtalk-linux-v7.0.5.1.tar.xz",
           "brand": "dingtalk",
           "brandLabel": "钉钉"
         },
@@ -562,7 +499,7 @@
           "platform": "macOS",
           "architecture": "Default",
           "size": "92 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-materialgram-dingtalk-macos-v7.0.5.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-materialgram-dingtalk-macos-v7.0.5.1.zip",
           "brand": "dingtalk",
           "brandLabel": "钉钉"
         },
@@ -571,7 +508,7 @@
           "platform": "Windows",
           "architecture": "Default",
           "size": "71 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-materialgram-dingtalk-windows-v7.0.5.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-materialgram-dingtalk-windows-v7.0.5.1.zip",
           "brand": "dingtalk",
           "brandLabel": "钉钉"
         },
@@ -580,7 +517,7 @@
           "platform": "Linux",
           "architecture": "Default",
           "size": "73 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-materialgram-discord-linux-v7.0.5.1.tar.xz",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-materialgram-discord-linux-v7.0.5.1.tar.xz",
           "brand": "discord",
           "brandLabel": "Discord"
         },
@@ -589,7 +526,7 @@
           "platform": "macOS",
           "architecture": "Default",
           "size": "92 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-materialgram-discord-macos-v7.0.5.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-materialgram-discord-macos-v7.0.5.1.zip",
           "brand": "discord",
           "brandLabel": "Discord"
         },
@@ -598,7 +535,7 @@
           "platform": "Windows",
           "architecture": "Default",
           "size": "71 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-materialgram-discord-windows-v7.0.5.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-materialgram-discord-windows-v7.0.5.1.zip",
           "brand": "discord",
           "brandLabel": "Discord"
         },
@@ -607,16 +544,7 @@
           "platform": "Linux",
           "architecture": "Default",
           "size": "73 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-materialgram-qq-linux-v7.0.5.1.tar.xz",
-          "brand": "qq",
-          "brandLabel": "QQ"
-        },
-        {
-          "name": "crossgram-materialgram-qq-macos-v7.0.5.1.zip",
-          "platform": "macOS",
-          "architecture": "Default",
-          "size": "92 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-materialgram-qq-macos-v7.0.5.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-materialgram-qq-linux-v7.0.5.1.tar.xz",
           "brand": "qq",
           "brandLabel": "QQ"
         },
@@ -625,7 +553,7 @@
           "platform": "Windows",
           "architecture": "Default",
           "size": "71 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-materialgram-qq-windows-v7.0.5.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-materialgram-qq-windows-v7.0.5.1.zip",
           "brand": "qq",
           "brandLabel": "QQ"
         },
@@ -634,7 +562,7 @@
           "platform": "Linux",
           "architecture": "Default",
           "size": "73 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-materialgram-wechat-linux-v7.0.5.1.tar.xz",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-materialgram-wechat-linux-v7.0.5.1.tar.xz",
           "brand": "wechat",
           "brandLabel": "微信"
         },
@@ -643,7 +571,7 @@
           "platform": "macOS",
           "architecture": "Default",
           "size": "92 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-materialgram-wechat-macos-v7.0.5.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-materialgram-wechat-macos-v7.0.5.1.zip",
           "brand": "wechat",
           "brandLabel": "微信"
         },
@@ -652,7 +580,7 @@
           "platform": "Windows",
           "architecture": "Default",
           "size": "71 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-materialgram-wechat-windows-v7.0.5.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-materialgram-wechat-windows-v7.0.5.1.zip",
           "brand": "wechat",
           "brandLabel": "微信"
         },
@@ -661,7 +589,7 @@
           "platform": "Linux",
           "architecture": "Default",
           "size": "73 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-materialgram-wecom-linux-v7.0.5.1.tar.xz",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-materialgram-wecom-linux-v7.0.5.1.tar.xz",
           "brand": "wecom",
           "brandLabel": "企业微信"
         },
@@ -670,7 +598,7 @@
           "platform": "macOS",
           "architecture": "Default",
           "size": "92 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-materialgram-wecom-macos-v7.0.5.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-materialgram-wecom-macos-v7.0.5.1.zip",
           "brand": "wecom",
           "brandLabel": "企业微信"
         },
@@ -679,7 +607,7 @@
           "platform": "Windows",
           "architecture": "Default",
           "size": "71 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-204/crossgram-materialgram-wecom-windows-v7.0.5.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-209/crossgram-materialgram-wecom-windows-v7.0.5.1.zip",
           "brand": "wecom",
           "brandLabel": "企业微信"
         }
