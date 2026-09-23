@@ -1,19 +1,19 @@
 {
-  "updatedAt": "2026-09-22T21:18:26.851Z",
+  "updatedAt": "2026-09-23T04:44:33.163Z",
   "clients": [
     {
       "id": "tdesktop",
       "name": "Telegram Desktop",
       "description": "经典、稳定的官方桌面体验",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-241",
+      "release": "crossgram-242",
       "assets": [
         {
           "name": "crossgram-tdesktop-runtime-linux-v7.2.9.tar.xz",
           "platform": "Linux",
           "architecture": "Default",
-          "size": "75 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-241/crossgram-tdesktop-runtime-linux-v7.2.9.tar.xz",
+          "size": "76 MB",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-242/crossgram-tdesktop-runtime-linux-v7.2.9.tar.xz",
           "brand": "cross",
           "brandLabel": "CrossGram"
         },
@@ -22,7 +22,7 @@
           "platform": "macOS",
           "architecture": "Default",
           "size": "172 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-241/crossgram-tdesktop-runtime-macos-v7.2.9.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-242/crossgram-tdesktop-runtime-macos-v7.2.9.zip",
           "brand": "cross",
           "brandLabel": "CrossGram"
         },
@@ -31,7 +31,7 @@
           "platform": "Windows",
           "architecture": "Default",
           "size": "72 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-241/crossgram-tdesktop-runtime-windows-v7.2.9.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-242/crossgram-tdesktop-runtime-windows-v7.2.9.zip",
           "brand": "cross",
           "brandLabel": "CrossGram"
         }
@@ -42,14 +42,14 @@
       "name": "TDesktop x64",
       "description": "为 Windows 优化的桌面分支",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-241",
+      "release": "crossgram-242",
       "assets": [
         {
           "name": "crossgram-tdesktop-x64-runtime-linux-v1.2.10.tar.xz",
           "platform": "Linux",
           "architecture": "x64",
           "size": "76 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-241/crossgram-tdesktop-x64-runtime-linux-v1.2.10.tar.xz",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-242/crossgram-tdesktop-x64-runtime-linux-v1.2.10.tar.xz",
           "brand": "cross",
           "brandLabel": "CrossGram"
         },
@@ -58,7 +58,7 @@
           "platform": "macOS",
           "architecture": "x64",
           "size": "172 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-241/crossgram-tdesktop-x64-runtime-macos-v1.2.10.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-242/crossgram-tdesktop-x64-runtime-macos-v1.2.10.zip",
           "brand": "cross",
           "brandLabel": "CrossGram"
         },
@@ -67,7 +67,7 @@
           "platform": "Windows",
           "architecture": "x64",
           "size": "72 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-241/crossgram-tdesktop-x64-runtime-windows-v1.2.10.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-242/crossgram-tdesktop-x64-runtime-windows-v1.2.10.zip",
           "brand": "cross",
           "brandLabel": "CrossGram"
         }
@@ -78,14 +78,14 @@
       "name": "AyuGram Desktop",
       "description": "强调隐私与高级聊天能力",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-241",
+      "release": "crossgram-242",
       "assets": [
         {
           "name": "crossgram-ayugram-runtime-linux-v7.0.9.tar.xz",
           "platform": "Linux",
           "architecture": "Default",
           "size": "71 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-241/crossgram-ayugram-runtime-linux-v7.0.9.tar.xz",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-242/crossgram-ayugram-runtime-linux-v7.0.9.tar.xz",
           "brand": "cross",
           "brandLabel": "CrossGram"
         },
@@ -94,7 +94,7 @@
           "platform": "macOS",
           "architecture": "Default",
           "size": "185 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-241/crossgram-ayugram-runtime-macos-v7.0.9.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-242/crossgram-ayugram-runtime-macos-v7.0.9.zip",
           "brand": "cross",
           "brandLabel": "CrossGram"
         },
@@ -103,7 +103,7 @@
           "platform": "Windows",
           "architecture": "Default",
           "size": "73 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-241/crossgram-ayugram-runtime-windows-v7.0.9.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-242/crossgram-ayugram-runtime-windows-v7.0.9.zip",
           "brand": "cross",
           "brandLabel": "CrossGram"
         }
@@ -114,14 +114,14 @@
       "name": "Materialgram",
       "description": "更现代的 Material 桌面界面",
       "repo": "crossgram-project/crossgram-desktop",
-      "release": "crossgram-241",
+      "release": "crossgram-242",
       "assets": [
         {
           "name": "crossgram-materialgram-runtime-linux-v7.0.5.1.tar.xz",
           "platform": "Linux",
           "architecture": "Default",
           "size": "74 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-241/crossgram-materialgram-runtime-linux-v7.0.5.1.tar.xz",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-242/crossgram-materialgram-runtime-linux-v7.0.5.1.tar.xz",
           "brand": "cross",
           "brandLabel": "CrossGram"
         },
@@ -130,7 +130,7 @@
           "platform": "macOS",
           "architecture": "Default",
           "size": "93 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-241/crossgram-materialgram-runtime-macos-v7.0.5.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-242/crossgram-materialgram-runtime-macos-v7.0.5.1.zip",
           "brand": "cross",
           "brandLabel": "CrossGram"
         },
@@ -139,7 +139,7 @@
           "platform": "Windows",
           "architecture": "Default",
           "size": "72 MB",
-          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-241/crossgram-materialgram-runtime-windows-v7.0.5.1.zip",
+          "url": "https://github.com/crossgram-project/crossgram-desktop/releases/download/crossgram-242/crossgram-materialgram-runtime-windows-v7.0.5.1.zip",
           "brand": "cross",
           "brandLabel": "CrossGram"
         }
