@@ -54,9 +54,20 @@ const progressiveBlurLayers = progress.map((value, index) => {
 </header>
 
 <script>
-  const featuresEl = document.getElementById('features')
   const navEl = document.querySelector('.header nav')
-  if (featuresEl && navEl && location.pathname === '/') {
+  const onHome = location.pathname === '/'
+
+  const goHome = (link?: Element | null) => link?.addEventListener('click', event => {
+    if (!onHome) return
+    event.preventDefault()
+    history.replaceState(null, '', '/')
+    scrollTo(0, 0)
+  })
+  goHome(navEl?.querySelector('a[href="/"]'))
+  goHome(document.querySelector('.header .brand'))
+
+  const featuresEl = document.getElementById('features')
+  if (featuresEl && navEl && onHome) {
     const homeLink = navEl.querySelector('a[href="/"]')
     const featuresLink = navEl.querySelector('a[href="/#features"]')
     if (homeLink && featuresLink) {

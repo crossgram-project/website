@@ -204,3 +204,16 @@ test('homepage nav highlight follows the features section', async ({ page }, tes
   await expect(home).toHaveClass(/active/)
   await expect(features).not.toHaveClass(/active/)
 })
+
+test('returning to the homepage from the features anchor does not reload', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'the top nav is hidden on mobile')
+  await page.goto('/')
+  // Survives a same-document navigation; lost if the document is replaced.
+  await page.evaluate(() => { document.documentElement.dataset.docId = String(Math.random()) })
+  await page.locator('.header nav a[href="/#features"]').click()
+  await expect(page).toHaveURL(/#features$/)
+  await page.locator('.header nav a[href="/"]').click()
+  await expect(page).toHaveURL(/\/$/)
+  expect(await page.evaluate(() => document.documentElement.dataset.docId ?? null)).not.toBeNull()
+  await expect(page.locator('.header nav a[href="/"]')).toHaveClass(/active/)
+})
