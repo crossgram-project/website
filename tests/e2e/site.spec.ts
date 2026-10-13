@@ -189,3 +189,18 @@ test('mobile navigation keeps brand and GitHub action without horizontal overflo
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)
   expect(overflow).toBe(false)
 })
+
+test('homepage nav highlight follows the features section', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'the top nav is hidden on mobile')
+  await page.goto('/')
+  const home = page.locator('.header nav a[href="/"]')
+  const features = page.locator('.header nav a[href="/#features"]')
+  await expect(home).toHaveClass(/active/)
+  await expect(features).not.toHaveClass(/active/)
+  await features.click()
+  await expect(features).toHaveClass(/active/)
+  await expect(home).not.toHaveClass(/active/)
+  await page.evaluate(() => scrollTo(0, 0))
+  await expect(home).toHaveClass(/active/)
+  await expect(features).not.toHaveClass(/active/)
+})

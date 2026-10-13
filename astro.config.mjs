@@ -3,6 +3,6 @@ import react from '@astrojs/react'
 
 export default defineConfig({
   integrations: [react()],
-  site: 'https://crossgram.dev',
+  site: 'https://crossgram.microblock.cc',
   output: 'static',
 })

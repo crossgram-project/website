@@ -53,6 +53,32 @@ const progressiveBlurLayers = progress.map((value, index) => {
   <a class="header-github" href="https://github.com/crossgram-project/website"><Icon name="github" /><span>GitHub</span></a>
 </header>
 
+<script>
+  const featuresEl = document.getElementById('features')
+  const navEl = document.querySelector('.header nav')
+  if (featuresEl && navEl && location.pathname === '/') {
+    const homeLink = navEl.querySelector('a[href="/"]')
+    const featuresLink = navEl.querySelector('a[href="/#features"]')
+    if (homeLink && featuresLink) {
+      let queued = false
+      const update = () => {
+        queued = false
+        const reached = featuresEl.getBoundingClientRect().top <= innerHeight * .5
+        homeLink.classList.toggle('active', !reached)
+        featuresLink.classList.toggle('active', reached)
+      }
+      const request = () => {
+        if (queued) return
+        queued = true
+        requestAnimationFrame(update)
+      }
+      addEventListener('scroll', request, { passive: true })
+      addEventListener('resize', request, { passive: true })
+      update()
+    }
+  }
+</script>
+
 <style>
   .header{position:fixed;z-index:30;top:0;left:0;isolation:isolate;width:100%;height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 max(22px,calc((100vw - 1160px)/2));border:0;border-radius:0;background:rgba(13,16,20,.12);box-shadow:none;overflow:visible}
   .progressive-blur{position:absolute;z-index:-4;top:0;right:0;left:0;pointer-events:none}.progressive-blur i{position:absolute;top:0;right:0;left:0;display:block;will-change:backdrop-filter}
