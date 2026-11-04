@@ -125,27 +125,22 @@ test('status chips use the brand colour for full support', async ({ page }) => {
   expect(colors.none.background).not.toBe(brandSoft)
 })
 
-test.describe('deploy commands', () => {
+test.describe('deploy prompt', () => {
   test.use({ permissions: ['clipboard-read', 'clipboard-write'] })
 
-  test('commands wrap inside their card instead of truncating', async ({ page }) => {
+  test('the prompt is fully visible and wraps instead of truncating', async ({ page }) => {
     await page.goto('/')
 
-    const texts = page.locator('.home-deploy-card .cmd-text')
-    await expect(texts).toHaveCount(deploy.cards.length)
-
-    for (const [index, element] of (await texts.all()).entries()) {
-      expect(await element.textContent()).toBe(deploy.cards[index].command)
-      expect(await element.evaluate((node) => node.scrollWidth - node.clientWidth)).toBeLessThanOrEqual(1)
-    }
+    const prompt = page.locator('.home-prompt-card .cmd-text')
+    await expect(prompt).toHaveCount(1)
+    expect(await prompt.textContent()).toBe(deploy.prompt)
+    expect(await prompt.evaluate((node) => node.scrollWidth - node.clientWidth)).toBeLessThanOrEqual(1)
   })
 
-  test('the copy button writes the command and flips the label', async ({ page }) => {
+  test('the copy button writes the prompt and flips the label', async ({ page }) => {
     await page.goto('/')
 
-    const card = page.locator('.home-deploy-card').first()
-    expect(await card.locator('.cmd-text').textContent()).toBe(deploy.cards[0].command)
-
+    const card = page.locator('.home-prompt-card').first()
     const button = card.getByRole('button', { name: /复制/ })
     await expect(button).toHaveText('复制')
 
@@ -154,7 +149,7 @@ test.describe('deploy commands', () => {
 
     // The OS clipboard normalises newlines to the platform convention.
     const clipboard = await page.evaluate(() => navigator.clipboard.readText())
-    expect(clipboard.replace(/\r\n/g, '\n')).toBe(deploy.cards[0].command)
+    expect(clipboard.replace(/\r\n/g, '\n')).toBe(deploy.prompt)
 
     await expect(button).toHaveText('复制', { timeout: 4000 })
   })

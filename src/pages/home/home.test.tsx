@@ -144,33 +144,33 @@ describe('Home page', () => {
     expect(statuses.map((status) => statusGlyph[status])).toEqual(['●', '◐', '—'])
   })
 
-  it('renders one command row per deploy card with the exact command', () => {
+  it('offers one copyable deploy prompt instead of shell commands', () => {
     const { container } = renderHome()
-    const cards = Array.from(container.querySelectorAll('.home-deploy-card'))
-    expect(cards).toHaveLength(deploy.cards.length)
+    const cards = Array.from(container.querySelectorAll('.home-prompt-card'))
+    expect(cards).toHaveLength(1)
 
-    cards.forEach((card, index) => {
-      expect(card.querySelector('h3')!.textContent).toBe(deploy.cards[index].title)
-      expect(card.querySelector('.cmd-text')!.textContent).toBe(deploy.cards[index].command)
-    })
-
-    expect(deploy.cards[0].command).toContain('CROSSGRAM_PUBLIC_HOST=')
-    expect(deploy.cards[1].command).toContain('git clone https://github.com/std-microblock/crossgram.git')
+    const prompt = cards[0].querySelector('.cmd-text')!.textContent
+    expect(prompt).toBe(deploy.prompt)
+    expect(deploy.prompt).toContain('CROSSGRAM_PUBLIC_HOST=')
+    expect(deploy.prompt).toContain('crossgram-client-config')
+    expect(deploy.prompt).toContain('https://crossgram.microblock.cc/docs/linux')
+    expect(cards[0].querySelector('.cmd-copy')).not.toBeNull()
+    expect(screen.getByRole('link', { name: /查看完整文档/ }).getAttribute('href')).toBe('/docs')
   })
 
-  it('copies a command with the copy button and reverts the label after 1.2s', async () => {
+  it('copies the deploy prompt with the copy button and reverts the label after 1.2s', async () => {
     vi.useFakeTimers()
     const writeText = stubClipboard()
     const { container } = renderHome()
 
-    const button = container.querySelector('.home-deploy-card .cmd-copy') as HTMLButtonElement
+    const button = container.querySelector('.home-prompt-card .cmd-copy') as HTMLButtonElement
     expect(button.textContent).toBe('复制')
 
     await act(async () => {
       fireEvent.click(button)
     })
 
-    expect(writeText).toHaveBeenCalledWith(deploy.cards[0].command)
+    expect(writeText).toHaveBeenCalledWith(deploy.prompt)
     expect(button.textContent).toBe('已复制')
     expect(button.getAttribute('data-copied')).toBe('true')
 

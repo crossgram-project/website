@@ -219,47 +219,44 @@
   text-align: center;
 }
 
-/* ---------------------------------------------------------------- deploy -- */
+/* ---------------------------------------------------------------- prompt -- */
 
-.home-deploy-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-5);
-}
-
-.home-deploy-card {
+.home-prompt-card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 28px;
+  gap: var(--space-4);
+  max-width: 900px;
+  margin-inline: auto;
+  padding: var(--space-6);
 }
 
-.home-deploy-card h3 {
+.home-prompt-card .cmd {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-3);
+  padding: var(--space-5);
+}
+
+.home-prompt-card .cmd-text {
   color: var(--text-secondary);
   font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.14em;
-}
-
-.home-deploy-card p {
-  max-width: 44ch;
-  font-size: 14.5px;
-}
-
-.home-deploy-card .cmd {
-  align-items: flex-start;
-  margin-top: auto;
-}
-
-.home-deploy-card .cmd-text {
-  font-size: 12.5px;
-  line-height: 1.65;
+  line-height: 1.8;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
 
-.home-deploy-card .cmd-copy {
-  margin-top: 1px;
+.home-prompt-card .cmd-copy {
+  align-self: flex-end;
+}
+
+.home-prompt-hint {
+  font-size: 13.5px;
+  text-align: center;
+}
+
+.home-prompt-actions {
+  display: flex;
+  justify-content: center;
 }
 
 /* --------------------------------------------------------------- closing -- */
@@ -301,8 +298,7 @@
     gap: 40px;
   }
 
-  .home-cards,
-  .home-deploy-grid {
+  .home-cards {
     grid-template-columns: minmax(0, 1fr);
   }
 
@@ -331,8 +327,8 @@
     padding: 20px 20px 0;
   }
 
-  .home-deploy-card {
-    padding: 20px;
+  .home-prompt-card {
+    padding: var(--space-5);
   }
 
   .home-closing {

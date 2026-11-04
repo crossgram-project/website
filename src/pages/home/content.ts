@@ -131,24 +131,18 @@ export const matrix = {
 }
 
 export const deploy = {
-  eyebrow: 'Quick start',
-  title: '一条命令部署',
-  lead: 'Linux 用一键脚本装好 CrossGram Server 与 QQNT Bridge；Windows 上克隆仓库手动构建。',
-  cards: [
-    {
-      id: 'linux',
-      title: 'LINUX · 一键脚本',
-      body: '在空的 Linux 服务器上执行，把地址换成你自己的公网入口。',
-      command:
-        'curl -fsSL https://raw.githubusercontent.com/std-microblock/crossgram/main/deploy/install.sh \\\n| sudo CROSSGRAM_PUBLIC_HOST=203.0.113.10 sh',
-    },
-    {
-      id: 'source',
-      title: 'WINDOWS · 源码构建',
-      body: '克隆仓库后按文档构建，Windows 上没有一键脚本。',
-      command: 'git clone https://github.com/std-microblock/crossgram.git',
-    },
-  ],
+  eyebrow: 'Agent setup',
+  title: '把这段提示词交给 Agent',
+  lead: '不用手敲命令：复制下面的提示词，交给你的编码 Agent，它会按官方文档把 Server、Bridge 和客户端配置一次做完。',
+  prompt: `帮我在这台服务器上部署 CrossGram，并把客户端配置好。
+
+1. 先读官方文档确认当前步骤：https://crossgram.microblock.cc/docs/linux （Windows 主机读 /docs/windows）。
+2. 用 root 执行官方安装脚本，把 <公网IP> 换成这台机器的公网地址或域名：
+   curl -fsSL https://raw.githubusercontent.com/std-microblock/crossgram/main/deploy/install.sh | sudo CROSSGRAM_PUBLIC_HOST=<公网IP> sh
+3. 安装 QQNT Bridge，并把 bearer token 写入 /etc/qqnt-bridge.env，不要写进 app.yml。
+4. 生成客户端配置：sudo crossgram-client-config --host <公网IP> --port 4430 --name "My CrossGram" --output /tmp/crossgram-server.json
+5. 最后告诉我：配置文件路径、TCP 4430 是否已放行、以及登录用的 WebUI 地址和 SSH 端口转发命令。`,
+  hint: '提示词里的 <公网IP> 需要换成你的服务器地址；部署细节都在文档里。',
 } as const
 
 export const closing = {

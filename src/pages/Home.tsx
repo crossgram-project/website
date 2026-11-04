@@ -228,15 +228,15 @@ export default function Home() {
             <h2>{deploy.title}</h2>
             <p className="lead">{deploy.lead}</p>
           </div>
-          <div className="home-deploy-grid">
-            {deploy.cards.map((card) => (
-              <article key={card.id} className="card home-deploy-card">
-                <h3 className="mono">{card.title}</h3>
-                <p className="muted">{card.body}</p>
-                <CommandRow command={card.command} label={`复制 ${card.title} 命令`} />
-              </article>
-            ))}
-          </div>
+          <article className="card home-prompt-card">
+            <CommandRow command={deploy.prompt} label="复制部署提示词" />
+            <p className="muted home-prompt-hint">{deploy.hint}</p>
+            <div className="home-prompt-actions">
+              <Link className="btn btn-arrow" to="/docs">
+                查看完整文档
+              </Link>
+            </div>
+          </article>
         </div>
       </section>
 
