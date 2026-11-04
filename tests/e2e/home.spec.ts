@@ -46,16 +46,13 @@ test('hero shows the badge, the two-line headline and both CTAs', async ({ page 
   await expect(page.getByRole('link', { name: hero.secondaryCta.label })).toBeVisible()
 })
 
-test('the hero sits on the ambient glow and dot field, framed in a window', async ({ page }) => {
+test('the hero sits on the fluid backdrop with the screenshot in a plain frame', async ({ page }) => {
   await page.goto('/')
 
   await expect(page.locator('.home-hero .backdrop')).toHaveCount(1)
   await expect(page.locator('.home-hero .backdrop-canvas')).toHaveCount(1)
   await expect(page.locator('.home-hero .hero-enter')).toHaveCount(2)
-
-  const bar = page.getByText(hero.shot.bar)
-  await expect(bar).toBeVisible()
-  await expect(bar).toHaveClass(/window-bar/)
+  await expect(page.locator('.home-hero .window-bar')).toHaveCount(0)
 
   const image = page.locator('.home-hero .window img')
   await expect(image).toHaveAttribute('loading', 'eager')

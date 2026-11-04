@@ -5,8 +5,6 @@ export type Screenshot = {
   alt: string
   width: number
   height: number
-  /** Label rendered in the window title bar. */
-  bar: string
 }
 
 export type Cta = { label: string; href: string; external?: boolean }
@@ -19,11 +17,10 @@ export const hero = {
   primaryCta: { label: '下载客户端', href: '/downloads' } satisfies Cta,
   secondaryCta: { label: '开始部署', href: '/docs' } satisfies Cta,
   shot: {
-    src: '/screenshots/home/native-conversations.webp',
-    alt: 'CrossGram 桌面客户端截图：不同平台的会话排在同一份会话列表中',
-    width: 1068,
-    height: 1144,
-    bar: 'crossgram://unified-inbox',
+    src: '/screenshots/home/hero-conversations.png',
+    alt: 'CrossGram 桌面客户端截图：群聊中的图片、合并转发与引用消息保持完整结构',
+    width: 1199,
+    height: 959,
   } satisfies Screenshot,
 }
 
@@ -41,7 +38,6 @@ export const capabilities = {
         alt: '手机客户端的会话列表截图：多平台的私聊与群聊排列在一起',
         width: 890,
         height: 1796,
-        bar: 'nagram://dialogs',
       },
     },
     {
@@ -53,7 +49,6 @@ export const capabilities = {
         alt: '手机客户端的聊天记录截图：转发的一组历史消息保留了原始发送者与上下文',
         width: 854,
         height: 1436,
-        bar: 'telegram://forwarded',
       },
     },
     {
@@ -65,7 +60,6 @@ export const capabilities = {
         alt: '手机客户端的文件消息截图：气泡中显示文件名、体积与发送进度',
         width: 880,
         height: 588,
-        bar: 'transfer://file',
       },
     },
     {
@@ -77,7 +71,6 @@ export const capabilities = {
         alt: 'CrossGram Server 的 WebUI 截图：平台账号与登录码集中展示',
         width: 1500,
         height: 1208,
-        bar: 'server://platform-accounts',
       },
     },
   ],

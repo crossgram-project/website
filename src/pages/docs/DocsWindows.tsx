@@ -30,8 +30,11 @@ yarn build`}</CodeBlock>
       <ol className="docs-steps">
         <li>安装并登录 Windows QQNT，关闭自动更新或确认 QQNT Bridge 支持当前版本。</li>
         <li>
-          从 <code>crossgram-project/qqnt-bridge</code> 的 Releases 下载 Windows
-          构建，按其 README 完成注入或启动。
+          从{' '}
+          <a href="https://github.com/xuuuuan/crossgram-qqnt" target="_blank" rel="noreferrer">
+            xuuuuan/crossgram-qqnt
+          </a>{' '}
+          的 Releases 下载 Windows 构建，按其 README 完成注入或启动。
         </li>
         <li>
           确认 Bridge API 可在默认地址 <code>http://127.0.0.1:18767/v1</code> 访问，并记录 bearer token。

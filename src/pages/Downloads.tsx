@@ -144,17 +144,6 @@ export default function Downloads({ clients = catalog.clients, updatedAt = catal
           </section>
         </div>
       </div>
-
-      <div className="container dl-body">
-        <section className="card dl-note" aria-label="关于品牌渠道">
-          <h3>关于品牌渠道</h3>
-          <p className="muted">
-            同一个客户端会为不同平台提供独立的图标、应用标识与数据目录：QQ、微信、企业微信、钉钉与 Discord
-            渠道可以同时安装、互不覆盖，CrossGram 则是中性渠道。调试符号、校验文件与更早的构建不会列在这里，需要时请前往对应仓库的
-            Release 页面查找。
-          </p>
-        </section>
-      </div>
     </div>
   )
 }

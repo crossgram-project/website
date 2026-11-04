@@ -35,8 +35,11 @@ sudo journalctl -u crossgram -f`}</CodeBlock>
 
       <h2>2. 安装 QQNT Bridge</h2>
       <p>
-        QQNT 协议端位于 <code>crossgram-project/qqnt-bridge</code>
-        。在 QQNT Bridge 仓库的 Release / 部署文档中复制最新的一键安装命令，并在同一台或可互通的主机上执行。
+        QQNT 协议端位于{' '}
+        <a href="https://github.com/xuuuuan/crossgram-qqnt" target="_blank" rel="noreferrer">
+          xuuuuan/crossgram-qqnt
+        </a>
+        。在该仓库的 Release 与部署文档中复制最新的一键安装命令，并在同一台或可互通的主机上执行。
       </p>
       <div className="callout docs-callout">
         <span className="docs-callout-tag">注意</span>

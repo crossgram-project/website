@@ -98,10 +98,7 @@ describe('Downloads page', () => {
     const recommended = within(picker('Alpha')).getByRole('link', { name: '下载' }).parentElement!
     expect(recommended.classList.contains('panel')).toBe(true)
     expect(recommended.classList.contains('dl-recommend')).toBe(true)
-
-    const note = screen.getByRole('region', { name: '关于品牌渠道' })
-    expect(note.classList.contains('card')).toBe(true)
-    expect(within(note).getByRole('heading', { level: 3, name: '关于品牌渠道' })).toBeTruthy()
+    expect(screen.queryByRole('region', { name: '关于品牌渠道' })).toBeNull()
   })
 
   it('switches the visible client list when another tab is selected', () => {

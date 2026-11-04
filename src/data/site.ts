@@ -9,7 +9,7 @@ export const nav: NavItem[] = [
 export const site = {
   name: 'CrossGram',
   tagline: '用你喜欢的 Telegram 客户端连接 QQ、Discord、Matrix 与更多聊天平台。',
-  github: 'https://github.com/crossgram-project',
+  github: 'https://github.com/std-microblock/crossgram',
   serverRepo: 'https://github.com/std-microblock/crossgram',
 }
 

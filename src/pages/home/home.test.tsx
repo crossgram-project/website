@@ -74,14 +74,12 @@ describe('Home page', () => {
     expect(primary.querySelector('svg')).not.toBeNull()
   })
 
-  it('frames the hero screenshot in a titled window', () => {
+  it('shows the hero screenshot in a plain rounded frame with no window chrome', () => {
     const { container } = renderHome()
-    const bar = screen.getByText(hero.shot.bar)
-    expect(bar.className).toBe('window-bar')
-
-    const window_ = bar.closest('.window') as HTMLElement
-    expect(window_.className).toContain('home-hero-window')
+    const window_ = container.querySelector('.window.home-hero-window') as HTMLElement
+    expect(window_).not.toBeNull()
     expect(window_.className).toContain('hero-enter')
+    expect(window_.querySelector('.window-bar')).toBeNull()
 
     const image = window_.querySelector('img')!
     expect(image.getAttribute('src')).toBe(hero.shot.src)

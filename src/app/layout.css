@@ -3,7 +3,6 @@
   top: 0;
   z-index: 30;
   padding-top: 14px;
-  background: linear-gradient(to bottom, var(--bg-page) 34%, color-mix(in srgb, var(--bg-page) 0%, transparent));
 }
 
 .nav-shell {

@@ -60,7 +60,6 @@ function WindowShot({
 }) {
   return (
     <div className={`window ${className}`.trim()}>
-      <div className="window-bar">{shot.bar}</div>
       <img
         src={shot.src}
         alt={shot.alt}

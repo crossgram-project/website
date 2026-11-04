@@ -274,7 +274,7 @@ button {
   overflow: hidden;
   border: 1px solid var(--border-default);
   border-radius: var(--radius-card);
-  background: var(--surface-3);
+  background: var(--surface-card);
   box-shadow: var(--shadow-card);
 }
 
@@ -284,14 +284,14 @@ button {
 
 .card-hover:hover {
   border-color: var(--border-strong);
-  background: var(--surface-2);
+  background: var(--surface-card-hover);
   transform: translateY(-2px);
 }
 
 .panel {
   border: 1px solid var(--border-default);
   border-radius: var(--radius-panel);
-  background: var(--surface-2);
+  background: var(--surface-card);
 }
 
 /* App screenshot framing. Deliberately no fake OS chrome. */

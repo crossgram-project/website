@@ -1,17 +1,11 @@
 .backdrop {
   position: absolute;
-  inset: -16% -14% auto;
+  inset: -140px -14% auto;
   z-index: -1;
-  height: 88%;
+  height: clamp(620px, 88vh, 940px);
   overflow: hidden;
   pointer-events: none;
-  mask-image: radial-gradient(
-    ellipse 82% 78% at 50% 14%,
-    #000 0%,
-    rgba(0, 0, 0, 0.82) 38%,
-    rgba(0, 0, 0, 0.3) 66%,
-    transparent 88%
-  );
+  mask-image: linear-gradient(to bottom, #000 0%, #000 46%, rgba(0, 0, 0, 0.45) 74%, transparent 96%);
 }
 
 .backdrop-canvas {
