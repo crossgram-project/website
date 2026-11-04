@@ -1,0 +1,162 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  padding-top: 14px;
+  background: linear-gradient(to bottom, var(--bg-page) 34%, color-mix(in srgb, var(--bg-page) 0%, transparent));
+}
+
+.nav-shell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 58px;
+  padding: 0 8px 0 16px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--bg-page) 82%, transparent);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(18px) saturate(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-right: auto;
+  color: var(--text-primary);
+}
+
+.brand-mark {
+  flex: none;
+  color: var(--text-primary);
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-size: 16.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.nav-link {
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  color: var(--text-description);
+  font-size: 14.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-link:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.nav-link.active {
+  background: var(--surface-1);
+  box-shadow: inset 0 0 0 1px var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.nav-link.external {
+  margin-left: 6px;
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+}
+
+.nav-link.external:hover {
+  border-color: var(--border-strong);
+  background: transparent;
+}
+
+.site-footer {
+  border-top: 1px solid var(--border-subtle);
+  padding-block: var(--space-7);
+}
+
+.site-footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-description);
+}
+
+.footer-brand .brand-mark {
+  color: var(--text-description);
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--space-5);
+  font-size: 14px;
+}
+
+.footer-links a {
+  color: var(--text-description);
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--text-primary);
+}
+
+@media (max-width: 860px) {
+  .nav-link {
+    padding: 8px 11px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header {
+    padding-top: 10px;
+  }
+
+  .nav-shell {
+    height: 54px;
+    padding: 0 6px 0 13px;
+    gap: 0;
+  }
+
+  .brand-name {
+    font-size: 15px;
+  }
+
+  .site-nav {
+    gap: 0;
+  }
+
+  .nav-link {
+    padding: 7px 9px;
+    font-size: 13.5px;
+  }
+}
+
+@media (max-width: 520px) {
+  /* GitHub stays reachable from the footer on the narrowest screens. */
+  .nav-link.external {
+    display: none;
+  }
+
+  .nav-link {
+    padding: 7px 8px;
+    font-size: 13px;
+  }
+}

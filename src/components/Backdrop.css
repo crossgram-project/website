@@ -1,0 +1,48 @@
+.backdrop {
+  position: absolute;
+  inset: -6% -10% -18%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, #000 0%, #000 52%, transparent 96%);
+}
+
+.backdrop-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+}
+
+/* WebGL unavailable: fall back to one static gradient of the same effect. */
+.backdrop-canvas[data-fallback='true'] {
+  background:
+    radial-gradient(60% 46% at 50% 6%, var(--glow-core) 0%, var(--glow-mid) 48%, transparent 78%),
+    radial-gradient(38% 32% at 14% 26%, var(--glow-mid) 0%, transparent 76%),
+    radial-gradient(40% 30% at 88% 22%, var(--glow-mid) 0%, transparent 76%);
+}
+
+.backdrop-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--grid-dot) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-dot) 1px, transparent 1px);
+  background-size: 96px 96px;
+  mask-image: radial-gradient(ellipse 58% 54% at 50% 18%, #000 20%, transparent 74%);
+  opacity: 0.4;
+}
+
+@media (prefers-color-scheme: light) {
+  .backdrop-grid {
+    opacity: 0.3;
+  }
+}
+
+@media (max-width: 640px) {
+  .backdrop-grid {
+    background-size: 68px 68px;
+  }
+}

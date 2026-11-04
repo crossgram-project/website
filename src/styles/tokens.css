@@ -1,0 +1,160 @@
+/* CrossGram visual language: dark-first, soft blue ambience, pill controls,
+   large rounded panels. Light and dark both derive from the same token set. */
+
+@font-face {
+  font-family: 'Host Grotesk';
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url('/fonts/host-grotesk-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Host Grotesk';
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url('/fonts/host-grotesk-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308,
+    U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
+    U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Fragment Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/fragment-mono-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Fragment Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/fragment-mono-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308,
+    U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
+    U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  color-scheme: light dark;
+
+  --font-sans: 'Host Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-display: 'Host Grotesk', system-ui, -apple-system, 'Segoe UI', 'Noto Sans SC',
+    'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-mono: 'Fragment Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Noto Sans SC',
+    'PingFang SC', 'Microsoft YaHei', monospace;
+
+  --radius-pill: 100px;
+  --radius-card: 24px;
+  --radius-panel: 16px;
+  --radius-media: 10px;
+  --radius-sm: 8px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 40px;
+  --space-8: 56px;
+  --space-9: 80px;
+  --space-10: 120px;
+  --space-11: 160px;
+
+  /* Light theme */
+  --bg-page: #f9f8f8;
+  --bg-overlay: #ffffff;
+  --surface-1: rgba(255, 255, 255, 0.62);
+  --surface-2: rgba(0, 0, 0, 0.03);
+  --surface-3: rgba(0, 0, 0, 0.02);
+  --surface-raised: rgba(255, 255, 255, 0.45);
+  --bg-code: rgba(0, 0, 0, 0.04);
+  --bg-hover: rgba(0, 0, 0, 0.04);
+
+  --text-primary: #1e232c;
+  --text-secondary: rgba(0, 0, 0, 0.7);
+  --text-description: rgba(0, 0, 0, 0.55);
+  --text-placeholder: rgb(134, 145, 161);
+  --text-inverse: #ffffff;
+
+  --brand: #4d6bfe;
+  --brand-deep: #3a65c2;
+  --brand-soft: rgba(77, 107, 254, 0.1);
+
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-default: rgba(0, 0, 0, 0.1);
+  --border-divider: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.2);
+
+  --btn-primary-bg: #1a1615;
+  --btn-primary-text: #ffffff;
+  --btn-primary-hover: #322d2b;
+  --btn-secondary-bg: rgba(255, 255, 255, 0.5);
+  --btn-secondary-text: #1e232c;
+  --btn-secondary-border: rgba(9, 45, 78, 0.18);
+  --btn-secondary-hover-bg: rgba(0, 0, 0, 0.05);
+  --btn-secondary-hover-border: rgba(9, 45, 78, 0.36);
+
+  --shadow-card: 0 0 0 1px #f1f5f9, 0 2px 4px rgba(0, 0, 0, 0.05), 0 12px 24px rgba(0, 0, 0, 0.05);
+  --shadow-float: 0 24px 60px -24px rgba(15, 23, 42, 0.28);
+
+  --glow-core: rgba(210, 224, 255, 0.85);
+  --glow-mid: rgba(77, 107, 254, 0.22);
+  --glow-edge: rgba(77, 107, 254, 0);
+  --grid-dot: rgba(15, 23, 42, 0.07);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-page: #0a0a0a;
+    --bg-overlay: #262626;
+    --surface-1: rgba(255, 255, 255, 0.06);
+    --surface-2: rgba(255, 255, 255, 0.04);
+    --surface-3: rgba(255, 255, 255, 0.02);
+    --surface-raised: rgba(255, 255, 255, 0.12);
+    --bg-code: rgba(255, 255, 255, 0.05);
+    --bg-hover: rgba(255, 255, 255, 0.06);
+
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --text-description: rgba(255, 255, 255, 0.5);
+    --text-placeholder: rgba(255, 255, 255, 0.3);
+    --text-inverse: #0a0a0a;
+
+    --brand: #6799fe;
+    --brand-deep: #ffffff;
+    --brand-soft: rgba(103, 153, 254, 0.14);
+
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-default: rgba(255, 255, 255, 0.06);
+    --border-divider: rgba(255, 255, 255, 0.12);
+    --border-strong: rgba(255, 255, 255, 0.24);
+
+    --btn-primary-bg: #ffffff;
+    --btn-primary-text: #0a0a0a;
+    --btn-primary-hover: rgba(255, 255, 255, 0.85);
+    --btn-secondary-bg: rgba(255, 255, 255, 0.06);
+    --btn-secondary-text: #ffffff;
+    --btn-secondary-border: rgba(255, 255, 255, 0.15);
+    --btn-secondary-hover-bg: rgba(255, 255, 255, 0.14);
+    --btn-secondary-hover-border: rgba(255, 255, 255, 0.4);
+
+    --shadow-card: rgba(255, 255, 255, 0.12) 0 1px 0 0 inset;
+    --shadow-float: 0 30px 70px -30px rgba(0, 0, 0, 0.9);
+
+    --glow-core: rgba(45, 95, 158, 0.55);
+    --glow-mid: rgba(26, 56, 112, 0.45);
+    --glow-edge: rgba(10, 10, 10, 0);
+    --grid-dot: rgba(255, 255, 255, 0.07);
+  }
+}

@@ -1,0 +1,348 @@
+/* Docs section, DeepSeek-Harness language: dark-first ambience, pill controls,
+   large rounded surfaces. Every selector is scoped with a `docs-` prefix; the
+   shared layer (.prose, .callout, .code-block, .card, .panel, .glow, .eyebrow,
+   .cmd-copy) is reused as-is. */
+
+/* ------------------------------------------------------------- /docs head -- */
+
+.docs-hero {
+  position: relative;
+  padding-block: 112px 56px;
+  text-align: center;
+}
+
+.docs-hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.docs-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5.4vw, 62px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+.docs-hero-lead {
+  max-width: 56ch;
+}
+
+/* ------------------------------------------------------------ guide cards -- */
+
+.docs-index-body {
+  padding-bottom: var(--space-11);
+}
+
+.docs-guides {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.docs-guide {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6);
+}
+
+.docs-guide-meta {
+  color: var(--brand);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.docs-guide h2 {
+  font-size: 24px;
+}
+
+.docs-guide p {
+  color: var(--text-description);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.docs-guide-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: var(--space-4);
+  color: var(--brand);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.docs-guide-arrow {
+  transition: transform 0.2s ease;
+}
+
+.docs-guide:hover .docs-guide-arrow {
+  transform: translateX(3px);
+}
+
+/* ------------------------------------------------------------- flow strip -- */
+
+.docs-flow-block {
+  margin-top: var(--space-8);
+  padding: var(--space-7) var(--space-6);
+}
+
+.docs-flow-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  text-align: center;
+}
+
+.docs-flow-head h2 {
+  font-size: 22px;
+}
+
+.docs-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px 0;
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+}
+
+.docs-flow-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-primary);
+}
+
+.docs-flow-step:not(:last-child)::after {
+  content: '→';
+  margin-inline: 18px;
+  color: var(--brand);
+}
+
+.docs-flow-num {
+  color: var(--text-placeholder);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+}
+
+/* --------------------------------------------------------- guide layout -- */
+
+.docs-shell {
+  padding-block: var(--space-8) var(--space-10);
+}
+
+.docs-side {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  margin-bottom: var(--space-6);
+  padding: var(--space-3);
+}
+
+.docs-side-group {
+  display: none;
+}
+
+.docs-side-link {
+  padding: 9px 14px;
+  border-radius: var(--radius-pill);
+  color: var(--text-description);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.docs-side-link:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.docs-side-link.active {
+  background: var(--brand-soft);
+  color: var(--brand);
+}
+
+.docs-side-back {
+  color: var(--text-description);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.docs-article {
+  min-width: 0;
+}
+
+.docs-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-bottom: var(--space-6);
+}
+
+.docs-head h1 {
+  font-size: clamp(30px, 3.6vw, 40px);
+}
+
+.docs-head .lead {
+  max-width: 60ch;
+}
+
+/* ------------------------------------------------------------- commands -- */
+
+.docs-code {
+  position: relative;
+}
+
+/* A `div` panel does not preserve newlines the way `<pre>` does; the panel
+   styles, the language tag and the inline-chip reset come from base.css. */
+.docs-code-panel code {
+  white-space: pre;
+}
+
+/* Only the position lives here — the pill look is the shared `.cmd-copy`. */
+.docs-code-copy {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  min-width: 64px;
+  text-align: center;
+}
+
+/* ------------------------------------------------------------ prose bits -- */
+
+/* A little more air before a sub-heading than the flex gap alone gives. */
+.docs-article .prose h3 {
+  margin-top: var(--space-2);
+}
+
+.callout.docs-callout {
+  align-items: flex-start;
+}
+
+.docs-callout-tag {
+  flex: none;
+  padding-top: 2px;
+  color: var(--brand);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.7;
+  letter-spacing: 0.18em;
+}
+
+.docs-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: docs-step;
+}
+
+.docs-steps > li {
+  position: relative;
+  padding-left: 40px;
+  counter-increment: docs-step;
+}
+
+.docs-steps > li::before {
+  content: counter(docs-step, decimal-leading-zero);
+  position: absolute;
+  top: 3px;
+  left: 0;
+  color: var(--brand);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+/* -------------------------------------------------------- wider screens -- */
+
+@media (min-width: 900px) {
+  .docs-shell {
+    padding-block: var(--space-8) var(--space-11);
+  }
+
+  .docs-shell-inner {
+    display: grid;
+    grid-template-columns: 232px minmax(0, 1fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  .docs-side {
+    position: sticky;
+    top: 90px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 2px;
+    margin-bottom: 0;
+    padding: var(--space-4);
+  }
+
+  .docs-side-group {
+    display: block;
+    margin: var(--space-4) 14px var(--space-2);
+    color: var(--text-placeholder);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .docs-side-group:first-of-type {
+    margin-top: var(--space-2);
+  }
+}
+
+@media (max-width: 900px) {
+  .docs-hero {
+    padding-block: var(--space-9) var(--space-6);
+  }
+}
+
+@media (max-width: 720px) {
+  .docs-guides {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .docs-guide {
+    padding: var(--space-5);
+  }
+}
+
+@media (max-width: 640px) {
+  .docs-hero {
+    padding-block: var(--space-8) var(--space-5);
+  }
+
+  .docs-flow-block {
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .docs-flow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .docs-flow-step:not(:last-child)::after {
+    content: '↓';
+    margin-inline: 0;
+  }
+}
